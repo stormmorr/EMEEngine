@@ -1,0 +1,3182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.props" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.props')" />
+  <PropertyGroup>
+    <SharedContentDir>..\..\..\SharedContent</SharedContentDir>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <MinimalCoreWin>true</MinimalCoreWin>
+    <ProjectGuid>{F2EE7569-2AFA-53F7-89E6-93447D31465A}</ProjectGuid>
+    <ProjectName>AppWindow</ProjectName>
+    <RootNamespace>SDKTemplate</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.22000.0</WindowsTargetPlatformMinVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration">
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration">
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IncludePath>$(VC_IncludePath);$(UniversalCRT_IncludePath);$(WindowsSDK_IncludePath);$(SharedContentDir)\cppwinrt</IncludePath>
+    <CppWinRTOptimized>true</CppWinRTOptimized>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>945F12AFD4D74E6E9C247C737668C1F3B6EFB9BA</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <PackageCertificateKeyFile>AppWindow_TemporaryKey.pfx</PackageCertificateKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <TargetName>ecoin</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
+      <WarningLevel>Level4</WarningLevel>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <DisableSpecificWarnings>4453;28204</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
+    <ClCompile>
+      <PreprocessorDefinitions>_WIN32;NDEBUG;UNIFICATION;ECOIN_SECURE;IDV_OPENGL;UPVECTOR_POS_Y;LEAF_NORMAL_MAPPING;FROND_NORMAL_MAPPING;INTERMEDIATE_FRONDBRANCH_FADING;NOMINMAX;QGVARS;QAGEMODE_NOINTRO;_CRT_SECURE_NO_WARNINGS;P_DISABLE_3D;ECOIN;ECOIN_QUANTUMANGEL;_TIMESPEC_DEFINED;DISABLE_XAML_GENERATED_BREAK_ON_UNHANDLED_EXCEPTION;ECOIN_MINER;_ALLOW_COMPILER_AND_STL_VERSION_MISMATCH;USE_NUM_GMP;WANT_TMP_ALLOCA;WANT_TMP_REENTRANT;WANT_TMP_NOTREENTRANT;USE_BASIC_CONFIG;USE_FIELD_10X26;USE_FIELD_INV_BUILTIN;USE_SCALAR_8X32;USE_SCALAR_INV_BUILTIN;ENABLE_MODULE_RECOVERY;ANGLE_ENABLE_WINDOWS_STORE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsWinRT>
+      <SDLCheck Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</SDLCheck>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Projects Base\boost_1_82_0;C:\Projects Base\boost_1_82_0\boost;C:\angle;C:\angle\src;C:\angle\include;C:\angle\src\common\base;QAGE Include;Deps\p3d;Deps\sdl\SDL2-master\include;Deps\freetype\freetype-2.3.5\include;UnSRC;UnSRC\Utility;UnSRC\Sound;Code\Work;Code\myBO;C:\Projects Base\UNCal3dUWP\cal3d\src;C:\Projects Base\UNCal3dUWP\cal3d\src\cal3d;Code\Hash;Code\Hash\libsecp\libsecp256k1\include;Code\Hash\libsecp\libsecp256k1\src;Code\Hash\libsecp\libsecp256k1;Code\Hash\gmp;Code\Mission;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Windows</SubSystem>
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">libGLESv2.lib;libEGL.lib;angle_util.lib;WindowsApp.lib;Mswsock.lib;AdvApi32.lib;runtimeobject.lib;mfuuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <StackReserveSize Condition="'$(Configuration)|$(Platform)'=='Release|x64'">10000000</StackReserveSize>
+      <StackCommitSize Condition="'$(Configuration)|$(Platform)'=='Release|x64'">10000000</StackCommitSize>
+      <AdditionalLibraryDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Projects Base\MS-Angle\lib\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </DelayLoadDLLs>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Image Include="$(SharedContentDir)\media\smalltile-sdk.png">
+      <Link>Assets\smallTile-sdk.png</Link>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\squaretile-sdk.png">
+      <Link>Assets\squareTile-sdk.png</Link>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\storelogo-sdk.png">
+      <Link>Assets\storeLogo-sdk.png</Link>
+    </Image>
+    <Image Include="$(SharedContentDir)\media\tile-sdk.png">
+      <Link>Assets\tile-sdk.png</Link>
+    </Image>
+    <Image Include="Assets\7160869.png" />
+    <Image Include="Assets\7160869alter.png" />
+    <Image Include="Assets\aeon-coin-logo.png" />
+    <Image Include="Assets\AmusedBraveAtlanticridleyturtle-poster.jpg" />
+    <Image Include="Assets\BackButton.png" />
+    <Image Include="Assets\BadgeLogo.scale-100.png" />
+    <Image Include="Assets\BadgeLogo.scale-125.png" />
+    <Image Include="Assets\BadgeLogo.scale-150.png" />
+    <Image Include="Assets\BadgeLogo.scale-200.png" />
+    <Image Include="Assets\BadgeLogo.scale-400.png" />
+    <Image Include="Assets\Bitcoin-1.png" />
+    <Image Include="Assets\bitcoin-1813503_1280 (1).jpg" />
+    <Image Include="Assets\bitcoin-1813503_1280.jpg" />
+    <Image Include="Assets\bitcoin-perfecthue.jpg" />
+    <Image Include="Assets\bitcoin-perfecthueBU.jpg" />
+    <Image Include="Assets\Bitcoin.png" />
+    <Image Include="Assets\bitcoins.png" />
+    <Image Include="Assets\bitcoin_cible_bruxelles.jpg" />
+    <Image Include="Assets\Buy5000.png" />
+    <Image Include="Assets\DQmWH24KtcXLmQhb5QJwXt8gsixpPPZAgpYVED9fDtJQWMC.png" />
+    <Image Include="Assets\easyworship_cross04.jpg" />
+    <Image Include="Assets\ecoin-sdk.png" />
+    <Image Include="Assets\ecoin.png" />
+    <Image Include="Assets\ecoinbr.png" />
+    <Image Include="Assets\ecoinbrcps.png" />
+    <Image Include="Assets\ethereum1.png" />
+    <Image Include="Assets\facade-of-a-shop.jpg" />
+    <Image Include="Assets\giphy123.gif" />
+    <Image Include="Assets\giphy357657.gif" />
+    <Image Include="Assets\giphybitolyl.gif" />
+    <Image Include="Assets\giphycooltext.gif" />
+    <Image Include="Assets\giphydarkblk.gif" />
+    <Image Include="Assets\giphydarklasers.gif" />
+    <Image Include="Assets\giphydarkspiral.gif" />
+    <Image Include="Assets\giphydarkstage.gif" />
+    <Image Include="Assets\giphyevencoolertext.gif" />
+    <Image Include="Assets\giphyflashy.gif" />
+    <Image Include="Assets\giphyguilding.gif" />
+    <Image Include="Assets\giphyimage.gif" />
+    <Image Include="Assets\giphyinformedzoom.gif" />
+    <Image Include="Assets\giphyluiop.gif" />
+    <Image Include="Assets\giphypopalbloomy.gif" />
+    <Image Include="Assets\giphysquarepusher.gif" />
+    <Image Include="Assets\giphytext345.gif" />
+    <Image Include="Assets\giphytext34657.gif" />
+    <Image Include="Assets\images (1).jpg" />
+    <Image Include="Assets\images (2).jpg" />
+    <Image Include="Assets\images.jpg" />
+    <Image Include="Assets\LargeTile.scale-100.png" />
+    <Image Include="Assets\LargeTile.scale-125.png" />
+    <Image Include="Assets\LargeTile.scale-150.png" />
+    <Image Include="Assets\LargeTile.scale-200.png" />
+    <Image Include="Assets\LargeTile.scale-400.png" />
+    <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\maxresdefault-620x330.jpg" />
+    <Image Include="Assets\minerpanel.png" />
+    <Image Include="Assets\minerpanelplau21r.png" />
+    <Image Include="Assets\monero1.png" />
+    <Image Include="Assets\New1\004.jpg" />
+    <Image Include="Assets\New1\005.jpg" />
+    <Image Include="Assets\New1\1.gif" />
+    <Image Include="Assets\New1\10-1.gif" />
+    <Image Include="Assets\New1\1080_Green_White_Sparkles_loop_Videvo.jpg" />
+    <Image Include="Assets\New1\11-1.gif" />
+    <Image Include="Assets\New1\11.jpg" />
+    <Image Include="Assets\New1\12-1.gif" />
+    <Image Include="Assets\New1\13-1.gif" />
+    <Image Include="Assets\New1\14-1.gif" />
+    <Image Include="Assets\New1\15-1.gif" />
+    <Image Include="Assets\New1\16-1.gif" />
+    <Image Include="Assets\New1\17-1.gif" />
+    <Image Include="Assets\New1\18-1.gif" />
+    <Image Include="Assets\New1\19-1.gif" />
+    <Image Include="Assets\New1\2-2.gif" />
+    <Image Include="Assets\New1\2.gif" />
+    <Image Include="Assets\New1\20-1.gif" />
+    <Image Include="Assets\New1\21-1.gif" />
+    <Image Include="Assets\New1\3-1.gif" />
+    <Image Include="Assets\New1\3.gif" />
+    <Image Include="Assets\New1\3.jpg" />
+    <Image Include="Assets\New1\4.gif" />
+    <Image Include="Assets\New1\5-1.gif" />
+    <Image Include="Assets\New1\6-1.gif" />
+    <Image Include="Assets\New1\7-1.gif" />
+    <Image Include="Assets\New1\8-1.gif" />
+    <Image Include="Assets\New1\9-1.gif" />
+    <Image Include="Assets\New1\abstract-nature.jpg" />
+    <Image Include="Assets\New1\bit.jpg" />
+    <Image Include="Assets\New1\bitologo2.png" />
+    <Image Include="Assets\New1\bokeh-gold-wallpaper-2560x1600.jpg" />
+    <Image Include="Assets\New1\border1.png" />
+    <Image Include="Assets\New1\britishflag.png" />
+    <Image Include="Assets\New1\brushed-panel-444516.jpg" />
+    <Image Include="Assets\New1\cryptocurrency-wallets.jpg" />
+    <Image Include="Assets\New1\currency-trading.jpg" />
+    <Image Include="Assets\New1\ecn-central2.png" />
+    <Image Include="Assets\New1\ecn-world-logo-4.png" />
+    <Image Include="Assets\New1\ECN3.jpeg" />
+    <Image Include="Assets\New1\ecnpowering.gif" />
+    <Image Include="Assets\New1\favicon-96x96.png" />
+    <Image Include="Assets\New1\flashing-lights-bulb-vj-spotlight-wall-of-lights-stage-motion-graphic-background-4k-ultra-hd_vy6me9si__F0000.png" />
+    <Image Include="Assets\New1\giphy-downsized-ltcgrow.gif" />
+    <Image Include="Assets\New1\giphy-downsized4r56456.gif" />
+    <Image Include="Assets\New1\giphy-downsizeddfrsg.gif" />
+    <Image Include="Assets\New1\giphy-downsizedrettry.gif" />
+    <Image Include="Assets\New1\giphy-downsizedwqee.gif" />
+    <Image Include="Assets\New1\giphy.gif" />
+    <Image Include="Assets\New1\giphyhytj.gif" />
+    <Image Include="Assets\New1\giphyrdfgswaa.gif" />
+    <Image Include="Assets\New1\giphysdaff.gif" />
+    <Image Include="Assets\New1\giphytyuiyi.gif" />
+    <Image Include="Assets\New1\gold-and-white-background-light-gold-abstract-background-a87740526b215871.jpg" />
+    <Image Include="Assets\New1\hollywood_golden_bokeh_by_diamondlightart-d4s7drt.png" />
+    <Image Include="Assets\New2\AmusedBraveAtlanticridleyturtle-poster.jpg" />
+    <Image Include="Assets\New2\easyworship_cross04.jpg" />
+    <Image Include="Assets\New2\giphy123.gif" />
+    <Image Include="Assets\New2\giphy357657.gif" />
+    <Image Include="Assets\New2\giphybitolyl.gif" />
+    <Image Include="Assets\New2\giphycooltext.gif" />
+    <Image Include="Assets\New2\giphydarkblk.gif" />
+    <Image Include="Assets\New2\giphydarklasers.gif" />
+    <Image Include="Assets\New2\giphydarkspiral.gif" />
+    <Image Include="Assets\New2\giphydarkstage.gif" />
+    <Image Include="Assets\New2\giphyevencoolertext.gif" />
+    <Image Include="Assets\New2\giphyflashy.gif" />
+    <Image Include="Assets\New2\giphyguilding.gif" />
+    <Image Include="Assets\New2\giphyimage.gif" />
+    <Image Include="Assets\New2\giphyinformedzoom.gif" />
+    <Image Include="Assets\New2\giphypopalbloomy.gif" />
+    <Image Include="Assets\New2\giphysquarepusher.gif" />
+    <Image Include="Assets\New2\giphytext345.gif" />
+    <Image Include="Assets\New2\giphytext34657.gif" />
+    <Image Include="Assets\New3\6a90b8ce390c7646c515cab20aff56c8.jpg" />
+    <Image Include="Assets\New3\image_265422.jpg" />
+    <Image Include="Assets\New3\pngtree-black-gold-premium-texture-film-festival-mobile-phone-poster-image_194129.jpg" />
+    <Image Include="Assets\New3\pngtree-black-gold-technology-2019-annual-meeting-background-gold-backgroundtechnologyannual-meetingannual-image_70540.jpg" />
+    <Image Include="Assets\New4\giph23y.gif" />
+    <Image Include="Assets\New4\giphy234234.gif" />
+    <Image Include="Assets\New4\giphy34324.gif" />
+    <Image Include="Assets\New4\giphyblue.gif" />
+    <Image Include="Assets\New4\giphyerwer.gif" />
+    <Image Include="Assets\New4\giphygreen.gif" />
+    <Image Include="Assets\New4\giphygreenstar.gif" />
+    <Image Include="Assets\New4\giphypulser.gif" />
+    <Image Include="Assets\New4\giphypurple.gif" />
+    <Image Include="Assets\New4\giphyrewr.gif" />
+    <Image Include="Assets\New5\giphyccry.gif" />
+    <Image Include="Assets\New5\giphycheesy.gif" />
+    <Image Include="Assets\New5\giphychunkaff.gif" />
+    <Image Include="Assets\New5\giphyenergy.gif" />
+    <Image Include="Assets\New5\giphygrswirl.gif" />
+    <Image Include="Assets\New5\giphyhorison.gif" />
+    <Image Include="Assets\New5\giphylarf.gif" />
+    <Image Include="Assets\NextButton.png" />
+    <Image Include="Assets\osirem-sdk.png" />
+    <Image Include="Assets\osirem-sdk3.png" />
+    <Image Include="Assets\Pure.png" />
+    <Image Include="Assets\record_button.png" />
+    <Image Include="Assets\skip_button_left.png" />
+    <Image Include="Assets\skip_button_left_new1.png" />
+    <Image Include="Assets\skip_button_left_new2.png" />
+    <Image Include="Assets\skip_button_right.png" />
+    <Image Include="Assets\skip_button_right_new1.png" />
+    <Image Include="Assets\skip_button_right_new2.png" />
+    <Image Include="Assets\SmallTile.scale-100.png" />
+    <Image Include="Assets\SmallTile.scale-125.png" />
+    <Image Include="Assets\SmallTile.scale-150.png" />
+    <Image Include="Assets\SmallTile.scale-200.png" />
+    <Image Include="Assets\SmallTile.scale-400.png" />
+    <Image Include="Assets\source.gif" />
+    <Image Include="Assets\SplashScreen.scale-100.png" />
+    <Image Include="Assets\SplashScreen.scale-125.png" />
+    <Image Include="Assets\SplashScreen.scale-150.png" />
+    <Image Include="Assets\SplashScreen.scale-200.png" />
+    <Image Include="Assets\SplashScreen.scale-400.png" />
+    <Image Include="Assets\Square150x150Logo.scale-100.png" />
+    <Image Include="Assets\Square150x150Logo.scale-125.png" />
+    <Image Include="Assets\Square150x150Logo.scale-150.png" />
+    <Image Include="Assets\Square150x150Logo.scale-200.png" />
+    <Image Include="Assets\Square150x150Logo.scale-400.png" />
+    <Image Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Image Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Image Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Image Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Image Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Image Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Image Include="Assets\Square44x44Logo.altform-unplated_targetsize-24.png" />
+    <Image Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Image Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Image Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Image Include="Assets\Square44x44Logo.scale-100.png" />
+    <Image Include="Assets\Square44x44Logo.scale-125.png" />
+    <Image Include="Assets\Square44x44Logo.scale-150.png" />
+    <Image Include="Assets\Square44x44Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.scale-400.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Image Include="Assets\stop_button.png" />
+    <Image Include="Assets\StoreLogo.scale-100.png" />
+    <Image Include="Assets\StoreLogo.scale-125.png" />
+    <Image Include="Assets\StoreLogo.scale-150.png" />
+    <Image Include="Assets\StoreLogo.scale-200.png" />
+    <Image Include="Assets\StoreLogo.scale-400.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Image Include="Assets\WithdrawPie.png" />
+    <Image Include="Assets\WithdrawPie2.png" />
+    <Image Include="Assets\xe8.jpg" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\env_Gem.tga" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\env_Ground_Evergreen.tga" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\env_Latex.tga" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\env_Metal_Chrome.tga" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\env_MetalChrome.tga" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\env_MetalWall.tga" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\env_Reflection_Chrom.tga" />
+    <Image Include="Assets\Avatar\Material\Assassin\Image\Fabric_Grey_Carp.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\env_Gem.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\env_Ground_Evergreen.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\env_Latex.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\env_Metal_Chrome.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\env_MetalChrome.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\env_MetalWall.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\env_Reflection_Chrom.tga" />
+    <Image Include="Assets\Avatar\Material\Commander\Image\Fabric_Grey_Carp.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP0.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP1.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP2.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP3.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP4.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP5.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP6.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP7.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackP8.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BackPack.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\BootSoles.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Butt.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\env_Left Leg.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\env_Left Thigh.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\env_Right Leg.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\env_Right Thigh.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\env_Stomach.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\env_Upper Body.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\EyeBall_L.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\EyeBall_R.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\eyediff.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Flesh.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Foot.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\h01spec.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\h02alph.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\h02diff.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\h02spec.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\h03alph.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\h03diff.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Hair.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Hand.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Left Arm.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Material #0.tga" />
+    <Image Include="Assets\Avatar\Material\Lisa\Image\Thigh Band Main.tga" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\13Default.bmp" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\13Default.tga" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\15Default.bmp" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\15Default.tga" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\20Default.bmp" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\20Default.tga" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\2Default1.bmp" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\2Default1.tga" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\7Default 1.bmp" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\7Default 1.tga" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\7Default.bmp" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\7Default.tga" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\7Default2.bmp" />
+    <Image Include="Assets\Avatar\Material\Mellodi\Image\7Default2.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\env_Gem.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\env_Ground_Evergreen.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\env_Latex.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\env_MetalChrome.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\env_MetalWall.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\env_Metal_Chrome.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\env_Reflection_Chrom.tga" />
+    <Image Include="Assets\Avatar\Material\Soldier\Image\Fabric_Grey_Carp.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\body_df1.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\ClothMt.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\ClothPants.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\ClothPants2.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\ClothSkirt.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\eyediff2.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\eyediffM.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\h01diff.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\Hair.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\HighSPD00241.bmp" />
+    <Image Include="Assets\Avatar\Material\Template\Image\HighSPD00241.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\HighSPD00241LR.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\shoe.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\SweaterBump.bmp" />
+    <Image Include="Assets\Avatar\Material\Template\Image\SweaterBump.tga" />
+    <Image Include="Assets\Avatar\Material\Template\Image\SweaterBumpInvert.bmp" />
+    <Image Include="Assets\Avatar\Material\Template\Image\SweaterBumpInvert.tga" />
+    <Image Include="Assets\Bitmaps\attsprite.tga" />
+    <Image Include="Assets\Bitmaps\Black.png" />
+    <Image Include="Assets\Bitmaps\BlackOut.tga" />
+    <Image Include="Assets\Bitmaps\BlackS.png" />
+    <Image Include="Assets\Bitmaps\blacky.png" />
+    <Image Include="Assets\Bitmaps\buildmenu.png" />
+    <Image Include="Assets\Bitmaps\buildmenu1.png" />
+    <Image Include="Assets\Bitmaps\bullet.tga" />
+    <Image Include="Assets\Bitmaps\bullet1.png" />
+    <Image Include="Assets\Bitmaps\bullet2.png" />
+    <Image Include="Assets\Bitmaps\bullet3.png" />
+    <Image Include="Assets\Bitmaps\BulletCNT.png" />
+    <Image Include="Assets\Bitmaps\BulletCNTA.png" />
+    <Image Include="Assets\Bitmaps\BulletCNTold.png" />
+    <Image Include="Assets\Bitmaps\BulletCount.png" />
+    <Image Include="Assets\Bitmaps\BulletCount.tga" />
+    <Image Include="Assets\Bitmaps\BulletTrail.tga" />
+    <Image Include="Assets\Bitmaps\BulletTrailA.png" />
+    <Image Include="Assets\Bitmaps\BulletTraiOriglA.png" />
+    <Image Include="Assets\Bitmaps\cartlb.tga" />
+    <Image Include="Assets\Bitmaps\Clouds\Cloud1.tga" />
+    <Image Include="Assets\Bitmaps\Clouds\Cloud2.tga" />
+    <Image Include="Assets\Bitmaps\Clouds\Cloud3.tga" />
+    <Image Include="Assets\Bitmaps\Clouds\Cloud9.tga" />
+    <Image Include="Assets\Bitmaps\Clouds\CloudBlood.tga" />
+    <Image Include="Assets\Bitmaps\Clouds\CloudLimb.tga" />
+    <Image Include="Assets\Bitmaps\Copy (2) of Hadouken2A.png" />
+    <Image Include="Assets\Bitmaps\Copy (2) of ScopeA.png" />
+    <Image Include="Assets\Bitmaps\Copy (2) of shadowA4.png" />
+    <Image Include="Assets\Bitmaps\Copy (2) of star3.png" />
+    <Image Include="Assets\Bitmaps\Copy (3) of ScopeA.png" />
+    <Image Include="Assets\Bitmaps\Copy (3) of star3.png" />
+    <Image Include="Assets\Bitmaps\Copy (4) of ScopeA.png" />
+    <Image Include="Assets\Bitmaps\Copy of Hadouken2A.png" />
+    <Image Include="Assets\Bitmaps\Copy of ScopeA.png" />
+    <Image Include="Assets\Bitmaps\Copy of shadowA4.png" />
+    <Image Include="Assets\Bitmaps\Copy of star3.png" />
+    <Image Include="Assets\Bitmaps\Copy of star4.png" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[0].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[10].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[11].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[12].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[13].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[14].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[15].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[16].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[17].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[18].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[19].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[1].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[20].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[21].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[22].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[23].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[24].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[25].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[26].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[27].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[2].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[3].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[4].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[5].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[6].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[7].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[8].tga" />
+    <Image Include="Assets\Bitmaps\Decal\DECAL[9].tga" />
+    <Image Include="Assets\Bitmaps\Dot.png" />
+    <Image Include="Assets\Bitmaps\dot.tga" />
+    <Image Include="Assets\Bitmaps\EGrabSparktail.tga" />
+    <Image Include="Assets\Bitmaps\EnergySpark.png" />
+    <Image Include="Assets\Bitmaps\expandro2.tga" />
+    <Image Include="Assets\Bitmaps\EXPexpandro1.tga" />
+    <Image Include="Assets\Bitmaps\Face.tga" />
+    <Image Include="Assets\Bitmaps\Facial.png" />
+    <Image Include="Assets\Bitmaps\FacialA.png" />
+    <Image Include="Assets\Bitmaps\FINAL.png" />
+    <Image Include="Assets\Bitmaps\FINALA.png" />
+    <Image Include="Assets\Bitmaps\fireglass.png" />
+    <Image Include="Assets\Bitmaps\fireglass2.png" />
+    <Image Include="Assets\Bitmaps\Fire\fire[82].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[83].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[84].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[85].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[86].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[87].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[88].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[89].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[90].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[91].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[92].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[93].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[94].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[95].tga" />
+    <Image Include="Assets\Bitmaps\Fire\fire[96].tga" />
+    <Image Include="Assets\Bitmaps\flameSingle.png" />
+    <Image Include="Assets\Bitmaps\Flame\flame[0].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[10].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[11].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[12].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[13].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[14].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[15].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[1].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[2].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[3].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[4].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[5].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[6].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[7].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[8].tga" />
+    <Image Include="Assets\Bitmaps\Flame\flame[9].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[0].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[1].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[2].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[3].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[4].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[5].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[6].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[7].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[8].tga" />
+    <Image Include="Assets\Bitmaps\Font\FONT[9].tga" />
+    <Image Include="Assets\Bitmaps\Font\MESSAGES.tga" />
+    <Image Include="Assets\Bitmaps\got.png" />
+    <Image Include="Assets\Bitmaps\got2.png" />
+    <Image Include="Assets\Bitmaps\got2A(OLD).png" />
+    <Image Include="Assets\Bitmaps\got2A.png" />
+    <Image Include="Assets\Bitmaps\got3.png" />
+    <Image Include="Assets\Bitmaps\got3A.png" />
+    <Image Include="Assets\Bitmaps\greeny.png" />
+    <Image Include="Assets\Bitmaps\greeny.tga" />
+    <Image Include="Assets\Bitmaps\greeny2.png" />
+    <Image Include="Assets\Bitmaps\greeny2.tga" />
+    <Image Include="Assets\Bitmaps\greenyN.png" />
+    <Image Include="Assets\Bitmaps\greenyN.tga" />
+    <Image Include="Assets\Bitmaps\greenyN2.png" />
+    <Image Include="Assets\Bitmaps\greenyN2.tga" />
+    <Image Include="Assets\Bitmaps\Hadouken10A.png" />
+    <Image Include="Assets\Bitmaps\Hadouken13.png" />
+    <Image Include="Assets\Bitmaps\Hadouken2A.png" />
+    <Image Include="Assets\Bitmaps\Hadouken3.png" />
+    <Image Include="Assets\Bitmaps\Hadouken3A.png" />
+    <Image Include="Assets\Bitmaps\Hadouken4.png" />
+    <Image Include="Assets\Bitmaps\Hadouken4A.png" />
+    <Image Include="Assets\Bitmaps\Hadouken6A.png" />
+    <Image Include="Assets\Bitmaps\Hadouken7A.png" />
+    <Image Include="Assets\Bitmaps\HadoukenA.png" />
+    <Image Include="Assets\Bitmaps\HealSpark.tga" />
+    <Image Include="Assets\Bitmaps\HealSparkmid.tga" />
+    <Image Include="Assets\Bitmaps\HealSparktail.tga" />
+    <Image Include="Assets\Bitmaps\HealSphere.png" />
+    <Image Include="Assets\Bitmaps\HealSphere.tga" />
+    <Image Include="Assets\Bitmaps\HealSphereA.png" />
+    <Image Include="Assets\Bitmaps\HealthBars\hudbottom1.tga" />
+    <Image Include="Assets\Bitmaps\HitFlash\pyro1.tga" />
+    <Image Include="Assets\Bitmaps\icon1.png" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[0].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[10].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[11].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[12].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[13].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[14].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[15].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[1].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[2].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[3].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[4].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[5].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[6].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[7].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[8].tga" />
+    <Image Include="Assets\Bitmaps\JEnergyBit\JEnergy[9].tga" />
+    <Image Include="Assets\Bitmaps\JinkBlackOut1.png" />
+    <Image Include="Assets\Bitmaps\JinkBlackOut2.png" />
+    <Image Include="Assets\Bitmaps\JinkBlackOut3.png" />
+    <Image Include="Assets\Bitmaps\JinkBlackOutTEMP.png" />
+    <Image Include="Assets\Bitmaps\jinklightning.png" />
+    <Image Include="Assets\Bitmaps\jinklightning.tga" />
+    <Image Include="Assets\Bitmaps\KnockOut\1.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\10.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\11.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\12.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\2.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\3.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\4.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\5.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\6.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\7.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\8.png" />
+    <Image Include="Assets\Bitmaps\KnockOut\9.png" />
+    <Image Include="Assets\Bitmaps\LaserSight.tga" />
+    <Image Include="Assets\Bitmaps\lasersightA.png" />
+    <Image Include="Assets\Bitmaps\lightning.png" />
+    <Image Include="Assets\Bitmaps\lightning.tga" />
+    <Image Include="Assets\Bitmaps\lightningA.png" />
+    <Image Include="Assets\Bitmaps\lightningN.png" />
+    <Image Include="Assets\Bitmaps\mmine.png" />
+    <Image Include="Assets\Bitmaps\mmine.tga" />
+    <Image Include="Assets\Bitmaps\MMine1.png" />
+    <Image Include="Assets\Bitmaps\mmineA.png" />
+    <Image Include="Assets\Bitmaps\mmineAF.png" />
+    <Image Include="Assets\Bitmaps\MuzzleFlash\BulHitFlash.tga" />
+    <Image Include="Assets\Bitmaps\MuzzleFlash\BulHitFlashSpin.tga" />
+    <Image Include="Assets\Bitmaps\MuzzleFlash\MFlashS1.tga" />
+    <Image Include="Assets\Bitmaps\MuzzleFlash\MFlashS2.tga" />
+    <Image Include="Assets\Bitmaps\MuzzleFlash\MFlashS3.tga" />
+    <Image Include="Assets\Bitmaps\MuzzleFlash\MFlashX.tga" />
+    <Image Include="Assets\Bitmaps\panel2.png" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[11].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[12].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[13].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[14].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[15].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[16].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[17].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[18].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[19].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[20].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[21].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[22].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[23].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[24].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[25].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[26].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[27].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[28].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[29].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[30].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[31].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[32].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[33].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[34].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[35].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[36].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[37].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[38].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[39].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[40].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[41].tga" />
+    <Image Include="Assets\Bitmaps\PulsarMid\PulsarMid[42].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[11].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[12].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[13].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[14].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[15].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[16].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[17].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[18].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[19].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[20].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[21].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[22].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[23].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[24].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[25].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[26].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[27].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[28].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[29].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[30].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[31].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[32].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[33].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[34].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[35].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[36].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[37].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[38].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[39].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[40].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[41].tga" />
+    <Image Include="Assets\Bitmaps\Pulsar\Pulsar[42].tga" />
+    <Image Include="Assets\Bitmaps\pyro2.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\J3L.png" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF01.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF03.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF04.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF05.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF06.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF07.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF08.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF09.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF10.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF11.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF12.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF13.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF14.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF15.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF16.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF17.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF18.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF19.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF20.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF21.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF22.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF23.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF24.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF25.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF26.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF28.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF29.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF30.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF31.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF32.tga" />
+    <Image Include="Assets\Bitmaps\QA_EFF\QAEFF51.tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[0].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[10].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[11].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[12].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[13].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[14].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[15].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[1].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[2].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[3].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[4].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[5].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[6].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[7].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[8].tga" />
+    <Image Include="Assets\Bitmaps\radfire\radfire[9].tga" />
+    <Image Include="Assets\Bitmaps\RanSpark.tga" />
+    <Image Include="Assets\Bitmaps\RanSparkmid.tga" />
+    <Image Include="Assets\Bitmaps\RanSparktail.tga" />
+    <Image Include="Assets\Bitmaps\reticule.png" />
+    <Image Include="Assets\Bitmaps\reticuleE.tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[0].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[1].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[2].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[3].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[4].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[5].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[6].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[7].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[8].tga" />
+    <Image Include="Assets\Bitmaps\Rocket\Rocket[9].tga" />
+    <Image Include="Assets\Bitmaps\Scanner\ScanBone.tga" />
+    <Image Include="Assets\Bitmaps\Scanner\ScanBox.tga" />
+    <Image Include="Assets\Bitmaps\schoolgirl18A.png" />
+    <Image Include="Assets\Bitmaps\ScopeA.png" />
+    <Image Include="Assets\Bitmaps\shadow.tga" />
+    <Image Include="Assets\Bitmaps\shadow00G9.png" />
+    <Image Include="Assets\Bitmaps\shadowA.png" />
+    <Image Include="Assets\Bitmaps\shadowa00 (OLD).png" />
+    <Image Include="Assets\Bitmaps\shadowa00.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G1.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G10.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G11.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G12.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G1newithoutFlare.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G2.png" />
+    <Image Include="Assets\Bitmaps\shadowa00G9.png" />
+    <Image Include="Assets\Bitmaps\shadowA2.png" />
+    <Image Include="Assets\Bitmaps\shadowA3.png" />
+    <Image Include="Assets\Bitmaps\shadowA4.png" />
+    <Image Include="Assets\Bitmaps\shadowA42.png" />
+    <Image Include="Assets\Bitmaps\shadowA4Hist.png" />
+    <Image Include="Assets\Bitmaps\shadowA5.png" />
+    <Image Include="Assets\Bitmaps\shadowBLOCK.png" />
+    <Image Include="Assets\Bitmaps\shadowBLOCK.tga" />
+    <Image Include="Assets\Bitmaps\shadowBLOCK3.tga" />
+    <Image Include="Assets\Bitmaps\shadowMain.png" />
+    <Image Include="Assets\Bitmaps\shadowMainN1.png" />
+    <Image Include="Assets\Bitmaps\shadowmap.png" />
+    <Image Include="Assets\Bitmaps\shineE.tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[0].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[10].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[11].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[12].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[13].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[14].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[15].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[16].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[17].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[18].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[19].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[1].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[20].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[21].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[22].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[23].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[24].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[25].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[26].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[27].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[28].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[29].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[2].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[30].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[31].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[32].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[33].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[34].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[35].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[36].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[37].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[38].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[39].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[3].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[40].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[41].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[42].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[43].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[44].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[45].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[46].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[47].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[48].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[49].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[4].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[5].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[6].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[7].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[8].tga" />
+    <Image Include="Assets\Bitmaps\Smoke1\QSmoke[9].tga" />
+    <Image Include="Assets\Bitmaps\Spark.png" />
+    <Image Include="Assets\Bitmaps\Spark.tga" />
+    <Image Include="Assets\Bitmaps\SparkA.png" />
+    <Image Include="Assets\Bitmaps\SparkBmp\EGrabCorona[0].tga" />
+    <Image Include="Assets\Bitmaps\SparkBmp\EGrabCorona[1].tga" />
+    <Image Include="Assets\Bitmaps\SparkBmp\EGrabCorona[2].tga" />
+    <Image Include="Assets\Bitmaps\SparkBmp\EGrabCorona[3].tga" />
+    <Image Include="Assets\Bitmaps\SparkBmp\SparkCorona[0].tga" />
+    <Image Include="Assets\Bitmaps\SparkBmp\SparkCorona[1].tga" />
+    <Image Include="Assets\Bitmaps\SparkBmp\SparkCorona[2].tga" />
+    <Image Include="Assets\Bitmaps\SparkBmp\SparkCorona[3].tga" />
+    <Image Include="Assets\Bitmaps\Sparkmid.png" />
+    <Image Include="Assets\Bitmaps\Sparkmid.tga" />
+    <Image Include="Assets\Bitmaps\SparkmidA.png" />
+    <Image Include="Assets\Bitmaps\Sparktail.png" />
+    <Image Include="Assets\Bitmaps\Sparktail.tga" />
+    <Image Include="Assets\Bitmaps\spec.tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[0].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[10].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[11].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[1].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[2].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[3].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[4].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[5].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[6].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[7].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[8].tga" />
+    <Image Include="Assets\Bitmaps\Special4\special4[9].tga" />
+    <Image Include="Assets\Bitmaps\Spikes\HADSpikeBmp.tga" />
+    <Image Include="Assets\Bitmaps\Spikes\HHSpikeBmp.tga" />
+    <Image Include="Assets\Bitmaps\Spikes\SPAWNSpikeBmp.tga" />
+    <Image Include="Assets\Bitmaps\star1.png" />
+    <Image Include="Assets\Bitmaps\star2.png" />
+    <Image Include="Assets\Bitmaps\star3.png" />
+    <Image Include="Assets\Bitmaps\star4.png" />
+    <Image Include="Assets\Bitmaps\Star\Star[0].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[10].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[11].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[12].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[13].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[14].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[15].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[16].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[17].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[18].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[19].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[1].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[20].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[21].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[22].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[23].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[24].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[25].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[2].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[3].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[4].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[5].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[6].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[7].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[8].tga" />
+    <Image Include="Assets\Bitmaps\Star\Star[9].tga" />
+    <Image Include="Assets\Bitmaps\Text.png" />
+    <Image Include="Assets\Bitmaps\Text.tga" />
+    <Image Include="Assets\Bitmaps\toppanel.png" />
+    <Image Include="Assets\Bitmaps\trail1.tga" />
+    <Image Include="Assets\Bitmaps\trail14.png" />
+    <Image Include="Assets\Bitmaps\trail1A.png" />
+    <Image Include="Assets\Bitmaps\trail1A1.png" />
+    <Image Include="Assets\Bitmaps\trail1A2.png" />
+    <Image Include="Assets\Bitmaps\trail1A3.png" />
+    <Image Include="Assets\Bitmaps\trail1A4.png" />
+    <Image Include="Assets\Bitmaps\trail2.tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[82].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[83].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[84].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[85].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[86].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[87].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[88].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[89].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[90].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[91].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[92].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[93].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[94].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[95].tga" />
+    <Image Include="Assets\Bitmaps\Trails\Fire\flametrail[96].tga" />
+    <Image Include="Assets\Bitmaps\Untitled-1.png" />
+    <Image Include="Assets\Bitmaps\untitledgui.png" />
+    <Image Include="Assets\Bitmaps\VaporTrails\VaporCAP.tga" />
+    <Image Include="Assets\Bitmaps\VaporTrails\VaporLINE.tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[124].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[125].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[126].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[127].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[128].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[129].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[130].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[131].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[132].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[133].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[134].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[135].tga" />
+    <Image Include="Assets\Bitmaps\Water\Water[136].tga" />
+    <Image Include="Assets\Bitmaps\White.png" />
+    <Image Include="Assets\Bitmaps\white128.png" />
+    <Image Include="Assets\Bitmaps\WhiteS.png" />
+    <Image Include="Assets\britishflag.png" />
+    <Image Include="Assets\Buttondown012.png" />
+    <Image Include="Assets\Buttonnext012.png" />
+    <Image Include="Assets\Buttonprev011.png" />
+    <Image Include="Assets\Buttonup012.png" />
+    <Image Include="Assets\ecn-central3.png" />
+    <Image Include="Assets\img\0-1.gif" />
+    <Image Include="Assets\img\0.gif" />
+    <Image Include="Assets\img\0605_DCPro_Course_Icons_3.3.png" />
+    <Image Include="Assets\img\1 (1).jpg" />
+    <Image Include="Assets\img\1-1.gif" />
+    <Image Include="Assets\img\1-1.jpg" />
+    <Image Include="Assets\img\1-2.gif" />
+    <Image Include="Assets\img\1.gif" />
+    <Image Include="Assets\img\10-1.gif" />
+    <Image Include="Assets\img\10.gif" />
+    <Image Include="Assets\img\1080_Green_White_Sparkles_loop_Videvo.jpg" />
+    <Image Include="Assets\img\11-1.gif" />
+    <Image Include="Assets\img\11.gif" />
+    <Image Include="Assets\img\11188-34000469.steel-panel-06mm.170424022908027.jpg" />
+    <Image Include="Assets\img\12-1.gif" />
+    <Image Include="Assets\img\12.gif" />
+    <Image Include="Assets\img\13-1.gif" />
+    <Image Include="Assets\img\13.gif" />
+    <Image Include="Assets\img\14-1.gif" />
+    <Image Include="Assets\img\14.gif" />
+    <Image Include="Assets\img\15-1.gif" />
+    <Image Include="Assets\img\15.gif" />
+    <Image Include="Assets\img\16-1.gif" />
+    <Image Include="Assets\img\16.gif" />
+    <Image Include="Assets\img\17-1.gif" />
+    <Image Include="Assets\img\17.gif" />
+    <Image Include="Assets\img\18-1.gif" />
+    <Image Include="Assets\img\18.gif" />
+    <Image Include="Assets\img\19-1.gif" />
+    <Image Include="Assets\img\19.gif" />
+    <Image Include="Assets\img\2-1.gif" />
+    <Image Include="Assets\img\2-2.gif" />
+    <Image Include="Assets\img\2.gif" />
+    <Image Include="Assets\img\20-1.gif" />
+    <Image Include="Assets\img\20.gif" />
+    <Image Include="Assets\img\21-1.gif" />
+    <Image Include="Assets\img\21.gif" />
+    <Image Include="Assets\img\244.jpg" />
+    <Image Include="Assets\img\3-1.gif" />
+    <Image Include="Assets\img\3.gif" />
+    <Image Include="Assets\img\3.jpg" />
+    <Image Include="Assets\img\4-1.gif" />
+    <Image Include="Assets\img\4.gif" />
+    <Image Include="Assets\img\5-1.gif" />
+    <Image Include="Assets\img\5.gif" />
+    <Image Include="Assets\img\592e8b00c461889c268b4591_large.jpg" />
+    <Image Include="Assets\img\6-1.gif" />
+    <Image Include="Assets\img\6.gif" />
+    <Image Include="Assets\img\7-1.gif" />
+    <Image Include="Assets\img\7.gif" />
+    <Image Include="Assets\img\8-1.gif" />
+    <Image Include="Assets\img\8.gif" />
+    <Image Include="Assets\img\9-1.gif" />
+    <Image Include="Assets\img\9.gif" />
+    <Image Include="Assets\img\about.jpg" />
+    <Image Include="Assets\img\abstract-nature.jpg" />
+    <Image Include="Assets\img\aeon-coin-logo.png" />
+    <Image Include="Assets\img\bg.jpg" />
+    <Image Include="Assets\img\bit.jpg" />
+    <Image Include="Assets\img\Bitcoin-1.png" />
+    <Image Include="Assets\img\bitcoin-office.png" />
+    <Image Include="Assets\img\bokeh-gold-wallpaper-2560x1600.jpg" />
+    <Image Include="Assets\img\border1.png" />
+    <Image Include="Assets\img\brushed-panel-444516.jpg" />
+    <Image Include="Assets\img\city_bg.jpg" />
+    <Image Include="Assets\img\deuterium_tritium_fusion_reaction.jpg" />
+    <Image Include="Assets\img\DQmWH24KtcXLmQhb5QJwXt8gsixpPPZAgpYVED9fDtJQWMC.png" />
+    <Image Include="Assets\img\ecn-world-logo-3.png" />
+    <Image Include="Assets\img\ecn-world-logo.png" />
+    <Image Include="Assets\img\ecn-world-logo2.png" />
+    <Image Include="Assets\img\ethereum1.png" />
+    <Image Include="Assets\img\favicon-96x96.png" />
+    <Image Include="Assets\img\features.png" />
+    <Image Include="Assets\img\flashing-lights-bulb-vj-spotlight-wall-of-lights-stage-motion-graphic-background-4k-ultra-hd_vy6me9si__F0000.png" />
+    <Image Include="Assets\img\fusion-logo_1.png" />
+    <Image Include="Assets\img\game-theory.png" />
+    <Image Include="Assets\img\giphy-downsized (11).gif" />
+    <Image Include="Assets\img\giphy-downsized (13).gif" />
+    <Image Include="Assets\img\giphy-downsized (5).gif" />
+    <Image Include="Assets\img\giphy-downsized (7).gif" />
+    <Image Include="Assets\img\giphy-downsized (8).gif" />
+    <Image Include="Assets\img\giphy-downsized-ltcgrow.gif" />
+    <Image Include="Assets\img\gold-and-white-background-light-gold-abstract-background-a87740526b215871.jpg" />
+    <Image Include="Assets\img\gold.jpg" />
+    <Image Include="Assets\img\hollywood_golden_bokeh_by_diamondlightart-d4s7drt.png" />
+    <Image Include="Assets\img\images.jpg" />
+    <Image Include="Assets\img\instacart.png" />
+    <Image Include="Assets\img\intro.jpg" />
+    <Image Include="Assets\img\kickstarter.png" />
+    <Image Include="Assets\img\logo-baixaki.png" />
+    <Image Include="Assets\img\LTCmedium.png" />
+    <Image Include="Assets\img\lyft.png" />
+    <Image Include="Assets\img\Max.gif" />
+    <Image Include="Assets\img\maxresdefault-620x330.jpg" />
+    <Image Include="Assets\img\minerpanel.png" />
+    <Image Include="Assets\img\minerpanelplau11r.png" />
+    <Image Include="Assets\img\minerpanelplau12r.png" />
+    <Image Include="Assets\img\minerpanelplau13r.png" />
+    <Image Include="Assets\img\minerpanelplau21r.png" />
+    <Image Include="Assets\img\minerpanelplau22r.png" />
+    <Image Include="Assets\img\minerpanelplau23r.png" />
+    <Image Include="Assets\img\minerpanelplau31r.png" />
+    <Image Include="Assets\img\minerpanelplau32r.png" />
+    <Image Include="Assets\img\minerpanelplau33r.png" />
+    <Image Include="Assets\img\minerpanelplauwith11.png" />
+    <Image Include="Assets\img\mink5.jpg" />
+    <Image Include="Assets\img\monero1.png" />
+    <Image Include="Assets\img\photo.jpg" />
+    <Image Include="Assets\img\pinterest.png" />
+    <Image Include="Assets\img\Precise.gif" />
+    <Image Include="Assets\img\premade-bitcoin-layout.jpg" />
+    <Image Include="Assets\img\products-01.jpg" />
+    <Image Include="Assets\img\products-02.jpg" />
+    <Image Include="Assets\img\products-03.jpg" />
+    <Image Include="Assets\img\screen-content-iphone-6.jpg" />
+    <Image Include="Assets\img\shopify.png" />
+    <Image Include="Assets\img\SisterOfBattle.jpg" />
+    <Image Include="Assets\img\source.gif" />
+    <Image Include="Assets\img\Square71x71Logo.scale-100.png" />
+    <Image Include="Assets\img\Surface1.png" />
+    <Image Include="Assets\img\theory-of-bitcoin-make-money-online-26-638.jpg" />
+    <Image Include="Assets\img\theory-of-bitcoin-make-money-online-27-638.jpg" />
+    <Image Include="Assets\img\twitter.png" />
+    <Image Include="Assets\img\united-states-flag.png" />
+    <Image Include="Assets\img\windows.png" />
+    <Image Include="Assets\img\worst-romantic-gifts.jpg" />
+    <Image Include="Assets\Mesh\Energy\Material\Renzou\Image\1Default.png" />
+    <Image Include="Assets\Mesh\Energy\Material\Renzou\Image\1Default.tga" />
+    <Image Include="Assets\Mesh\Weapon\Material\ak47lowq\Image\Material01.tga" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SharedContentDir)\cppwinrt\App.h">
+      <DependentUpon>$(SharedContentDir)\xaml\App.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="$(SharedContentDir)\cppwinrt\MainPage.h">
+      <DependentUpon>$(SharedContentDir)\xaml\MainPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_action.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_cycle.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animcallback.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\bone.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\buffersource.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\cal3d.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreanimation.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corebone.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corekeyframe.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corematerial.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremesh.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremodel.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremorphanimation.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreskeleton.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmesh.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmorphtarget.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coretrack.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\datasource.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\dualquaternion.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\error.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\global.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\hardwaremodel.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\loader.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\matrix.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mesh.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mixer.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\model.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\morphtargetmixer.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physique.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physiquedualquaternion.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\platform.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\quaternion.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\refcounted.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\refptr.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\renderer.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\resource.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\saver.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\skeleton.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\springsystem.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\streamsource.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\submesh.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxml.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\transform.h" />
+    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\vector.h" />
+    <ClInclude Include="Code\CLS\Collection.h" />
+    <ClInclude Include="Code\CLS\Color.h" />
+    <ClInclude Include="Code\CLS\Corner.h" />
+    <ClInclude Include="Code\CLS\Element.h" />
+    <ClInclude Include="Code\CLS\Leg.h" />
+    <ClInclude Include="Code\CLS\Object.h" />
+    <ClInclude Include="Code\CLS\Result.h" />
+    <ClInclude Include="Code\CLS\Surface.h" />
+    <ClInclude Include="Code\CLS\Target.h" />
+    <ClInclude Include="Code\Cube\bvh.h" />
+    <ClInclude Include="Code\Cube\collide.h" />
+    <ClInclude Include="Code\Cube\InstantFunction.h" />
+    <ClInclude Include="Code\Cube\predator.h" />
+    <ClInclude Include="Code\Cube\qcom.h" />
+    <ClInclude Include="Code\Cube\simplexnoise.h" />
+    <ClInclude Include="Code\Cube\vec4d.h" />
+    <ClInclude Include="Code\Cube\VoxelGrid.h" />
+    <ClInclude Include="Code\Hash\arith_uint256.h" />
+    <ClInclude Include="Code\Hash\base58.h" />
+    <ClInclude Include="Code\Hash\chainparams.h" />
+    <ClInclude Include="Code\Hash\chainparamsseeds.h" />
+    <ClInclude Include="Code\Hash\crypto\aes.h" />
+    <ClInclude Include="Code\Hash\crypto\chacha20.h" />
+    <ClInclude Include="Code\Hash\crypto\hmac_sha256.h" />
+    <ClInclude Include="Code\Hash\crypto\hmac_sha512.h" />
+    <ClInclude Include="Code\Hash\crypto\ripemd160.h" />
+    <ClInclude Include="Code\Hash\crypto\sha1.h" />
+    <ClInclude Include="Code\Hash\crypto\sha256.h" />
+    <ClInclude Include="Code\Hash\crypto\sha512.h" />
+    <ClInclude Include="Code\Hash\key.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecdsa.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecdsa_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\eckey.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\eckey_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecmult.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecmult_const.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecmult_const_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecmult_gen.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecmult_gen_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\ecmult_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field_10x26.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field_10x26_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field_5x52.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field_5x52_asm_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field_5x52_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field_5x52_int128_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\field_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\group.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\group_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\hash.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\hash_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\num.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\num_gmp.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\num_gmp_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\num_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar_4x64.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar_4x64_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar_8x32.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar_8x32_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar_low.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\scalar_low_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\testrand.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\testrand_impl.h" />
+    <ClInclude Include="Code\Hash\libsecp\libsecp256k1\src\util.h" />
+    <ClInclude Include="Code\Hash\picosha2.h" />
+    <ClInclude Include="Code\Hash\primitives\block.h" />
+    <ClInclude Include="Code\Hash\primitives\transaction.h" />
+    <ClInclude Include="Code\Hash\protocol.h" />
+    <ClInclude Include="Code\Hash\pubkey.h" />
+    <ClInclude Include="Code\Hash\random.h" />
+    <ClInclude Include="Code\Hash\script\script.h" />
+    <ClInclude Include="Code\Hash\script\sigcache.h" />
+    <ClInclude Include="Code\Hash\script\sign.h" />
+    <ClInclude Include="Code\Hash\support\cleanse.h" />
+    <ClInclude Include="Code\Hash\support\events.h" />
+    <ClInclude Include="Code\Hash\support\lockedpool.h" />
+    <ClInclude Include="Code\Hash\uint128_t.h" />
+    <ClInclude Include="Code\Hash\uint256.h" />
+    <ClInclude Include="Code\Hash\utilstrencodings.h" />
+    <ClInclude Include="Code\ICS\ICS_Collection.h" />
+    <ClInclude Include="Code\ICS\ICS_Color.h" />
+    <ClInclude Include="Code\ICS\ICS_Corner.h" />
+    <ClInclude Include="Code\ICS\ICS_Element.h" />
+    <ClInclude Include="Code\ICS\ICS_Leg.h" />
+    <ClInclude Include="Code\ICS\ICS_Surface.h" />
+    <ClInclude Include="Code\ICS\ICS_Target.h" />
+    <ClInclude Include="Code\ICS\ICS_Types.h" />
+    <ClInclude Include="Code\Mission\qam.h" />
+    <ClInclude Include="Code\Mission\qamEvent.h" />
+    <ClInclude Include="Code\Mission\qamFunction.h" />
+    <ClInclude Include="Code\Mission\qamGraph.h" />
+    <ClInclude Include="Code\Mission\qamSpawn.h" />
+    <ClInclude Include="Code\Mission\qamSystem.h" />
+    <ClInclude Include="Code\Mission\qamTerrain.h" />
+    <ClInclude Include="Code\Mission\qamTrigger.h" />
+    <ClInclude Include="Code\Mission\qamType.h" />
+    <ClInclude Include="Code\Mission\qamVariable.h" />
+    <ClInclude Include="Code\Musion\Class.h" />
+    <ClInclude Include="Code\Musion\ClassVar.h" />
+    <ClInclude Include="Code\Musion\Code.h" />
+    <ClInclude Include="Code\Musion\CodeLine.h" />
+    <ClInclude Include="Code\Musion\Condition.h" />
+    <ClInclude Include="Code\Musion\Function.h" />
+    <ClInclude Include="Code\Musion\MuType.h" />
+    <ClInclude Include="Code\Musion\Operator.h" />
+    <ClInclude Include="Code\Musion\System.h" />
+    <ClInclude Include="Code\Musion\Variable.h" />
+    <ClInclude Include="Code\myBO\datatypes.h" />
+    <ClInclude Include="Code\myBO\icDatabase.h" />
+    <ClInclude Include="Code\myBO\icSafeL.h" />
+    <ClInclude Include="Code\myBO\Singleton.h" />
+    <ClInclude Include="Code\Work\Contract.h" />
+    <ClInclude Include="Code\Work\Schedular.h" />
+    <ClInclude Include="Common\DeviceResources.h" />
+    <ClInclude Include="Common\DirectXHelper.h" />
+    <ClInclude Include="Common\StepTimer.h" />
+    <ClInclude Include="Content\Sample3DSceneRenderer.h" />
+    <ClInclude Include="Content\SampleFpsTextRenderer.h" />
+    <ClInclude Include="Content\ShaderStructures.h" />
+    <ClInclude Include="Deps\p3d\aabb.h" />
+    <ClInclude Include="Deps\p3d\aap.h" />
+    <ClInclude Include="Deps\p3d\bvh.h" />
+    <ClInclude Include="Deps\p3d\collide.h" />
+    <ClInclude Include="Deps\p3d\jpeg.h" />
+    <ClInclude Include="Deps\p3d\l3ds.h" />
+    <ClInclude Include="Deps\p3d\model.h" />
+    <ClInclude Include="Deps\p3d\model_shl.h" />
+    <ClInclude Include="Deps\p3d\pAnimation.h" />
+    <ClInclude Include="Deps\p3d\paralelo3d.h" />
+    <ClInclude Include="Deps\p3d\pArray.h" />
+    <ClInclude Include="Deps\p3d\pBezier.h" />
+    <ClInclude Include="Deps\p3d\pBoundBox.h" />
+    <ClInclude Include="Deps\p3d\pCamera.h" />
+    <ClInclude Include="Deps\p3d\pCapsule.h" />
+    <ClInclude Include="Deps\p3d\pCircularList.h" />
+    <ClInclude Include="Deps\p3d\pDefines.h" />
+    <ClInclude Include="Deps\p3d\pDesc.h" />
+    <ClInclude Include="Deps\p3d\pDummy.h" />
+    <ClInclude Include="Deps\p3d\pFace.h" />
+    <ClInclude Include="Deps\p3d\pFile.h" />
+    <ClInclude Include="Deps\p3d\pFrustum.h" />
+    <ClInclude Include="Deps\p3d\pGUIButton.h" />
+    <ClInclude Include="Deps\p3d\pGUICheckBox.h" />
+    <ClInclude Include="Deps\p3d\pGUIEditBox.h" />
+    <ClInclude Include="Deps\p3d\pGUIGroup.h" />
+    <ClInclude Include="Deps\p3d\pGUIImage.h" />
+    <ClInclude Include="Deps\p3d\pGUIListControl.h" />
+    <ClInclude Include="Deps\p3d\pGUIModelViewer.h" />
+    <ClInclude Include="Deps\p3d\pGUIMultilineText.h" />
+    <ClInclude Include="Deps\p3d\pGUIObject.h" />
+    <ClInclude Include="Deps\p3d\pGUIObjectManager.h" />
+    <ClInclude Include="Deps\p3d\pGUIPopUpMenu.h" />
+    <ClInclude Include="Deps\p3d\pGUIProgressBar.h" />
+    <ClInclude Include="Deps\p3d\pGUIProgressDisk.h" />
+    <ClInclude Include="Deps\p3d\pGUIRadialCursor.h" />
+    <ClInclude Include="Deps\p3d\pGUITreeControl.h" />
+    <ClInclude Include="Deps\p3d\pGUIWindow.h" />
+    <ClInclude Include="Deps\p3d\pHashTable.h" />
+    <ClInclude Include="Deps\p3d\pHashTableStr.h" />
+    <ClInclude Include="Deps\p3d\pIconGridInfo.h" />
+    <ClInclude Include="Deps\p3d\plight.h" />
+    <ClInclude Include="Deps\p3d\pLineSegment.h" />
+    <ClInclude Include="Deps\p3d\pLogReport.h" />
+    <ClInclude Include="Deps\p3d\pMaterial.h" />
+    <ClInclude Include="Deps\p3d\pMath.h" />
+    <ClInclude Include="Deps\p3d\pMesh.h" />
+    <ClInclude Include="Deps\p3d\pMeshSkeleton.h" />
+    <ClInclude Include="Deps\p3d\pNetwork.h" />
+    <ClInclude Include="Deps\p3d\pOcTree.h" />
+    <ClInclude Include="Deps\p3d\pOcTreeNode.h" />
+    <ClInclude Include="Deps\p3d\pOrientedBoundBox.h" />
+    <ClInclude Include="Deps\p3d\pPBuffer.h" />
+    <ClInclude Include="Deps\p3d\pPeriodicFunc.h" />
+    <ClInclude Include="Deps\p3d\pPicture.h" />
+    <ClInclude Include="Deps\p3d\pRect.h" />
+    <ClInclude Include="Deps\p3d\prender.h" />
+    <ClInclude Include="Deps\p3d\pRenderGlow.h" />
+    <ClInclude Include="Deps\p3d\pRenderObject.h" />
+    <ClInclude Include="Deps\p3d\pRenderObjectManager.h" />
+    <ClInclude Include="Deps\p3d\pRenderPass.h" />
+    <ClInclude Include="Deps\p3d\pRenderProfile.h" />
+    <ClInclude Include="Deps\p3d\pRenderProfileFrag.h" />
+    <ClInclude Include="Deps\p3d\pRenderProfileVert.h" />
+    <ClInclude Include="Deps\p3d\pRenderRipple.h" />
+    <ClInclude Include="Deps\p3d\pRenderShadowMap.h" />
+    <ClInclude Include="Deps\p3d\pRenderVertexBuffer.h" />
+    <ClInclude Include="Deps\p3d\pRM.h" />
+    <ClInclude Include="Deps\p3d\pROBillboard.h" />
+    <ClInclude Include="Deps\p3d\pROCamera.h" />
+    <ClInclude Include="Deps\p3d\pROExplodeObject.h" />
+    <ClInclude Include="Deps\p3d\pROExplosion.h" />
+    <ClInclude Include="Deps\p3d\pROGroup.h" />
+    <ClInclude Include="Deps\p3d\pROLensFlare.h" />
+    <ClInclude Include="Deps\p3d\pROLight.h" />
+    <ClInclude Include="Deps\p3d\pROMesh.h" />
+    <ClInclude Include="Deps\p3d\pROMeshHuge.h" />
+    <ClInclude Include="Deps\p3d\pROMeshLOD.h" />
+    <ClInclude Include="Deps\p3d\pROMeshRelief.h" />
+    <ClInclude Include="Deps\p3d\pROMeshSkeleton.h" />
+    <ClInclude Include="Deps\p3d\pROMeshTeapot.h" />
+    <ClInclude Include="Deps\p3d\pROObfuscatingPoint.h" />
+    <ClInclude Include="Deps\p3d\pROPanorama.h" />
+    <ClInclude Include="Deps\p3d\pROParticleSystem.h" />
+    <ClInclude Include="Deps\p3d\pROParticleSystemGPU.h" />
+    <ClInclude Include="Deps\p3d\pROProjectile.h" />
+    <ClInclude Include="Deps\p3d\pRORotor.h" />
+    <ClInclude Include="Deps\p3d\pROSound.h" />
+    <ClInclude Include="Deps\p3d\pROSpaceDust.h" />
+    <ClInclude Include="Deps\p3d\pROTrail.h" />
+    <ClInclude Include="Deps\p3d\pSound.h" />
+    <ClInclude Include="Deps\p3d\pSoundManager.h" />
+    <ClInclude Include="Deps\p3d\pstring.h" />
+    <ClInclude Include="Deps\p3d\pTeapot.h" />
+    <ClInclude Include="Deps\p3d\vec4d.h" />
+    <ClInclude Include="ecoinMain.h" />
+    <ClInclude Include="Include\Cube.h" />
+    <ClInclude Include="Include\osimemory.h" />
+    <ClInclude Include="Include\osimemory_v17.h" />
+    <ClInclude Include="OpenGLES.h" />
+    <ClInclude Include="OSWindow_EME_WIN64.h" />
+    <ClInclude Include="QAGE Include\Q-AI-Brain.h" />
+    <ClInclude Include="QAGE Include\Q-AI-Cortex.h" />
+    <ClInclude Include="QAGE Include\Q-AI-Heart.h" />
+    <ClInclude Include="QAGE Include\Q-AI-NNbot.h" />
+    <ClInclude Include="QAGE Include\Q-CORE-Avatar.h" />
+    <ClInclude Include="QAGE Include\Q-ENE-EnergyTypes.h" />
+    <ClInclude Include="QAGE Include\Q-FUNC-Datatypes.h" />
+    <ClInclude Include="QAGE Include\Q-GlobalHeader.h" />
+    <ClInclude Include="QAGE Include\Q-Includes.h" />
+    <ClInclude Include="QAGE Include\Q-ITEM-ItemDef.h" />
+    <ClInclude Include="QAGE Include\Q-KeyDefinitions.h" />
+    <ClInclude Include="QAGE Include\Q-NET-ProtoMap.h" />
+    <ClInclude Include="QAGE Include\Q-OBJ-Building.h" />
+    <ClInclude Include="QAGE Include\Q-OBJ-ObjectTypes.h" />
+    <ClInclude Include="QAGE Include\Q-PortSHELL-FUN.h" />
+    <ClInclude Include="QAGE Include\Q-PortSHELL-QCH.h" />
+    <ClInclude Include="QAGE Include\Q-PortSHELL-Sound.h" />
+    <ClInclude Include="QAGE Include\Q-PortSHELL-VAR.h" />
+    <ClInclude Include="QAGE Include\Q-Prototypes.h" />
+    <ClInclude Include="QAGE Include\Q-ShellAPrototypes.h" />
+    <ClInclude Include="QAGE Include\Q-Structs.h" />
+    <ClInclude Include="QAGE Include\Q-WE-BulletSystem.h" />
+    <ClInclude Include="QAGE Include\Q-WE-CloudControl.h" />
+    <ClInclude Include="QAGE Include\Q-WE-EnergyMatrix.h" />
+    <ClInclude Include="QAGE Include\Q-WE-MeleeHits.h" />
+    <ClInclude Include="QAGE Include\Q-WE-PntSprite.h" />
+    <ClInclude Include="QAGE Include\Q-WE-ShellATypes.h" />
+    <ClInclude Include="QAGE Include\Q-WE-WorldEffects.h" />
+    <ClInclude Include="SampleConfiguration.h" />
+    <ClInclude Include="Scenario1_SecondaryWindow.h">
+      <DependentUpon>..\shared\Scenario1_SecondaryWindow.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Scenario2_DisplayRegion.h">
+      <DependentUpon>..\shared\Scenario2_DisplayRegion.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Scenario3_Size.h">
+      <DependentUpon>..\shared\Scenario3_Size.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Scenario4_CompactOverlay.h">
+      <DependentUpon>..\shared\Scenario4_CompactOverlay.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Scenario5_RelativePositioning.h">
+      <DependentUpon>..\shared\Scenario5_RelativePositioning.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="SecondaryAppWindowPage.h">
+      <DependentUpon>..\shared\SecondaryAppWindowPage.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="SecondaryAppWindowPageDX.h">
+      <DependentUpon>..\shared\SecondaryAppWindowPageDX.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="SecondaryAppWindowPageOGL.h">
+      <DependentUpon>..\shared\SecondaryAppWindowPageOGL.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="SecondaryAppWindowPagePredator.h">
+      <DependentUpon>..\shared\SecondaryAppWindowPagePredator.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="Server\PacketPumpInterface.h" />
+    <ClInclude Include="Server\PacketSocketInterface.h" />
+    <ClInclude Include="Server\PacketStackInterface.h" />
+    <ClInclude Include="Server\UserAccount.h" />
+    <ClInclude Include="SimpleRenderer.h" />
+    <ClInclude Include="UnSRC\Avatar\unAvatar.h" />
+    <ClInclude Include="UnSRC\Avatar\unMesh.h" />
+    <ClInclude Include="UnSRC\Avatar\unMeshAttachment.h" />
+    <ClInclude Include="UnSRC\Avatar\unMeshStatic.h" />
+    <ClInclude Include="UnSRC\Avatar\unPointLocator.h" />
+    <ClInclude Include="UnSRC\Avatar\unShape.h" />
+    <ClInclude Include="UnSRC\Gui\TumDocument.h" />
+    <ClInclude Include="UnSRC\QActiveFramewrk.h" />
+    <ClInclude Include="UnSRC\Render\Plane.h" />
+    <ClInclude Include="UnSRC\Render\unRenderer\unRenderer.h" />
+    <ClInclude Include="UnSRC\Render\unVis.h" />
+    <ClInclude Include="UnSRC\Render\Vec3.h" />
+    <ClInclude Include="UnSRC\Sound\launcher.h" />
+    <ClInclude Include="UnSRC\Texture\tgaload.h" />
+    <ClInclude Include="UnSRC\Texture\untexturebank.h" />
+    <ClInclude Include="UnSRC\Utility\Thread.h" />
+    <ClInclude Include="UnSRC\Utility\ThreadData.h" />
+    <ClInclude Include="UnSRC\Utility\unConsole.h" />
+    <ClInclude Include="Wallet\ecoinShop.h" />
+    <ClInclude Include="Wallet\Wallet.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(SharedContentDir)\xaml\App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="$(SharedContentDir)\xaml\MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\shared\Scenario1_SecondaryWindow.xaml" />
+    <Page Include="..\shared\Scenario2_DisplayRegion.xaml" />
+    <Page Include="..\shared\Scenario3_Size.xaml" />
+    <Page Include="..\shared\Scenario4_CompactOverlay.xaml" />
+    <Page Include="..\shared\Scenario5_RelativePositioning.xaml" />
+    <Page Include="..\shared\SecondaryAppWindowPage.xaml" />
+    <Page Include="$(SharedContentDir)\xaml\Styles.xaml">
+      <Link>Styles\Styles.xaml</Link>
+    </Page>
+    <Page Include="..\shared\SecondaryAppWindowPageDX.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\shared\SecondaryAppWindowPageOGL.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\shared\SecondaryAppWindowPagePredator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SharedContentDir)\cppwinrt\App.cpp">
+      <DependentUpon>$(SharedContentDir)\xaml\App.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="$(SharedContentDir)\cppwinrt\MainPage.cpp">
+      <DependentUpon>$(SharedContentDir)\xaml\MainPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_action.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_cycle.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\bone.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\buffersource.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreanimation.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corebone.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corekeyframe.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corematerial.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremesh.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremodel.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremorphanimation.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreskeleton.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmesh.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmorphtarget.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coretrack.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\dualquaternion.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\error.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\global.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\hardwaremodel.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\loader.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\matrix.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mesh.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mixer.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\model.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\morphtargetmixer.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physique.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physiquedualquaternion.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\platform.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\quaternion.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\renderer.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\saver.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\skeleton.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\springsystem.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\streamsource.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\submesh.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxml.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxmlerror.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\vector.cpp" />
+    <ClCompile Include="Code\CLS\Collection.cpp" />
+    <ClCompile Include="Code\CLS\Color.cpp" />
+    <ClCompile Include="Code\CLS\Corner.cpp" />
+    <ClCompile Include="Code\CLS\Element.cpp" />
+    <ClCompile Include="Code\CLS\Leg.cpp" />
+    <ClCompile Include="Code\CLS\Object.cpp" />
+    <ClCompile Include="Code\CLS\Result.cpp" />
+    <ClCompile Include="Code\CLS\Surface.cpp" />
+    <ClCompile Include="Code\CLS\Target.cpp" />
+    <ClCompile Include="Code\Cube\aabb.cpp" />
+    <ClCompile Include="Code\Cube\Cube&amp;Bicycle.cpp" />
+    <ClCompile Include="Code\Cube\Cubetronics.cpp" />
+    <ClCompile Include="Code\Cube\Decisions.cpp" />
+    <ClCompile Include="Code\Cube\InstantFunction.cpp" />
+    <ClCompile Include="Code\Cube\predator.cpp" />
+    <ClCompile Include="Code\Cube\qcom.cpp" />
+    <ClCompile Include="Code\Cube\simplexnoise.cpp" />
+    <ClCompile Include="Code\Cube\VoxelGrid.cpp" />
+    <ClCompile Include="Code\Hash\arith_uint256.cpp" />
+    <ClCompile Include="Code\Hash\base58.cpp" />
+    <ClCompile Include="Code\Hash\chainparams.cpp" />
+    <ClCompile Include="Code\Hash\crypto\aes.cpp" />
+    <ClCompile Include="Code\Hash\crypto\chacha20.cpp" />
+    <ClCompile Include="Code\Hash\crypto\hmac_sha256.cpp" />
+    <ClCompile Include="Code\Hash\crypto\hmac_sha512.cpp" />
+    <ClCompile Include="Code\Hash\crypto\ripemd160.cpp" />
+    <ClCompile Include="Code\Hash\crypto\sha1.cpp" />
+    <ClCompile Include="Code\Hash\crypto\sha256.cpp" />
+    <ClCompile Include="Code\Hash\crypto\sha256_sse4.cpp" />
+    <ClCompile Include="Code\Hash\crypto\sha512.cpp" />
+    <ClCompile Include="Code\Hash\key.cpp" />
+    <ClCompile Include="Code\Hash\libsecp\libsecp256k1\src\secp256k1.cpp" />
+    <ClCompile Include="Code\Hash\primitives\block.cpp" />
+    <ClCompile Include="Code\Hash\primitives\transaction.cpp" />
+    <ClCompile Include="Code\Hash\pubkey.cpp" />
+    <ClCompile Include="Code\Hash\random.cpp" />
+    <ClCompile Include="Code\Hash\script\script.cpp" />
+    <ClCompile Include="Code\Hash\support\cleanse.cpp" />
+    <ClCompile Include="Code\Hash\support\lockedpool.cpp" />
+    <ClCompile Include="Code\Hash\uint128_t.cpp" />
+    <ClCompile Include="Code\Hash\uint256.cpp" />
+    <ClCompile Include="Code\Hash\utilstrencodings.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Collection.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Color.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Corner.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Element.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Leg.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Surface.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Target.cpp" />
+    <ClCompile Include="Code\ICS\ICS_Types.cpp" />
+    <ClCompile Include="Code\Mission\qam.cpp" />
+    <ClCompile Include="Code\Mission\qamEvent.cpp" />
+    <ClCompile Include="Code\Mission\qamFunction.cpp" />
+    <ClCompile Include="Code\Mission\qamGraph.cpp" />
+    <ClCompile Include="Code\Mission\qamSpawn.cpp" />
+    <ClCompile Include="Code\Mission\qamSystem.cpp" />
+    <ClCompile Include="Code\Mission\qamTerrain.cpp" />
+    <ClCompile Include="Code\Mission\qamTrigger.cpp" />
+    <ClCompile Include="Code\Mission\qamVariable.cpp" />
+    <ClCompile Include="Code\Musion\Class.cpp" />
+    <ClCompile Include="Code\Musion\ClassVar.cpp" />
+    <ClCompile Include="Code\Musion\Code.cpp" />
+    <ClCompile Include="Code\Musion\CodeLine.cpp" />
+    <ClCompile Include="Code\Musion\Condition.cpp" />
+    <ClCompile Include="Code\Musion\Function.cpp" />
+    <ClCompile Include="Code\Musion\Operator.cpp" />
+    <ClCompile Include="Code\Musion\System.cpp" />
+    <ClCompile Include="Code\Musion\Variable.cpp" />
+    <ClCompile Include="Code\myBO\icSafeL.cpp" />
+    <ClCompile Include="Code\Work\Contract.cpp" />
+    <ClCompile Include="Code\Work\Schedular.cpp" />
+    <ClCompile Include="Common\DeviceResources.cpp" />
+    <ClCompile Include="Content\Sample3DSceneRenderer.cpp" />
+    <ClCompile Include="Content\SampleFpsTextRenderer.cpp" />
+    <ClCompile Include="ecoinMain.cpp" />
+    <ClCompile Include="OpenGLES.cpp" />
+    <ClCompile Include="OSWindow_EME_WIN64.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-BrainFunctions.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-ClericBrain.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-FighterBrain.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-Heart.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-NNbot-AvatarSpawn.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-NNbot-CommPool.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-NNbot-ControlFrame.cpp" />
+    <ClCompile Include="QAGE Source\AI\Q-AI-NNbot-PlayerSpawn.cpp" />
+    <ClCompile Include="QAGE Source\CD\Q-CD-CupBlast.cpp" />
+    <ClCompile Include="QAGE Source\CD\Q-CD-Melee.cpp" />
+    <ClCompile Include="QAGE Source\CD\Q-CD-RadialDamage.cpp" />
+    <ClCompile Include="QAGE Source\CORE\Q-CORE-AvatarHumanoid.cpp" />
+    <ClCompile Include="QAGE Source\CORE\Q-CORE-AvatarMotorbike.cpp" />
+    <ClCompile Include="QAGE Source\CORE\Q-CORE-CharacterData.cpp" />
+    <ClCompile Include="QAGE Source\CORE\Q-CORE-PlayerHumanoid-CK.cpp" />
+    <ClCompile Include="QAGE Source\CORE\Q-CORE-PlayerHumanoid-PK.cpp" />
+    <ClCompile Include="QAGE Source\CORE\Q-CORE-PlayerHumanoid.cpp" />
+    <ClCompile Include="QAGE Source\CORE\Q-CORE-PlayerMotorbike.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-ClericHealSparks.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-ClericPlasma.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-ClericShield.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-ClericSpell.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-Explosion.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-HadoukenBlast.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-PowerBlade.cpp" />
+    <ClCompile Include="QAGE Source\ENE\Q-ENE-RenzouDisc.cpp" />
+    <ClCompile Include="QAGE Source\ENV\Q-ENV-InitSounds.cpp" />
+    <ClCompile Include="QAGE Source\ENV\Q-ENV-InitTextures.cpp" />
+    <ClCompile Include="QAGE Source\FUNC\Q-FUNC-SupportFunctions.cpp" />
+    <ClCompile Include="QAGE Source\IN\Q-IN-ClientInputs.cpp" />
+    <ClCompile Include="QAGE Source\IN\Q-IN-PlayerInputs.cpp" />
+    <ClCompile Include="QAGE Source\IN\Q-IN-PlayerInputsPK.cpp" />
+    <ClCompile Include="QAGE Source\ITEM\Q-ITEM-AvatarSpawnItem.cpp" />
+    <ClCompile Include="QAGE Source\ITEM\Q-ITEM-PlayerSpawnItem.cpp" />
+    <ClCompile Include="QAGE Source\ITEM\Q-ITEM-Support.cpp" />
+    <ClCompile Include="QAGE Source\NET\Q-NET-World.cpp" />
+    <ClCompile Include="QAGE Source\OBJ\Q-OBJ-Building.cpp" />
+    <ClCompile Include="QAGE Source\OBJ\Q-OBJ-Sentry.cpp" />
+    <ClCompile Include="QAGE Source\PHY\Q-PHY-QPhysics.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-ArcPredictiveTrails.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-AvatarEffects.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-AvatarMuzzleFlash.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-AvatarWindwake.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-BasicPolys.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-BloodSystem.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-BulletCartridges.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-BulletHits.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-BulletSystem.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-CloudControl.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-Decals.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-EnergyMatrix.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-FlameTrail.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-JinkControl.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-MeleeHits.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-PinEffectMeshes.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-PlayerEffects.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-PlayerMuzzleFlash.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-PlayerWindwake.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-PntSprite.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-PowerFlash.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-SparksSystem.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-SpikeEffect.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-TexturedTri.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-TrailsNominal.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-ValidPointer.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-WE-WorldEffects.cpp" />
+    <ClCompile Include="QAGE Source\WE\Q-World-Event-Engine.cpp" />
+    <ClCompile Include="SampleConfiguration.cpp">
+      <DependentUpon>SampleConfiguration.h</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Scenario1_SecondaryWindow.cpp">
+      <DependentUpon>..\shared\Scenario1_SecondaryWindow.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Scenario2_DisplayRegion.cpp">
+      <DependentUpon>..\shared\Scenario2_DisplayRegion.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Scenario3_Size.cpp">
+      <DependentUpon>..\shared\Scenario3_Size.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Scenario4_CompactOverlay.cpp">
+      <DependentUpon>..\shared\Scenario4_CompactOverlay.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Scenario5_RelativePositioning.cpp">
+      <DependentUpon>..\shared\Scenario5_RelativePositioning.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="SecondaryAppWindowPage.cpp">
+      <DependentUpon>..\shared\SecondaryAppWindowPage.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+      <DependentUpon>pch.h</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp">
+      <DependentUpon>Project.idl</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="SecondaryAppWindowPageDX.cpp">
+      <DependentUpon>..\shared\SecondaryAppWindowPageDX.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="SecondaryAppWindowPageOGL.cpp">
+      <DependentUpon>..\shared\SecondaryAppWindowPageOGL.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="SecondaryAppWindowPagePredator.cpp">
+      <DependentUpon>..\shared\SecondaryAppWindowPagePredator.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="Server\BitTransfer.cpp" />
+    <ClCompile Include="SimpleRenderer.cpp" />
+    <ClCompile Include="UnSRC\Avatar\tga.cpp" />
+    <ClCompile Include="UnSRC\Avatar\unAvatar.cpp" />
+    <ClCompile Include="UnSRC\Avatar\unMesh.cpp" />
+    <ClCompile Include="UnSRC\Avatar\unMeshAttachment.cpp" />
+    <ClCompile Include="UnSRC\Avatar\unMeshStatic.cpp" />
+    <ClCompile Include="UnSRC\Avatar\unShape.cpp" />
+    <ClCompile Include="UnSRC\Avatar\unShapeMouldings.cpp" />
+    <ClCompile Include="UnSRC\Gui\TumDocument.cpp" />
+    <ClCompile Include="UnSRC\PortShell\Q-PortSHELL.cpp" />
+    <ClCompile Include="UnSRC\Q-A-G-E-Global-INIT.cpp" />
+    <ClCompile Include="UnSRC\QActiveFramewrk.cpp" />
+    <ClCompile Include="UnSRC\Render\pAnimation.cpp" />
+    <ClCompile Include="UnSRC\Render\pBezier.cpp" />
+    <ClCompile Include="UnSRC\Render\pBoundBox.cpp" />
+    <ClCompile Include="UnSRC\Render\pCamera.cpp" />
+    <ClCompile Include="UnSRC\Render\pCapsule.cpp" />
+    <ClCompile Include="UnSRC\Render\pDesc.cpp" />
+    <ClCompile Include="UnSRC\Render\pDummy.cpp" />
+    <ClCompile Include="UnSRC\Render\pFace.cpp" />
+    <ClCompile Include="UnSRC\Render\pFile.cpp" />
+    <ClCompile Include="UnSRC\Render\pFrustum.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIButton.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUICheckBox.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIEditBox.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIGroup.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIImage.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIListControl.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIModelViewer.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIMultilineText.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIObject.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIObjectManager.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIPopUpMenu.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIProgressBar.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIProgressDisk.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIRadialCursor.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUITreeControl.cpp" />
+    <ClCompile Include="UnSRC\Render\pGUIWindow.cpp" />
+    <ClCompile Include="UnSRC\Render\pIconGridInfo.cpp" />
+    <ClCompile Include="UnSRC\Render\Plane.cpp" />
+    <ClCompile Include="UnSRC\Render\pLight.cpp" />
+    <ClCompile Include="UnSRC\Render\pLineSegment.cpp" />
+    <ClCompile Include="UnSRC\Render\pLogReport.cpp" />
+    <ClCompile Include="UnSRC\Render\pMaterial.cpp" />
+    <ClCompile Include="UnSRC\Render\pMath.cpp" />
+    <ClCompile Include="UnSRC\Render\pMesh.cpp" />
+    <ClCompile Include="UnSRC\Render\pMeshSkeleton.cpp" />
+    <ClCompile Include="UnSRC\Render\pNetwork.cpp" />
+    <ClCompile Include="UnSRC\Render\pOcTree.cpp" />
+    <ClCompile Include="UnSRC\Render\pOcTreeNode.cpp" />
+    <ClCompile Include="UnSRC\Render\pOrientedBoundBox.cpp" />
+    <ClCompile Include="UnSRC\Render\pPBuffer.cpp" />
+    <ClCompile Include="UnSRC\Render\pPeriodicFunc.cpp" />
+    <ClCompile Include="UnSRC\Render\pPicture.cpp" />
+    <ClCompile Include="UnSRC\Render\pRect.cpp" />
+    <ClCompile Include="UnSRC\Render\pRender.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderGlow.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderObject.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderObjectManager.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderPass.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderProfile.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderProfileFrag.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderProfileVert.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderRipple.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderShadowMap.cpp" />
+    <ClCompile Include="UnSRC\Render\pRenderVertexBuffer.cpp" />
+    <ClCompile Include="UnSRC\Render\pRM.cpp" />
+    <ClCompile Include="UnSRC\Render\pROBillboard.cpp" />
+    <ClCompile Include="UnSRC\Render\pROCamera.cpp" />
+    <ClCompile Include="UnSRC\Render\pROExplodeObject.cpp" />
+    <ClCompile Include="UnSRC\Render\pROExplosion.cpp" />
+    <ClCompile Include="UnSRC\Render\pROGroup.cpp" />
+    <ClCompile Include="UnSRC\Render\pROLensFlare.cpp" />
+    <ClCompile Include="UnSRC\Render\pROLight.cpp" />
+    <ClCompile Include="UnSRC\Render\pROMesh.cpp" />
+    <ClCompile Include="UnSRC\Render\pROMeshHuge.cpp" />
+    <ClCompile Include="UnSRC\Render\pROMeshLOD.cpp" />
+    <ClCompile Include="UnSRC\Render\pROMeshRelief.cpp" />
+    <ClCompile Include="UnSRC\Render\pROMeshSkeleton.cpp" />
+    <ClCompile Include="UnSRC\Render\pROMeshTeapot.cpp" />
+    <ClCompile Include="UnSRC\Render\pROObfuscatingPoint.cpp" />
+    <ClCompile Include="UnSRC\Render\pROPanorama.cpp" />
+    <ClCompile Include="UnSRC\Render\pROParticleSystem.cpp" />
+    <ClCompile Include="UnSRC\Render\pROParticleSystemGPU.cpp" />
+    <ClCompile Include="UnSRC\Render\pROProjectile.cpp" />
+    <ClCompile Include="UnSRC\Render\pRORotor.cpp" />
+    <ClCompile Include="UnSRC\Render\pROSound.cpp" />
+    <ClCompile Include="UnSRC\Render\pROSpaceDust.cpp" />
+    <ClCompile Include="UnSRC\Render\pROTrail.cpp" />
+    <ClCompile Include="UnSRC\Render\pSound.cpp" />
+    <ClCompile Include="UnSRC\Render\pSoundManager.cpp" />
+    <ClCompile Include="UnSRC\Render\pString.cpp" />
+    <ClCompile Include="UnSRC\Render\pTeapot.cpp" />
+    <ClCompile Include="UnSRC\Render\unRenderer\unRenderer.cpp" />
+    <ClCompile Include="UnSRC\Render\unVis.cpp" />
+    <ClCompile Include="UnSRC\Render\Vec3.cpp" />
+    <ClCompile Include="UnSRC\Sound\launcher.cpp" />
+    <ClCompile Include="UnSRC\Texture\TextureLoader.cpp" />
+    <ClCompile Include="UnSRC\Texture\tgaload.cpp" />
+    <ClCompile Include="UnSRC\Texture\unTextureBank.cpp" />
+    <ClCompile Include="UnSRC\unMain.cpp" />
+    <ClCompile Include="UnSRC\Utility\unConsole.cpp" />
+    <ClCompile Include="Wallet\ecoinShop.cpp" />
+    <ClCompile Include="Wallet\Wallet.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="$(SharedContentDir)\cppwinrt\MainPage.idl">
+      <DependentUpon>$(SharedContentDir)\xaml\MainPage.xaml</DependentUpon>
+    </Midl>
+    <Midl Include="Project.idl" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\x64\Release\ecoin\AppX\Assets\Characters\CharacterDATA2.ini" />
+    <None Include="angle_deqp_libegl.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgl46.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles2.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles3.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles31.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles31_rotate180.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles31_rotate270.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles31_rotate90.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles3_rotate180.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles3_rotate270.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libgles3_rotate90.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libkhr_gles2.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libkhr_gles3.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libkhr_gles31.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_deqp_libkhr_gles32.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_trace_interpreter.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_trace_loader.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="angle_util.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="AppWindow_TemporaryKey.pfx" />
+    <None Include="Assets\Avatar\250Soldier.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\250Template.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\250TemplateClothes.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\250TemplateClothesData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\250TemplateClothesShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\250TemplateData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\250TemplateShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Assassin.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\AssassinData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\AssassinShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Commander.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\CommanderData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\CommanderShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Lisa.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\LisaData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\LisaShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\env_Gem.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\env_Ground_Evergreen.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\env_Latex.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\env_MetalChrome.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\env_MetalWall.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\env_Metal_Chrome.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\env_Reflection_Chrom.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Assassin\Settings\Fabric_Grey_Carp.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\env_Gem.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\env_Ground_Evergreen.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\env_Latex.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\env_MetalChrome.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\env_MetalWall.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\env_Metal_Chrome.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\env_Reflection_Chrom.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Commander\Settings\Fabric_Grey_Carp.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP0.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP1.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP2.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP3.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP4.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP5.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP6.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP7.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackP8.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\BackPack.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Boot Panels.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Boot Soles.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Boot Tongue.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Butt.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Collar.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\env_Left Leg.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\env_Left Thigh.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\env_Right Leg.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\env_Right Thigh.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\env_Stomach.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\env_StomachHR.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\env_Upper Body.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\EyeBall_L.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\EyeBall_R.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Hair.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Hair01.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Head Things.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Head.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Hips.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Left Arm.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Left Ear.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Left Eye.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Left Foot.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Left Forearm.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Left Hand.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Material #0.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Mouth.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Nails 1.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Nails.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\neck.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Nose.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Right Arm.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Right Ear.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Right Eye.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Right Foot.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Right Forearm.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Right Hand.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Shoulders.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Lisa\Settings\Thigh Band Main.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Mellodi\Settings\13 - Default.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Mellodi\Settings\15 - Default.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Mellodi\Settings\2 - Default 1.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Mellodi\Settings\20 - Default.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Mellodi\Settings\7 - Default 1.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Mellodi\Settings\7 - Default 2.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Mellodi\Settings\7 - Default.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\env_Gem.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\env_Ground_Evergreen.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\env_Latex.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\env_MetalChrome.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\env_MetalWall.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\env_Metal_Chrome.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\env_Reflection_Chrom.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Soldier\Settings\Fabric_Grey_Carp.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\ClothMt.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\ClothPants.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\ClothPants2.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\ClothSkirt.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\Eye.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\Gloves.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\Hair01.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\Mtl_body.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\Shoe.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Material\Template\Settings\ShortSkirt.xrf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mellodi.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\MellodiData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\MellodiShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\MelloditheTemp.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\MelloditheTempShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Assassin.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Commander.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\CommanderM2.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Commesh.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\JapanDress.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\LisaNew3.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Mellodi.cmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Mellodi.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Output.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Soldier.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Spiritbomb.cmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\Spiritbomb.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateBikini.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateBkHair.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateBody.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateBra.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateDress.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateEyes.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateGoggles.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplatePants.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplatePants2.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateShoes.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateShortSkirt.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateSkirt.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateSkirtTest.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateSportsTop.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T155TemplateUpper.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T250SportsTop.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplateGloves.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplatePants.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplatePantsCorr.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplatePantsMinimal.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplateShortSkirt.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplateShortSkirtAlter.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplateSportsTopMinimal.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Mesh\T255TemplateStringPants.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AimWep1.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AimWep1UPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AimWep2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AimWep2UPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AirDash.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AirJink.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AirRushFront.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AttFlip.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AttFlipE.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\AXKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\BackFlip.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\BackFlipAtt.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\BikeIdle.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\BikeMount.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\BikeRush.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\BikeWheelie.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\BrollyT.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\cally_idle.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\cally_jog.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\cally_shoot_arrow.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\cally_strut.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\cally_tornado_kick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\cally_walk.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\cally_wave.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\CartWep1.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\CartWheel.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\CartWheelAtt.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Crouch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\CrouchL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\CrouchR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Crunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Deflect.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\DodgeL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\DoubleStrike.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Entro.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\FallHead.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\FKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\FlameUppercut.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\FlameUppercut2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Flek.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Glance.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Golrekka.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Hadouken.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HadoukenAir.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HandSlap.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HBlock.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HBlockHit.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Heal.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HealUPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\heroine_idle.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HitStom.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HitStorm.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HitUpper.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HitWall.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HoldBarge.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HoldDash.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\HoverKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Idle.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Idle1.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Idle2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Idle3.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JSRUSH.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JSRUSHBG.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JSRUSHKICK.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JSRUSHPUNCH.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Jump.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpSmall.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpSmallL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpSmallR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpSpiral.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\JumpSpiralOver.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Knee.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LBlock.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LBlockHit.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LeapDownFist.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LeapDownStrike.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LegSweep.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LLPunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LLPunchA.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LLPunchUPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LMKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LMPunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LookRight.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LowKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LowLunge.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LowPunchL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LowPunchR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Lowtro.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\LSPunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\OverheadPinwheel.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\PCombo1.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\PCombo2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\PowerBomb.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RapidKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RDoubleKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Renzou.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RenzouE.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RenzouL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RenzouP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RenzouPR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RenzouR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RHKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RHPunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RHPunch2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RLPunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RLPunchUPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RMKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RMPunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RMPunchUPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RollF.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RollLowL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RollLowR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RSPINSTRIKE.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RSPunch.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Run.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunAttK.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunAttP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunBack.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunBU.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunWep1L.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RunWep1R.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\RushElbow.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Sakurat.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SideChop.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Sidestep.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SidestepL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SidestepR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\skeleton_hiphop.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\skeleton_idle.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\skeleton_jog.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\skeleton_shoot_arrow.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\skeleton_strut.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\skeleton_walk.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\skeleton_wave.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SkyPush.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SpinChop.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SpinKickFull.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SpinoutLeft.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SpiralDown.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SPKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\SPKickBU.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\StaticKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Taunt1.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\TwinDragon1.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\TwinDragon2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\TwistKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Uppercut.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\VHKick.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Walk.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\WalkL.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\WalkR.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Wave.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Weapon1.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Weapon1UPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Weapon2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\Weapon2UPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\WeaponReload.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\WeaponReload2.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\WeaponReload2UPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Motion\WeaponReloadUPP.caf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirt.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtAlterData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtAlterShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtBikini.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtBikiniData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtBikiniShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtGloves.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtGlovesData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtGlovesShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\ShortSkirtShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Skeleton\comskel.csf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Skeleton\Lisa.csf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Skeleton\SoldierSkel.csf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Skeleton\SpiritBomb.csf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Skeleton\T155TemplateSkeleton.csf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Soldier.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SoldierNew.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SoldierNewData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SoldierNewShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SoldierShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SpiritBomb.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SpiritBombData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SpiritBombShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SpiritBombX.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SpiritBombXData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\SpiritBombXShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\Template.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\TemplateClothes.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\TemplateData.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Avatar\TemplateShell.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Characters\CharacterDATA.ini">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Mesh\Energy\Mesh\Renzou.cmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Mesh\Energy\Mesh\Renzou.xmf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Mesh\Energy\Renzou.cfg">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Assets\Mesh\Energy\Skeleton\Renzou.csf">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="third_party_abseil-cpp_absl.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="third_party_protobuf_protobuf_lite.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="third_party_zlib.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="ucrtbased.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vccorlib140.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vccorlib140d.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vcruntime140.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vcruntime140d.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vcruntime140_1.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vcruntime140_1d.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vcruntime140_app.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="VkICD_mock_icd.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="VkLayer_khronos_validation.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vk_swiftshader.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="vulkan-1.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="d3dcompiler_47.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="dbgcore.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="dbghelp.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libc++.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libEGL.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libEGL_vulkan_secondaries.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libfeature_support.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libGLESv1_CM.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libGLESv2.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libGLESv2_vulkan_secondaries.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="libGLESv2_with_capture.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="msdia140.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="msvcp140.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="msvcp140d.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Content\comPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Content\comVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Content\CurvePixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Content\CurveVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Content\QcomGridPixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Content\QcomGridVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Vertex</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Content\SamplePixelShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Content\SampleVertexShader.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">Vertex</ShaderType>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Fonts\Audiowide-Regular.ttf" />
+    <Font Include="Assets\Fonts\NovaCut.ttf" />
+    <Font Include="Assets\Fonts\ProstoOne-Regular.ttf" />
+    <Font Include="Assets\Fonts\Raleway-Light.ttf" />
+    <Font Include="Assets\Fonts\Sevillana-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package.StoreAssociation.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\WavFiles\AttINITFEMALE.wav" />
+    <Media Include="Assets\WavFiles\AttINITMALE.wav" />
+    <Media Include="Assets\WavFiles\AttINITMULTFEMALE.wav" />
+    <Media Include="Assets\WavFiles\AttINITMULTMALE.wav" />
+    <Media Include="Assets\WavFiles\AttINITSMLFEMALE.wav" />
+    <Media Include="Assets\WavFiles\AttINITSMLMALE.wav" />
+    <Media Include="Assets\WavFiles\BikeLoop.wav" />
+    <Media Include="Assets\WavFiles\BikeLoopP.wav" />
+    <Media Include="Assets\WavFiles\BikeLoopP2.wav" />
+    <Media Include="Assets\WavFiles\BikeLoopP3.wav" />
+    <Media Include="Assets\WavFiles\BikeP.wav" />
+    <Media Include="Assets\WavFiles\boltpull00.wav" />
+    <Media Include="Assets\WavFiles\boltpull01.wav" />
+    <Media Include="Assets\WavFiles\boltpull02.WAV" />
+    <Media Include="Assets\WavFiles\boltpull04.WAV" />
+    <Media Include="Assets\WavFiles\boltpull05.WAV" />
+    <Media Include="Assets\WavFiles\boltpull06.WAV" />
+    <Media Include="Assets\WavFiles\boltpull07.wav" />
+    <Media Include="Assets\WavFiles\boltslap00.wav" />
+    <Media Include="Assets\WavFiles\BrkBlock.wav" />
+    <Media Include="Assets\WavFiles\BulletHit.wav" />
+    <Media Include="Assets\WavFiles\BulletHitArmour.wav" />
+    <Media Include="Assets\WavFiles\CJink.wav" />
+    <Media Include="Assets\WavFiles\click.wav" />
+    <Media Include="Assets\WavFiles\clipin00.wav" />
+    <Media Include="Assets\WavFiles\clipin01.WAV" />
+    <Media Include="Assets\WavFiles\clipin02.WAV" />
+    <Media Include="Assets\WavFiles\clipin04.WAV" />
+    <Media Include="Assets\WavFiles\clipin05.WAV" />
+    <Media Include="Assets\WavFiles\clipin06.WAV" />
+    <Media Include="Assets\WavFiles\clipin07.WAV" />
+    <Media Include="Assets\WavFiles\clipout00.wav" />
+    <Media Include="Assets\WavFiles\clipout01.WAV" />
+    <Media Include="Assets\WavFiles\clipout02.WAV" />
+    <Media Include="Assets\WavFiles\clipout04.WAV" />
+    <Media Include="Assets\WavFiles\clipout05.WAV" />
+    <Media Include="Assets\WavFiles\clipout06.WAV" />
+    <Media Include="Assets\WavFiles\clipout07.WAV" />
+    <Media Include="Assets\WavFiles\CPlasma.wav" />
+    <Media Include="Assets\WavFiles\DefAttack.wav" />
+    <Media Include="Assets\WavFiles\DeflectJink.wav" />
+    <Media Include="Assets\WavFiles\EJink.wav" />
+    <Media Include="Assets\WavFiles\EnemyKO.wav" />
+    <Media Include="Assets\WavFiles\Explosion.wav" />
+    <Media Include="Assets\WavFiles\Explosion3.wav" />
+    <Media Include="Assets\WavFiles\Explosion3000.wav" />
+    <Media Include="Assets\WavFiles\Explosion3001.wav" />
+    <Media Include="Assets\WavFiles\Explosion44.wav" />
+    <Media Include="Assets\WavFiles\Explosion456.wav" />
+    <Media Include="Assets\WavFiles\fire00.wav" />
+    <Media Include="Assets\WavFiles\fire01.WAV" />
+    <Media Include="Assets\WavFiles\fire02.WAV" />
+    <Media Include="Assets\WavFiles\fire03.WAV" />
+    <Media Include="Assets\WavFiles\fire04.WAV" />
+    <Media Include="Assets\WavFiles\fire05.WAV" />
+    <Media Include="Assets\WavFiles\fire06.WAV" />
+    <Media Include="Assets\WavFiles\fire07.WAV" />
+    <Media Include="Assets\WavFiles\fire10.WAV" />
+    <Media Include="Assets\WavFiles\fire11.WAV" />
+    <Media Include="Assets\WavFiles\FireCrackle.wav" />
+    <Media Include="Assets\WavFiles\Footsteps.wav" />
+    <Media Include="Assets\WavFiles\HadWarning.wav" />
+    <Media Include="Assets\WavFiles\HiH1.wav" />
+    <Media Include="Assets\WavFiles\HiN1.wav" />
+    <Media Include="Assets\WavFiles\HiN2.wav" />
+    <Media Include="Assets\WavFiles\HitB1.wav" />
+    <Media Include="Assets\WavFiles\HitH1.wav" />
+    <Media Include="Assets\WavFiles\HitN1.wav" />
+    <Media Include="Assets\WavFiles\HitN1AV.wav" />
+    <Media Include="Assets\WavFiles\Hitwall1.wav" />
+    <Media Include="Assets\WavFiles\Hitwall2.wav" />
+    <Media Include="Assets\WavFiles\Hitwall3.wav" />
+    <Media Include="Assets\WavFiles\Hitwall4.wav" />
+    <Media Include="Assets\WavFiles\hover.wav" />
+    <Media Include="Assets\WavFiles\Jink.wav" />
+    <Media Include="Assets\WavFiles\JINK3Charge.wav" />
+    <Media Include="Assets\WavFiles\JINK3ChargeStart.wav" />
+    <Media Include="Assets\WavFiles\JINK3VOCAL.wav" />
+    <Media Include="Assets\WavFiles\KeyLog.wav" />
+    <Media Include="Assets\WavFiles\KeyLogError.wav" />
+    <Media Include="Assets\WavFiles\mEnd.wav" />
+    <Media Include="Assets\WavFiles\mEnd2.wav" />
+    <Media Include="Assets\WavFiles\mStart.wav" />
+    <Media Include="Assets\WavFiles\PlayerKO.wav" />
+    <Media Include="Assets\WavFiles\QuantumAngelIntro.wav" />
+    <Media Include="Assets\WavFiles\Renzou.wav" />
+    <Media Include="Assets\WavFiles\RenzouFireDouble.wav" />
+    <Media Include="Assets\WavFiles\RenzouImpact.wav" />
+    <Media Include="Assets\WavFiles\RenzouLeft.wav" />
+    <Media Include="Assets\WavFiles\RenzouRight.wav" />
+    <Media Include="Assets\WavFiles\Roaddrill.wav" />
+    <Media Include="Assets\WavFiles\ShockBlock.wav" />
+    <Media Include="Assets\WavFiles\skid02.wav" />
+    <Media Include="Assets\WavFiles\Starffft.wav" />
+    <Media Include="Assets\WavFiles\Start.wav" />
+    <Media Include="Assets\WavFiles\Start1.wav" />
+    <Media Include="Assets\WavFiles\Start3.wav" />
+    <Media Include="Assets\WavFiles\StartR.wav" />
+    <Media Include="Assets\WavFiles\SwishFUC.wav" />
+    <Media Include="Assets\WavFiles\SwishH1.wav" />
+    <Media Include="Assets\WavFiles\SwishH2.wav" />
+    <Media Include="Assets\WavFiles\SwishH3FEMALE.wav" />
+    <Media Include="Assets\WavFiles\SwishH3MALE.wav" />
+    <Media Include="Assets\WavFiles\SwishN1.wav" />
+    <Media Include="Assets\WavFiles\SwishN2.wav" />
+    <Media Include="Assets\WavFiles\SwishN3.wav" />
+    <Media Include="Assets\WavFiles\SwishN4.wav" />
+    <Media Include="Assets\WavFiles\SwishSPIN.wav" />
+    <Media Include="Assets\WavFiles\UltraBlowFEMALE.wav" />
+    <Media Include="Assets\WavFiles\UltraBlowMALE.wav" />
+    <Media Include="Assets\WavFiles\UppCutFlames.wav" />
+    <Media Include="Assets\WavFiles\ZoneCapture.wav" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Windows.CppWinRT.2.0.190404.8\build\native\Microsoft.Windows.CppWinRT.targets'))" />
+  </Target>
+</Project>

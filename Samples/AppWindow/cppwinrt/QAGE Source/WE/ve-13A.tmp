@@ -1,0 +1,1929 @@
+/*
+
+	Quantum Angel Game Engine Codex
+	-Virtual Library -
+
+	DATE - 11/05/06
+		Copyright - J M Lawlor
+
+	- Major Component -World Event Engine-
+	- Minor Component -Avatar WindWake-
+
+*/
+
+//### INCLUDES
+#include "../../Q-PortSHELL-VAR.h"
+#include "../../Q-PortSHELL-FUN.h"
+
+#include "../../QAGEInclude/Q-FunctionCORE-ETCH.h"
+#include "../../QAGEInclude/Q-Includes.h"
+#include "../../QAGEInclude/AI/Q-AI-Cortex.h"
+#include "../../QAGEInclude/AI/Q-AI-Brain.h"
+#include "../../QAGEInclude/WE/Q-WE-WorldEffects.h"
+#include "../../QAGEInclude/WE/Q-WE-PntSprite.h"
+#include "../../QAGEInclude/ITEM/Q-ITEM-ItemDef.h"
+#include "../../QAGEInclude/WE/Q-WE-CloudControl.h"
+#include "../../QAGEInclude/Q-Structs.h"
+#include "../../QAGEInclude/WE/Q-WE-MeleeHits.h"
+#include "../../QAGEInclude/CORE/Q-CORE-Avatar.h"
+#include "../../QAGEInclude/Q-GlobalHeader.h"
+#include "../../QAGEInclude/Q-Prototypes.h"
+
+using namespace GVARS;
+
+namespace GVARS
+{
+
+//#####- AI WIND WAKE -#####
+
+void Q_WindWakeCLS::AvatarFrame(void)
+	{
+	if(Forge[aero].WindWake == 1)
+		{
+		Q_WindWake[aero].MAINALPHA += 15*TimeScale;
+		if((Q_WindWake[aero].MAINALPHA > Q_WindWake[aero].AlphaMAX) && Q_WindWake[aero].AlphaMAX != 0) Q_WindWake[aero].MAINALPHA = Q_WindWake[aero].AlphaMAX;
+		}
+	else
+		{
+		Q_WindWake[aero].MAINALPHA -= 6*TimeScale; //15
+		if(Q_WindWake[aero].MAINALPHA < 0) Q_WindWake[aero].MAINALPHA = 0;
+		}
+
+
+	if(Q_WindWake[aero].MAINALPHA > 0)
+		{
+		//#### Default Values for standard JUMP
+		Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+		Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 72.5;
+		Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 143;
+		Q_WindWake[aero].AlphaMAX = 45;
+
+		//### Change Scale and center point depending on attack type
+		if(Forge[aero].Aposestate == 24)	//Jump Kick
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 65;	//82.5
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 125;
+			Q_WindWake[aero].AlphaMAX = 35;
+			}
+
+		if(Forge[aero].Aposestate == 22)	//Leap Spin Kick
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 160;
+			Q_WindWake[aero].AlphaMAX = 40;
+			}
+
+		if(Forge[aero].Aposestate == 76) // JSRush UP
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 87.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 115;
+			Q_WindWake[aero].AlphaMAX = 50;
+			}
+
+		if(Forge[aero].Aposestate == 74)	//JSRush Punch
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 140;
+			Q_WindWake[aero].AlphaMAX = 40;
+			}
+
+		if(Forge[aero].Aposestate == 73)	//JSRUSH
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 150;
+			Q_WindWake[aero].AlphaMAX = 90;
+			}
+
+		if(Forge[aero].Aposestate == 61)	//Twist Kick
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 150;
+			Q_WindWake[aero].AlphaMAX = 40;
+			}
+
+		if(Forge[aero].Aposestate == 65)	//Rush Elbow
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 57.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 105;
+			Q_WindWake[aero].AlphaMAX = 80;
+			}
+
+		if(Forge[aero].Aposestate == 84)	//Overhead Pinwheel
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 67.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 115;
+			Q_WindWake[aero].AlphaMAX = 65;
+			}
+
+		if(Forge[aero].Aposestate == 81)	//Spin Out Left
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 140;
+			Q_WindWake[aero].AlphaMAX = 40;
+			}
+
+		if(Forge[aero].Mposestate == 26)	//Roll Forward
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 52.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 100;
+			Q_WindWake[aero].AlphaMAX = 30;
+			}
+
+		if(Forge[aero].Mposestate == 28)	//Roll Left
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 52.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 100;
+			Q_WindWake[aero].AlphaMAX = 25;
+			}
+
+		if(Forge[aero].Mposestate == 29)	//Roll Right
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 52.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 100;
+			Q_WindWake[aero].AlphaMAX = 25;
+			}
+
+		if(Forge[aero].Mposestate == 8)	//BackFlip
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 60;	//82.5
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 145;
+			Q_WindWake[aero].AlphaMAX = 45;
+			}
+
+		if(Forge[aero].Mposestate == 23)	//Cartwheel Left
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 145;
+			Q_WindWake[aero].AlphaMAX = 30;
+			}
+
+		if(Forge[aero].Mposestate == 24)	//Cartwheel Right
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 145;
+			Q_WindWake[aero].AlphaMAX = 30;
+			}
+
+		if(Forge[aero].Mposestate == 15)	//Air Rush Forward
+			{
+			Q_WindWake[aero].Pos = Forge[aero].Avatar.ActorXform.Translation;
+			Q_WindWake[aero].Pos.y += (75 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 82.5;
+			Q_WindWake[aero].Scale = (100 * (((Forge[aero].CharDATA.BodySKILL.Height/100)-0.5)*1)) + 125;
+			Q_WindWake[aero].AlphaMAX = 65;
+			}
+
+		//#### Revert to WindWake Memory
+		if(Forge[aero].WindWake == 0)
+			{
+			Q_WindWake[aero].Pos = Q_WindWake[aero].MeMPos;
+			Q_WindWake[aero].Scale = Q_WindWake[aero].MeMScale;
+			Q_WindWake[aero].AlphaMAX = Q_WindWake[aero].MeMAlphaMAX;
+			}
+
+		if(Forge[aero].INvectorAPC.x == 0 && Forge[aero].INvectorAPC.y == 0 && Forge[aero].INvectorAPC.z == 0) Forge[aero].INvectorAPC = Q_WindWake[aero].MeMINvectorAPC;
+
+
+		//##### Calculate Direction Vectors
+		Qpo_Transform_New_YRotation(&RotateMatrix, PI/2);
+		Qpo_Transform_RotateVector(&RotateMatrix, &Forge[aero].INvectorAPC, &Forge[aero].LEFTvectorAPC);
+		Qpo_Vec3d_Normalize(&Forge[aero].LEFTvectorAPC);
+		Forge[aero].LEFTvectorAPC.y = 0;
+
+		Qpo_Vec3d_CrossProduct(&Forge[aero].LEFTvectorAPC, &Forge[aero].INvectorAPC, &Forge[aero].UPvectorAPC);
+		Qpo_Vec3d_Normalize(&Forge[aero].UPvectorAPC);
+
+		if(Forge[aero].INvectorAPC.y != 1)
+			{
+			Q_WindWake[aero].VecIn = Forge[aero].INvectorAPC;
+			Q_WindWake[aero].VecUp = Forge[aero].UPvectorAPC;
+			Q_WindWake[aero].VecLeft = Forge[aero].LEFTvectorAPC;
+			}
+		else
+			{
+			Qpo_Transform_GetUp(&Forge[aero].Avatar.ActorXform, &Q_WindWake[aero].VecUp);
+			Qpo_Vec3d_Inverse(&Q_WindWake[aero].VecUp);
+			Qpo_Transform_GetLeft(&Forge[aero].Avatar.ActorXform, &Q_WindWake[aero].VecLeft);
+			Q_WindWake[aero].VecIn.x = 0;
+			Q_WindWake[aero].VecIn.y = 1;
+			Q_WindWake[aero].VecIn.z = 0;
+			}
+
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, 45, &Q_WindWake[aero].VecIn, &Q_WindWake[aero].Pos);
+		Q_WindWake[aero].STRPos = Q_WindWake[aero].Pos;
+
+		Q_WindWake[aero].Type = 0;//GE_TEXTURED_POLY;
+		Q_WindWake[aero].RenderFlags = 0;//GE_RENDER_DEPTH_SORT_BF;
+		Q_WindWake[aero].ScaleBIT = 1.0f;
+		//END INIT
+
+		if(Forge[aero].CharDATA.AngelEFFECTS.JinkTYPE == 0)
+			{
+			Q_WindWake[aero].MaterialCNT++;
+			if(Q_WindWake[aero].MaterialCNT < 124) Q_WindWake[aero].MaterialCNT = 124;
+			if(Q_WindWake[aero].MaterialCNT > 136) Q_WindWake[aero].MaterialCNT = 124;
+			}
+
+		if(Forge[aero].CharDATA.AngelEFFECTS.JinkTYPE == 1)
+			{
+			Q_WindWake[aero].MaterialCNT++;
+			if(Q_WindWake[aero].MaterialCNT < 82) Q_WindWake[aero].MaterialCNT = 82;
+			if(Q_WindWake[aero].MaterialCNT > 96) Q_WindWake[aero].MaterialCNT = 82;
+			}
+
+
+		//####### Store WindWake Memory
+		if(Forge[aero].WindWake == 1)
+			{
+			Q_WindWake[aero].MeMPos = Q_WindWake[aero].Pos;
+			Q_WindWake[aero].MeMScale = Q_WindWake[aero].Scale;
+			Q_WindWake[aero].MeMAlphaMAX = Q_WindWake[aero].AlphaMAX;
+
+			Q_WindWake[aero].MeMINvectorAPC = Forge[aero].INvectorAPC;
+
+			Q_WindWake[aero].MeMJinkSpecialON = Forge[aero].JinkSpecialON;
+			}
+
+
+			//### FRONT VERT
+		Q_WindWake[aero].VertFNT = Q_WindWake[aero].STRPos;
+
+
+			//### Shift Back for second ring					//15
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/20, &Q_WindWake[aero].VecIn, &Q_WindWake[aero].Pos);
+
+
+			//##### RING TWO
+					//TOP VERT1
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/8, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM1);
+
+					//TOP VERT15
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM15);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM15, -Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM15);
+
+					//TOP VERT2
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM2);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM2, -Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM2);
+
+					//TOP VERT25
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM25);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM25, -Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM25);
+
+					//TOP VERT3
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/8, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM3);
+
+					//TOP VERT35
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM35);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM35, -Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM35);
+
+					//TOP VERT4
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM4);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM4, -Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM4);
+
+					//TOP VERT45
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM45);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM45, -Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM45);
+
+					//TOP VERT5
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/8, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM5);
+
+					//TOP VERT55
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM55);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM55, Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM55);
+
+					//TOP VERT6
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM6);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM6, Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM6);
+
+					//TOP VERT65
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM65);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM65, Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM65);
+
+					//TOP VERT7
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/8, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM7);
+
+					//TOP VERT75
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM75);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM75, Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM75);
+
+					//TOP VERT8
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM8);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM8, Q_WindWake[aero].Scale/11.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM8);
+
+					//TOP VERT85
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/9, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertM85);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertM85, Q_WindWake[aero].Scale/14.75, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertM85);
+
+
+
+			//### Shift Back for first ring					//4   11
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/5, &Q_WindWake[aero].VecIn, &Q_WindWake[aero].Pos);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].STRPos, -Q_WindWake[aero].Scale/5, &Q_WindWake[aero].VecIn, &Q_WindWake[aero].STRPos);
+		
+		
+			//##### RING ONE
+					//TOP VERT1
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT1);
+
+					//TOP VERT15
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT15);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT15, -Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT15);
+
+					//TOP VERT2
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT2);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT2, -Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT2);
+
+					//TOP VERT25
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT25);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT25, -Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT25);
+
+					//TOP VERT3
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT3);
+
+					//TOP VERT35
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT35);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT35, -Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT35);
+
+					//TOP VERT4
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT4);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT4, -Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT4);
+
+					//TOP VERT45
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT45);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT45, -Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT45);
+
+					//TOP VERT5
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT5);
+
+					//TOP VERT55
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT55);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT55, Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT55);
+
+					//TOP VERT6
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT6);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT6, Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT6);
+
+					//TOP VERT65
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT65);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT65, Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT65);
+
+					//TOP VERT7
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT7);
+
+					//TOP VERT75
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT75);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT75, Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT75);
+
+					//TOP VERT8
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT8);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT8, Q_WindWake[aero].Scale/4, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT8);
+
+					//TOP VERT85
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3.15, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertT85);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertT85, Q_WindWake[aero].Scale/11, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertT85);
+
+
+			//### Shift Back for second ring				// 3 <- V GOOD         3.5	4.5
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3.35, &Q_WindWake[aero].VecIn, &Q_WindWake[aero].Pos);
+
+
+			//##### RING TWO
+					//TOP VERT1
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/2.7, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB1);
+
+					//TOP VERT15
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB15);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB15, -Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB15);
+
+					//TOP VERT2
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB2);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB2, -Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB2);
+
+					//TOP VERT25
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB25);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB25, -Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB25);
+
+					//TOP VERT3
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/2.7, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB3);
+
+					//TOP VERT35
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB35);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB35, -Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB35);
+
+					//TOP VERT4
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB4);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB4, -Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB4);
+
+					//TOP VERT45
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB45);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB45, -Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB45);
+
+					//TOP VERT5
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/2.7, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB5);
+
+					//TOP VERT55
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB55);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB55, Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB55);
+
+					//TOP VERT6
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB6);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB6, Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB6);
+
+					//TOP VERT65
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, -Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB65);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB65, Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB65);
+
+					//TOP VERT7
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/2.7, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB7);
+
+					//TOP VERT75
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB75);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB75, Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB75);
+
+					//TOP VERT8
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB8);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB8, Q_WindWake[aero].Scale/3.5, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB8);
+
+					//TOP VERT85
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].Pos, Q_WindWake[aero].Scale/3, &Q_WindWake[aero].VecUp, &Q_WindWake[aero].VertB85);
+		FCORE.Qpo_Vec3d_AddScaled(&Q_WindWake[aero].VertB85, Q_WindWake[aero].Scale/8.2, &Q_WindWake[aero].VecLeft, &Q_WindWake[aero].VertB85);
+
+
+				a=0;
+				while( a <= 47 )
+					{
+					b=0;
+					while( b <= 3 )
+						{
+						if(Forge[aero].WindWake == 1)
+							{
+							if(Forge[aero].JinkSpecialON < 1)
+								{
+								Q_WindWake[aero].Lvert[a][b].a = Q_WindWake[aero].MAINALPHA;
+								Q_WindWake[aero].Lvert[a][b].b = 255;
+								Q_WindWake[aero].Lvert[a][b].g = 255;
+								Q_WindWake[aero].Lvert[a][b].r = 255;
+								}
+							else
+								{
+								Q_WindWake[aero].Lvert[a][b].a = Q_WindWake[aero].MAINALPHA;
+								Q_WindWake[aero].Lvert[a][b].b = Forge[aero].CharDATA.AngelEFFECTS.JinkBLUE;	//135
+								Q_WindWake[aero].Lvert[a][b].g = Forge[aero].CharDATA.AngelEFFECTS.JinkGREEN;
+								Q_WindWake[aero].Lvert[a][b].r = Forge[aero].CharDATA.AngelEFFECTS.JinkRED;
+								}
+							}
+						else
+							{
+							if(Q_WindWake[aero].MeMJinkSpecialON < 1)
+								{
+								Q_WindWake[aero].Lvert[a][b].a = Q_WindWake[aero].MAINALPHA;
+								Q_WindWake[aero].Lvert[a][b].b = 255;
+								Q_WindWake[aero].Lvert[a][b].g = 255;
+								Q_WindWake[aero].Lvert[a][b].r = 255;
+								}
+							else
+								{
+								Q_WindWake[aero].Lvert[a][b].a = Q_WindWake[aero].MAINALPHA;
+								Q_WindWake[aero].Lvert[a][b].b = Forge[aero].CharDATA.AngelEFFECTS.JinkBLUE;	//135
+								Q_WindWake[aero].Lvert[a][b].g = Forge[aero].CharDATA.AngelEFFECTS.JinkGREEN;
+								Q_WindWake[aero].Lvert[a][b].r = Forge[aero].CharDATA.AngelEFFECTS.JinkRED;
+								}
+							}
+						b++;
+						}
+					a++;
+					}
+
+
+					//##### - FRONT CUP
+
+					Q_WindWake[aero].Lvert[0][0].u = 0.5;
+					Q_WindWake[aero].Lvert[0][0].v = 0;
+					Q_WindWake[aero].Lvert[0][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[0][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[0][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[0][1].u = 1;
+					Q_WindWake[aero].Lvert[0][1].v = 1;
+					Q_WindWake[aero].Lvert[0][1].x = Q_WindWake[aero].VertM15.x;
+					Q_WindWake[aero].Lvert[0][1].y = Q_WindWake[aero].VertM15.y;
+					Q_WindWake[aero].Lvert[0][1].z = Q_WindWake[aero].VertM15.z;
+
+					
+					Q_WindWake[aero].Lvert[0][2].u = 0;
+					Q_WindWake[aero].Lvert[0][2].v = 1;
+					Q_WindWake[aero].Lvert[0][2].x = Q_WindWake[aero].VertM1.x;
+					Q_WindWake[aero].Lvert[0][2].y = Q_WindWake[aero].VertM1.y;
+					Q_WindWake[aero].Lvert[0][2].z = Q_WindWake[aero].VertM1.z;
+
+
+					Q_WindWake[aero].Lvert[1][0].u = 0.5;
+					Q_WindWake[aero].Lvert[1][0].v = 0;
+					Q_WindWake[aero].Lvert[1][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[1][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[1][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[1][1].u = 1;
+					Q_WindWake[aero].Lvert[1][1].v = 1;
+					Q_WindWake[aero].Lvert[1][1].x = Q_WindWake[aero].VertM25.x;
+					Q_WindWake[aero].Lvert[1][1].y = Q_WindWake[aero].VertM25.y;
+					Q_WindWake[aero].Lvert[1][1].z = Q_WindWake[aero].VertM25.z;
+
+							
+					Q_WindWake[aero].Lvert[1][2].u = 0;
+					Q_WindWake[aero].Lvert[1][2].v = 1;
+					Q_WindWake[aero].Lvert[1][2].x = Q_WindWake[aero].VertM2.x;
+					Q_WindWake[aero].Lvert[1][2].y = Q_WindWake[aero].VertM2.y;
+					Q_WindWake[aero].Lvert[1][2].z = Q_WindWake[aero].VertM2.z;
+
+
+					Q_WindWake[aero].Lvert[2][0].u = 0.5;
+					Q_WindWake[aero].Lvert[2][0].v = 0;
+					Q_WindWake[aero].Lvert[2][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[2][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[2][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[2][1].u = 1;
+					Q_WindWake[aero].Lvert[2][1].v = 1;
+					Q_WindWake[aero].Lvert[2][1].x = Q_WindWake[aero].VertM35.x;
+					Q_WindWake[aero].Lvert[2][1].y = Q_WindWake[aero].VertM35.y;
+					Q_WindWake[aero].Lvert[2][1].z = Q_WindWake[aero].VertM35.z;
+
+							
+					Q_WindWake[aero].Lvert[2][2].u = 0;
+					Q_WindWake[aero].Lvert[2][2].v = 1;
+					Q_WindWake[aero].Lvert[2][2].x = Q_WindWake[aero].VertM3.x;
+					Q_WindWake[aero].Lvert[2][2].y = Q_WindWake[aero].VertM3.y;
+					Q_WindWake[aero].Lvert[2][2].z = Q_WindWake[aero].VertM3.z;
+
+
+					Q_WindWake[aero].Lvert[3][0].u = 0.5;
+					Q_WindWake[aero].Lvert[3][0].v = 0;
+					Q_WindWake[aero].Lvert[3][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[3][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[3][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[3][1].u = 1;
+					Q_WindWake[aero].Lvert[3][1].v = 1;
+					Q_WindWake[aero].Lvert[3][1].x = Q_WindWake[aero].VertM45.x;
+					Q_WindWake[aero].Lvert[3][1].y = Q_WindWake[aero].VertM45.y;
+					Q_WindWake[aero].Lvert[3][1].z = Q_WindWake[aero].VertM45.z;
+
+							
+					Q_WindWake[aero].Lvert[3][2].u = 0;
+					Q_WindWake[aero].Lvert[3][2].v = 1;
+					Q_WindWake[aero].Lvert[3][2].x = Q_WindWake[aero].VertM4.x;
+					Q_WindWake[aero].Lvert[3][2].y = Q_WindWake[aero].VertM4.y;
+					Q_WindWake[aero].Lvert[3][2].z = Q_WindWake[aero].VertM4.z;
+
+
+					Q_WindWake[aero].Lvert[4][0].u = 0.5;
+					Q_WindWake[aero].Lvert[4][0].v = 0;
+					Q_WindWake[aero].Lvert[4][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[4][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[4][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[4][1].u = 1;
+					Q_WindWake[aero].Lvert[4][1].v = 1;
+					Q_WindWake[aero].Lvert[4][1].x = Q_WindWake[aero].VertM55.x;
+					Q_WindWake[aero].Lvert[4][1].y = Q_WindWake[aero].VertM55.y;
+					Q_WindWake[aero].Lvert[4][1].z = Q_WindWake[aero].VertM55.z;
+
+							
+					Q_WindWake[aero].Lvert[4][2].u = 0;
+					Q_WindWake[aero].Lvert[4][2].v = 1;
+					Q_WindWake[aero].Lvert[4][2].x = Q_WindWake[aero].VertM5.x;
+					Q_WindWake[aero].Lvert[4][2].y = Q_WindWake[aero].VertM5.y;
+					Q_WindWake[aero].Lvert[4][2].z = Q_WindWake[aero].VertM5.z;
+
+
+					Q_WindWake[aero].Lvert[5][0].u = 0.5;
+					Q_WindWake[aero].Lvert[5][0].v = 0;
+					Q_WindWake[aero].Lvert[5][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[5][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[5][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[5][1].u = 1;
+					Q_WindWake[aero].Lvert[5][1].v = 1;
+					Q_WindWake[aero].Lvert[5][1].x = Q_WindWake[aero].VertM65.x;
+					Q_WindWake[aero].Lvert[5][1].y = Q_WindWake[aero].VertM65.y;
+					Q_WindWake[aero].Lvert[5][1].z = Q_WindWake[aero].VertM65.z;
+
+							
+					Q_WindWake[aero].Lvert[5][2].u = 0;
+					Q_WindWake[aero].Lvert[5][2].v = 1;
+					Q_WindWake[aero].Lvert[5][2].x = Q_WindWake[aero].VertM6.x;
+					Q_WindWake[aero].Lvert[5][2].y = Q_WindWake[aero].VertM6.y;
+					Q_WindWake[aero].Lvert[5][2].z = Q_WindWake[aero].VertM6.z;
+
+
+					Q_WindWake[aero].Lvert[6][0].u = 0.5;
+					Q_WindWake[aero].Lvert[6][0].v = 0;
+					Q_WindWake[aero].Lvert[6][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[6][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[6][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[6][1].u = 1;
+					Q_WindWake[aero].Lvert[6][1].v = 1;
+					Q_WindWake[aero].Lvert[6][1].x = Q_WindWake[aero].VertM75.x;
+					Q_WindWake[aero].Lvert[6][1].y = Q_WindWake[aero].VertM75.y;
+					Q_WindWake[aero].Lvert[6][1].z = Q_WindWake[aero].VertM75.z;
+
+							
+					Q_WindWake[aero].Lvert[6][2].u = 0;
+					Q_WindWake[aero].Lvert[6][2].v = 1;
+					Q_WindWake[aero].Lvert[6][2].x = Q_WindWake[aero].VertM7.x;
+					Q_WindWake[aero].Lvert[6][2].y = Q_WindWake[aero].VertM7.y;
+					Q_WindWake[aero].Lvert[6][2].z = Q_WindWake[aero].VertM7.z;
+
+
+					Q_WindWake[aero].Lvert[7][0].u = 0.5;
+					Q_WindWake[aero].Lvert[7][0].v = 0;
+					Q_WindWake[aero].Lvert[7][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[7][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[7][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[7][1].u = 1;
+					Q_WindWake[aero].Lvert[7][1].v = 1;
+					Q_WindWake[aero].Lvert[7][1].x = Q_WindWake[aero].VertM85.x;
+					Q_WindWake[aero].Lvert[7][1].y = Q_WindWake[aero].VertM85.y;
+					Q_WindWake[aero].Lvert[7][1].z = Q_WindWake[aero].VertM85.z;
+
+							
+					Q_WindWake[aero].Lvert[7][2].u = 0;
+					Q_WindWake[aero].Lvert[7][2].v = 1;
+					Q_WindWake[aero].Lvert[7][2].x = Q_WindWake[aero].VertM8.x;
+					Q_WindWake[aero].Lvert[7][2].y = Q_WindWake[aero].VertM8.y;
+					Q_WindWake[aero].Lvert[7][2].z = Q_WindWake[aero].VertM8.z;
+
+
+					Q_WindWake[aero].Lvert[8][0].u = 0.5;
+					Q_WindWake[aero].Lvert[8][0].v = 0;
+					Q_WindWake[aero].Lvert[8][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[8][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[8][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[8][1].u = 1;
+					Q_WindWake[aero].Lvert[8][1].v = 1;
+					Q_WindWake[aero].Lvert[8][1].x = Q_WindWake[aero].VertM2.x;
+					Q_WindWake[aero].Lvert[8][1].y = Q_WindWake[aero].VertM2.y;
+					Q_WindWake[aero].Lvert[8][1].z = Q_WindWake[aero].VertM2.z;
+
+					
+					Q_WindWake[aero].Lvert[8][2].u = 0;
+					Q_WindWake[aero].Lvert[8][2].v = 1;
+					Q_WindWake[aero].Lvert[8][2].x = Q_WindWake[aero].VertM15.x;
+					Q_WindWake[aero].Lvert[8][2].y = Q_WindWake[aero].VertM15.y;
+					Q_WindWake[aero].Lvert[8][2].z = Q_WindWake[aero].VertM15.z;
+
+
+					Q_WindWake[aero].Lvert[9][0].u = 0.5;
+					Q_WindWake[aero].Lvert[9][0].v = 0;
+					Q_WindWake[aero].Lvert[9][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[9][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[9][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[9][1].u = 1;
+					Q_WindWake[aero].Lvert[9][1].v = 1;
+					Q_WindWake[aero].Lvert[9][1].x = Q_WindWake[aero].VertM3.x;
+					Q_WindWake[aero].Lvert[9][1].y = Q_WindWake[aero].VertM3.y;
+					Q_WindWake[aero].Lvert[9][1].z = Q_WindWake[aero].VertM3.z;
+
+							
+					Q_WindWake[aero].Lvert[9][2].u = 0;
+					Q_WindWake[aero].Lvert[9][2].v = 1;
+					Q_WindWake[aero].Lvert[9][2].x = Q_WindWake[aero].VertM25.x;
+					Q_WindWake[aero].Lvert[9][2].y = Q_WindWake[aero].VertM25.y;
+					Q_WindWake[aero].Lvert[9][2].z = Q_WindWake[aero].VertM25.z;
+
+
+					Q_WindWake[aero].Lvert[10][0].u = 0.5;
+					Q_WindWake[aero].Lvert[10][0].v = 0;
+					Q_WindWake[aero].Lvert[10][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[10][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[10][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[10][1].u = 1;
+					Q_WindWake[aero].Lvert[10][1].v = 1;
+					Q_WindWake[aero].Lvert[10][1].x = Q_WindWake[aero].VertM4.x;
+					Q_WindWake[aero].Lvert[10][1].y = Q_WindWake[aero].VertM4.y;
+					Q_WindWake[aero].Lvert[10][1].z = Q_WindWake[aero].VertM4.z;
+
+							
+					Q_WindWake[aero].Lvert[10][2].u = 0;
+					Q_WindWake[aero].Lvert[10][2].v = 1;
+					Q_WindWake[aero].Lvert[10][2].x = Q_WindWake[aero].VertM35.x;
+					Q_WindWake[aero].Lvert[10][2].y = Q_WindWake[aero].VertM35.y;
+					Q_WindWake[aero].Lvert[10][2].z = Q_WindWake[aero].VertM35.z;
+
+
+					Q_WindWake[aero].Lvert[11][0].u = 0.5;
+					Q_WindWake[aero].Lvert[11][0].v = 0;
+					Q_WindWake[aero].Lvert[11][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[11][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[11][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[11][1].u = 1;
+					Q_WindWake[aero].Lvert[11][1].v = 1;
+					Q_WindWake[aero].Lvert[11][1].x = Q_WindWake[aero].VertM5.x;
+					Q_WindWake[aero].Lvert[11][1].y = Q_WindWake[aero].VertM5.y;
+					Q_WindWake[aero].Lvert[11][1].z = Q_WindWake[aero].VertM5.z;
+
+							
+					Q_WindWake[aero].Lvert[11][2].u = 0;
+					Q_WindWake[aero].Lvert[11][2].v = 1;
+					Q_WindWake[aero].Lvert[11][2].x = Q_WindWake[aero].VertM45.x;
+					Q_WindWake[aero].Lvert[11][2].y = Q_WindWake[aero].VertM45.y;
+					Q_WindWake[aero].Lvert[11][2].z = Q_WindWake[aero].VertM45.z;
+
+
+					Q_WindWake[aero].Lvert[12][0].u = 0.5;
+					Q_WindWake[aero].Lvert[12][0].v = 0;
+					Q_WindWake[aero].Lvert[12][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[12][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[12][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[12][1].u = 1;
+					Q_WindWake[aero].Lvert[12][1].v = 1;
+					Q_WindWake[aero].Lvert[12][1].x = Q_WindWake[aero].VertM6.x;
+					Q_WindWake[aero].Lvert[12][1].y = Q_WindWake[aero].VertM6.y;
+					Q_WindWake[aero].Lvert[12][1].z = Q_WindWake[aero].VertM6.z;
+
+							
+					Q_WindWake[aero].Lvert[12][2].u = 0;
+					Q_WindWake[aero].Lvert[12][2].v = 1;
+					Q_WindWake[aero].Lvert[12][2].x = Q_WindWake[aero].VertM55.x;
+					Q_WindWake[aero].Lvert[12][2].y = Q_WindWake[aero].VertM55.y;
+					Q_WindWake[aero].Lvert[12][2].z = Q_WindWake[aero].VertM55.z;
+
+
+					Q_WindWake[aero].Lvert[13][0].u = 0.5;
+					Q_WindWake[aero].Lvert[13][0].v = 0;
+					Q_WindWake[aero].Lvert[13][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[13][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[13][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[13][1].u = 1;
+					Q_WindWake[aero].Lvert[13][1].v = 1;
+					Q_WindWake[aero].Lvert[13][1].x = Q_WindWake[aero].VertM7.x;
+					Q_WindWake[aero].Lvert[13][1].y = Q_WindWake[aero].VertM7.y;
+					Q_WindWake[aero].Lvert[13][1].z = Q_WindWake[aero].VertM7.z;
+
+							
+					Q_WindWake[aero].Lvert[13][2].u = 0;
+					Q_WindWake[aero].Lvert[13][2].v = 1;
+					Q_WindWake[aero].Lvert[13][2].x = Q_WindWake[aero].VertM65.x;
+					Q_WindWake[aero].Lvert[13][2].y = Q_WindWake[aero].VertM65.y;
+					Q_WindWake[aero].Lvert[13][2].z = Q_WindWake[aero].VertM65.z;
+
+
+					Q_WindWake[aero].Lvert[14][0].u = 0.5;
+					Q_WindWake[aero].Lvert[14][0].v = 0;
+					Q_WindWake[aero].Lvert[14][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[14][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[14][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[14][1].u = 1;
+					Q_WindWake[aero].Lvert[14][1].v = 1;
+					Q_WindWake[aero].Lvert[14][1].x = Q_WindWake[aero].VertM8.x;
+					Q_WindWake[aero].Lvert[14][1].y = Q_WindWake[aero].VertM8.y;
+					Q_WindWake[aero].Lvert[14][1].z = Q_WindWake[aero].VertM8.z;
+
+							
+					Q_WindWake[aero].Lvert[14][2].u = 0;
+					Q_WindWake[aero].Lvert[14][2].v = 1;
+					Q_WindWake[aero].Lvert[14][2].x = Q_WindWake[aero].VertM75.x;
+					Q_WindWake[aero].Lvert[14][2].y = Q_WindWake[aero].VertM75.y;
+					Q_WindWake[aero].Lvert[14][2].z = Q_WindWake[aero].VertM75.z;
+
+
+					Q_WindWake[aero].Lvert[15][0].u = 0.5;
+					Q_WindWake[aero].Lvert[15][0].v = 0;
+					Q_WindWake[aero].Lvert[15][0].x = Q_WindWake[aero].VertFNT.x;
+					Q_WindWake[aero].Lvert[15][0].y = Q_WindWake[aero].VertFNT.y;
+					Q_WindWake[aero].Lvert[15][0].z = Q_WindWake[aero].VertFNT.z;
+
+							
+					Q_WindWake[aero].Lvert[15][1].u = 1;
+					Q_WindWake[aero].Lvert[15][1].v = 1;
+					Q_WindWake[aero].Lvert[15][1].x = Q_WindWake[aero].VertM1.x;
+					Q_WindWake[aero].Lvert[15][1].y = Q_WindWake[aero].VertM1.y;
+					Q_WindWake[aero].Lvert[15][1].z = Q_WindWake[aero].VertM1.z;
+
+							
+					Q_WindWake[aero].Lvert[15][2].u = 0;
+					Q_WindWake[aero].Lvert[15][2].v = 1;
+					Q_WindWake[aero].Lvert[15][2].x = Q_WindWake[aero].VertM85.x;
+					Q_WindWake[aero].Lvert[15][2].y = Q_WindWake[aero].VertM85.y;
+					Q_WindWake[aero].Lvert[15][2].z = Q_WindWake[aero].VertM85.z;
+
+
+					//##### - SOLID RING ONE
+
+					Q_WindWake[aero].Lvert[16][0].u = 0;
+					Q_WindWake[aero].Lvert[16][0].v = 0;
+					Q_WindWake[aero].Lvert[16][0].x = Q_WindWake[aero].VertM1.x;
+					Q_WindWake[aero].Lvert[16][0].y = Q_WindWake[aero].VertM1.y;
+					Q_WindWake[aero].Lvert[16][0].z = Q_WindWake[aero].VertM1.z;
+
+					
+					Q_WindWake[aero].Lvert[16][1].u = 1;
+					Q_WindWake[aero].Lvert[16][1].v = 0;
+					Q_WindWake[aero].Lvert[16][1].x = Q_WindWake[aero].VertM15.x;
+					Q_WindWake[aero].Lvert[16][1].y = Q_WindWake[aero].VertM15.y;
+					Q_WindWake[aero].Lvert[16][1].z = Q_WindWake[aero].VertM15.z;
+
+							
+					Q_WindWake[aero].Lvert[16][2].u = 1;
+					Q_WindWake[aero].Lvert[16][2].v = 1;
+					Q_WindWake[aero].Lvert[16][2].x = Q_WindWake[aero].VertT15.x;
+					Q_WindWake[aero].Lvert[16][2].y = Q_WindWake[aero].VertT15.y;
+					Q_WindWake[aero].Lvert[16][2].z = Q_WindWake[aero].VertT15.z;
+
+
+					Q_WindWake[aero].Lvert[16][3].u = 0;
+					Q_WindWake[aero].Lvert[16][3].v = 1;
+					Q_WindWake[aero].Lvert[16][3].x = Q_WindWake[aero].VertT1.x;
+					Q_WindWake[aero].Lvert[16][3].y = Q_WindWake[aero].VertT1.y;
+					Q_WindWake[aero].Lvert[16][3].z = Q_WindWake[aero].VertT1.z;
+
+
+					Q_WindWake[aero].Lvert[17][0].u = 0;
+					Q_WindWake[aero].Lvert[17][0].v = 0;
+					Q_WindWake[aero].Lvert[17][0].x = Q_WindWake[aero].VertM15.x;
+					Q_WindWake[aero].Lvert[17][0].y = Q_WindWake[aero].VertM15.y;
+					Q_WindWake[aero].Lvert[17][0].z = Q_WindWake[aero].VertM15.z;
+
+							
+					Q_WindWake[aero].Lvert[17][1].u = 1;
+					Q_WindWake[aero].Lvert[17][1].v = 0;
+					Q_WindWake[aero].Lvert[17][1].x = Q_WindWake[aero].VertM2.x;
+					Q_WindWake[aero].Lvert[17][1].y = Q_WindWake[aero].VertM2.y;
+					Q_WindWake[aero].Lvert[17][1].z = Q_WindWake[aero].VertM2.z;
+
+							
+					Q_WindWake[aero].Lvert[17][2].u = 1;
+					Q_WindWake[aero].Lvert[17][2].v = 1;
+					Q_WindWake[aero].Lvert[17][2].x = Q_WindWake[aero].VertT2.x;
+					Q_WindWake[aero].Lvert[17][2].y = Q_WindWake[aero].VertT2.y;
+					Q_WindWake[aero].Lvert[17][2].z = Q_WindWake[aero].VertT2.z;
+
+
+					Q_WindWake[aero].Lvert[17][3].u = 0;
+					Q_WindWake[aero].Lvert[17][3].v = 1;
+					Q_WindWake[aero].Lvert[17][3].x = Q_WindWake[aero].VertT15.x;
+					Q_WindWake[aero].Lvert[17][3].y = Q_WindWake[aero].VertT15.y;
+					Q_WindWake[aero].Lvert[17][3].z = Q_WindWake[aero].VertT15.z;
+
+
+
+					Q_WindWake[aero].Lvert[18][0].u = 0;
+					Q_WindWake[aero].Lvert[18][0].v = 0;
+					Q_WindWake[aero].Lvert[18][0].x = Q_WindWake[aero].VertM2.x;
+					Q_WindWake[aero].Lvert[18][0].y = Q_WindWake[aero].VertM2.y;
+					Q_WindWake[aero].Lvert[18][0].z = Q_WindWake[aero].VertM2.z;
+
+							
+					Q_WindWake[aero].Lvert[18][1].u = 1;
+					Q_WindWake[aero].Lvert[18][1].v = 0;
+					Q_WindWake[aero].Lvert[18][1].x = Q_WindWake[aero].VertM25.x;
+					Q_WindWake[aero].Lvert[18][1].y = Q_WindWake[aero].VertM25.y;
+					Q_WindWake[aero].Lvert[18][1].z = Q_WindWake[aero].VertM25.z;
+
+							
+					Q_WindWake[aero].Lvert[18][2].u = 1;
+					Q_WindWake[aero].Lvert[18][2].v = 1;
+					Q_WindWake[aero].Lvert[18][2].x = Q_WindWake[aero].VertT25.x;
+					Q_WindWake[aero].Lvert[18][2].y = Q_WindWake[aero].VertT25.y;
+					Q_WindWake[aero].Lvert[18][2].z = Q_WindWake[aero].VertT25.z;
+
+
+					Q_WindWake[aero].Lvert[18][3].u = 0;
+					Q_WindWake[aero].Lvert[18][3].v = 1;
+					Q_WindWake[aero].Lvert[18][3].x = Q_WindWake[aero].VertT2.x;
+					Q_WindWake[aero].Lvert[18][3].y = Q_WindWake[aero].VertT2.y;
+					Q_WindWake[aero].Lvert[18][3].z = Q_WindWake[aero].VertT2.z;
+
+
+
+					Q_WindWake[aero].Lvert[19][0].u = 0;
+					Q_WindWake[aero].Lvert[19][0].v = 0;
+					Q_WindWake[aero].Lvert[19][0].x = Q_WindWake[aero].VertM25.x;
+					Q_WindWake[aero].Lvert[19][0].y = Q_WindWake[aero].VertM25.y;
+					Q_WindWake[aero].Lvert[19][0].z = Q_WindWake[aero].VertM25.z;
+
+							
+					Q_WindWake[aero].Lvert[19][1].u = 1;
+					Q_WindWake[aero].Lvert[19][1].v = 0;
+					Q_WindWake[aero].Lvert[19][1].x = Q_WindWake[aero].VertM3.x;
+					Q_WindWake[aero].Lvert[19][1].y = Q_WindWake[aero].VertM3.y;
+					Q_WindWake[aero].Lvert[19][1].z = Q_WindWake[aero].VertM3.z;
+
+							
+					Q_WindWake[aero].Lvert[19][2].u = 1;
+					Q_WindWake[aero].Lvert[19][2].v = 1;
+					Q_WindWake[aero].Lvert[19][2].x = Q_WindWake[aero].VertT3.x;
+					Q_WindWake[aero].Lvert[19][2].y = Q_WindWake[aero].VertT3.y;
+					Q_WindWake[aero].Lvert[19][2].z = Q_WindWake[aero].VertT3.z;
+
+
+					Q_WindWake[aero].Lvert[19][3].u = 0;
+					Q_WindWake[aero].Lvert[19][3].v = 1;
+					Q_WindWake[aero].Lvert[19][3].x = Q_WindWake[aero].VertT25.x;
+					Q_WindWake[aero].Lvert[19][3].y = Q_WindWake[aero].VertT25.y;
+					Q_WindWake[aero].Lvert[19][3].z = Q_WindWake[aero].VertT25.z;
+
+
+					Q_WindWake[aero].Lvert[20][0].u = 0;
+					Q_WindWake[aero].Lvert[20][0].v = 0;
+					Q_WindWake[aero].Lvert[20][0].x = Q_WindWake[aero].VertM3.x;
+					Q_WindWake[aero].Lvert[20][0].y = Q_WindWake[aero].VertM3.y;
+					Q_WindWake[aero].Lvert[20][0].z = Q_WindWake[aero].VertM3.z;
+
+							
+					Q_WindWake[aero].Lvert[20][1].u = 1;
+					Q_WindWake[aero].Lvert[20][1].v = 0;
+					Q_WindWake[aero].Lvert[20][1].x = Q_WindWake[aero].VertM35.x;
+					Q_WindWake[aero].Lvert[20][1].y = Q_WindWake[aero].VertM35.y;
+					Q_WindWake[aero].Lvert[20][1].z = Q_WindWake[aero].VertM35.z;
+
+							
+					Q_WindWake[aero].Lvert[20][2].u = 1;
+					Q_WindWake[aero].Lvert[20][2].v = 1;
+					Q_WindWake[aero].Lvert[20][2].x = Q_WindWake[aero].VertT35.x;
+					Q_WindWake[aero].Lvert[20][2].y = Q_WindWake[aero].VertT35.y;
+					Q_WindWake[aero].Lvert[20][2].z = Q_WindWake[aero].VertT35.z;
+
+
+					Q_WindWake[aero].Lvert[20][3].u = 0;
+					Q_WindWake[aero].Lvert[20][3].v = 1;
+					Q_WindWake[aero].Lvert[20][3].x = Q_WindWake[aero].VertT3.x;
+					Q_WindWake[aero].Lvert[20][3].y = Q_WindWake[aero].VertT3.y;
+					Q_WindWake[aero].Lvert[20][3].z = Q_WindWake[aero].VertT3.z;
+
+
+					Q_WindWake[aero].Lvert[21][0].u = 0;
+					Q_WindWake[aero].Lvert[21][0].v = 0;
+					Q_WindWake[aero].Lvert[21][0].x = Q_WindWake[aero].VertM35.x;
+					Q_WindWake[aero].Lvert[21][0].y = Q_WindWake[aero].VertM35.y;
+					Q_WindWake[aero].Lvert[21][0].z = Q_WindWake[aero].VertM35.z;
+
+							
+					Q_WindWake[aero].Lvert[21][1].u = 1;
+					Q_WindWake[aero].Lvert[21][1].v = 0;
+					Q_WindWake[aero].Lvert[21][1].x = Q_WindWake[aero].VertM4.x;
+					Q_WindWake[aero].Lvert[21][1].y = Q_WindWake[aero].VertM4.y;
+					Q_WindWake[aero].Lvert[21][1].z = Q_WindWake[aero].VertM4.z;
+
+							
+					Q_WindWake[aero].Lvert[21][2].u = 1;
+					Q_WindWake[aero].Lvert[21][2].v = 1;
+					Q_WindWake[aero].Lvert[21][2].x = Q_WindWake[aero].VertT4.x;
+					Q_WindWake[aero].Lvert[21][2].y = Q_WindWake[aero].VertT4.y;
+					Q_WindWake[aero].Lvert[21][2].z = Q_WindWake[aero].VertT4.z;
+
+
+					Q_WindWake[aero].Lvert[21][3].u = 0;
+					Q_WindWake[aero].Lvert[21][3].v = 1;
+					Q_WindWake[aero].Lvert[21][3].x = Q_WindWake[aero].VertT35.x;
+					Q_WindWake[aero].Lvert[21][3].y = Q_WindWake[aero].VertT35.y;
+					Q_WindWake[aero].Lvert[21][3].z = Q_WindWake[aero].VertT35.z;
+
+
+					Q_WindWake[aero].Lvert[22][0].u = 0;
+					Q_WindWake[aero].Lvert[22][0].v = 0;
+					Q_WindWake[aero].Lvert[22][0].x = Q_WindWake[aero].VertM4.x;
+					Q_WindWake[aero].Lvert[22][0].y = Q_WindWake[aero].VertM4.y;
+					Q_WindWake[aero].Lvert[22][0].z = Q_WindWake[aero].VertM4.z;
+
+							
+					Q_WindWake[aero].Lvert[22][1].u = 1;
+					Q_WindWake[aero].Lvert[22][1].v = 0;
+					Q_WindWake[aero].Lvert[22][1].x = Q_WindWake[aero].VertM45.x;
+					Q_WindWake[aero].Lvert[22][1].y = Q_WindWake[aero].VertM45.y;
+					Q_WindWake[aero].Lvert[22][1].z = Q_WindWake[aero].VertM45.z;
+
+							
+					Q_WindWake[aero].Lvert[22][2].u = 1;
+					Q_WindWake[aero].Lvert[22][2].v = 1;
+					Q_WindWake[aero].Lvert[22][2].x = Q_WindWake[aero].VertT45.x;
+					Q_WindWake[aero].Lvert[22][2].y = Q_WindWake[aero].VertT45.y;
+					Q_WindWake[aero].Lvert[22][2].z = Q_WindWake[aero].VertT45.z;
+
+
+					Q_WindWake[aero].Lvert[22][3].u = 0;
+					Q_WindWake[aero].Lvert[22][3].v = 1;
+					Q_WindWake[aero].Lvert[22][3].x = Q_WindWake[aero].VertT4.x;
+					Q_WindWake[aero].Lvert[22][3].y = Q_WindWake[aero].VertT4.y;
+					Q_WindWake[aero].Lvert[22][3].z = Q_WindWake[aero].VertT4.z;
+
+
+
+					Q_WindWake[aero].Lvert[23][0].u = 0;
+					Q_WindWake[aero].Lvert[23][0].v = 0;
+					Q_WindWake[aero].Lvert[23][0].x = Q_WindWake[aero].VertM45.x;
+					Q_WindWake[aero].Lvert[23][0].y = Q_WindWake[aero].VertM45.y;
+					Q_WindWake[aero].Lvert[23][0].z = Q_WindWake[aero].VertM45.z;
+
+							
+					Q_WindWake[aero].Lvert[23][1].u = 1;
+					Q_WindWake[aero].Lvert[23][1].v = 0;
+					Q_WindWake[aero].Lvert[23][1].x = Q_WindWake[aero].VertM5.x;
+					Q_WindWake[aero].Lvert[23][1].y = Q_WindWake[aero].VertM5.y;
+					Q_WindWake[aero].Lvert[23][1].z = Q_WindWake[aero].VertM5.z;
+
+							
+					Q_WindWake[aero].Lvert[23][2].u = 1;
+					Q_WindWake[aero].Lvert[23][2].v = 1;
+					Q_WindWake[aero].Lvert[23][2].x = Q_WindWake[aero].VertT5.x;
+					Q_WindWake[aero].Lvert[23][2].y = Q_WindWake[aero].VertT5.y;
+					Q_WindWake[aero].Lvert[23][2].z = Q_WindWake[aero].VertT5.z;
+
+
+					Q_WindWake[aero].Lvert[23][3].u = 0;
+					Q_WindWake[aero].Lvert[23][3].v = 1;
+					Q_WindWake[aero].Lvert[23][3].x = Q_WindWake[aero].VertT45.x;
+					Q_WindWake[aero].Lvert[23][3].y = Q_WindWake[aero].VertT45.y;
+					Q_WindWake[aero].Lvert[23][3].z = Q_WindWake[aero].VertT45.z;
+
+
+					Q_WindWake[aero].Lvert[24][0].u = 0;
+					Q_WindWake[aero].Lvert[24][0].v = 0;
+					Q_WindWake[aero].Lvert[24][0].x = Q_WindWake[aero].VertM5.x;
+					Q_WindWake[aero].Lvert[24][0].y = Q_WindWake[aero].VertM5.y;
+					Q_WindWake[aero].Lvert[24][0].z = Q_WindWake[aero].VertM5.z;
+
+					
+					Q_WindWake[aero].Lvert[24][1].u = 1;
+					Q_WindWake[aero].Lvert[24][1].v = 0;
+					Q_WindWake[aero].Lvert[24][1].x = Q_WindWake[aero].VertM55.x;
+					Q_WindWake[aero].Lvert[24][1].y = Q_WindWake[aero].VertM55.y;
+					Q_WindWake[aero].Lvert[24][1].z = Q_WindWake[aero].VertM55.z;
+
+							
+					Q_WindWake[aero].Lvert[24][2].u = 1;
+					Q_WindWake[aero].Lvert[24][2].v = 1;
+					Q_WindWake[aero].Lvert[24][2].x = Q_WindWake[aero].VertT55.x;
+					Q_WindWake[aero].Lvert[24][2].y = Q_WindWake[aero].VertT55.y;
+					Q_WindWake[aero].Lvert[24][2].z = Q_WindWake[aero].VertT55.z;
+
+
+					Q_WindWake[aero].Lvert[24][3].u = 0;
+					Q_WindWake[aero].Lvert[24][3].v = 1;
+					Q_WindWake[aero].Lvert[24][3].x = Q_WindWake[aero].VertT5.x;
+					Q_WindWake[aero].Lvert[24][3].y = Q_WindWake[aero].VertT5.y;
+					Q_WindWake[aero].Lvert[24][3].z = Q_WindWake[aero].VertT5.z;
+
+
+					Q_WindWake[aero].Lvert[25][0].u = 0;
+					Q_WindWake[aero].Lvert[25][0].v = 0;
+					Q_WindWake[aero].Lvert[25][0].x = Q_WindWake[aero].VertM55.x;
+					Q_WindWake[aero].Lvert[25][0].y = Q_WindWake[aero].VertM55.y;
+					Q_WindWake[aero].Lvert[25][0].z = Q_WindWake[aero].VertM55.z;
+
+							
+					Q_WindWake[aero].Lvert[25][1].u = 1;
+					Q_WindWake[aero].Lvert[25][1].v = 0;
+					Q_WindWake[aero].Lvert[25][1].x = Q_WindWake[aero].VertM6.x;
+					Q_WindWake[aero].Lvert[25][1].y = Q_WindWake[aero].VertM6.y;
+					Q_WindWake[aero].Lvert[25][1].z = Q_WindWake[aero].VertM6.z;
+
+							
+					Q_WindWake[aero].Lvert[25][2].u = 1;
+					Q_WindWake[aero].Lvert[25][2].v = 1;
+					Q_WindWake[aero].Lvert[25][2].x = Q_WindWake[aero].VertT6.x;
+					Q_WindWake[aero].Lvert[25][2].y = Q_WindWake[aero].VertT6.y;
+					Q_WindWake[aero].Lvert[25][2].z = Q_WindWake[aero].VertT6.z;
+
+
+					Q_WindWake[aero].Lvert[25][3].u = 0;
+					Q_WindWake[aero].Lvert[25][3].v = 1;
+					Q_WindWake[aero].Lvert[25][3].x = Q_WindWake[aero].VertT55.x;
+					Q_WindWake[aero].Lvert[25][3].y = Q_WindWake[aero].VertT55.y;
+					Q_WindWake[aero].Lvert[25][3].z = Q_WindWake[aero].VertT55.z;
+
+
+					Q_WindWake[aero].Lvert[26][0].u = 0;
+					Q_WindWake[aero].Lvert[26][0].v = 0;
+					Q_WindWake[aero].Lvert[26][0].x = Q_WindWake[aero].VertM6.x;
+					Q_WindWake[aero].Lvert[26][0].y = Q_WindWake[aero].VertM6.y;
+					Q_WindWake[aero].Lvert[26][0].z = Q_WindWake[aero].VertM6.z;
+
+							
+					Q_WindWake[aero].Lvert[26][1].u = 1;
+					Q_WindWake[aero].Lvert[26][1].v = 0;
+					Q_WindWake[aero].Lvert[26][1].x = Q_WindWake[aero].VertM65.x;
+					Q_WindWake[aero].Lvert[26][1].y = Q_WindWake[aero].VertM65.y;
+					Q_WindWake[aero].Lvert[26][1].z = Q_WindWake[aero].VertM65.z;
+
+							
+					Q_WindWake[aero].Lvert[26][2].u = 1;
+					Q_WindWake[aero].Lvert[26][2].v = 1;
+					Q_WindWake[aero].Lvert[26][2].x = Q_WindWake[aero].VertT65.x;
+					Q_WindWake[aero].Lvert[26][2].y = Q_WindWake[aero].VertT65.y;
+					Q_WindWake[aero].Lvert[26][2].z = Q_WindWake[aero].VertT65.z;
+
+
+					Q_WindWake[aero].Lvert[26][3].u = 0;
+					Q_WindWake[aero].Lvert[26][3].v = 1;
+					Q_WindWake[aero].Lvert[26][3].x = Q_WindWake[aero].VertT6.x;
+					Q_WindWake[aero].Lvert[26][3].y = Q_WindWake[aero].VertT6.y;
+					Q_WindWake[aero].Lvert[26][3].z = Q_WindWake[aero].VertT6.z;
+
+
+					Q_WindWake[aero].Lvert[27][0].u = 0;
+					Q_WindWake[aero].Lvert[27][0].v = 0;
+					Q_WindWake[aero].Lvert[27][0].x = Q_WindWake[aero].VertM65.x;
+					Q_WindWake[aero].Lvert[27][0].y = Q_WindWake[aero].VertM65.y;
+					Q_WindWake[aero].Lvert[27][0].z = Q_WindWake[aero].VertM65.z;
+
+							
+					Q_WindWake[aero].Lvert[27][1].u = 1;
+					Q_WindWake[aero].Lvert[27][1].v = 0;
+					Q_WindWake[aero].Lvert[27][1].x = Q_WindWake[aero].VertM7.x;
+					Q_WindWake[aero].Lvert[27][1].y = Q_WindWake[aero].VertM7.y;
+					Q_WindWake[aero].Lvert[27][1].z = Q_WindWake[aero].VertM7.z;
+
+							
+					Q_WindWake[aero].Lvert[27][2].u = 1;
+					Q_WindWake[aero].Lvert[27][2].v = 1;
+					Q_WindWake[aero].Lvert[27][2].x = Q_WindWake[aero].VertT7.x;
+					Q_WindWake[aero].Lvert[27][2].y = Q_WindWake[aero].VertT7.y;
+					Q_WindWake[aero].Lvert[27][2].z = Q_WindWake[aero].VertT7.z;
+
+
+					Q_WindWake[aero].Lvert[27][3].u = 0;
+					Q_WindWake[aero].Lvert[27][3].v = 1;
+					Q_WindWake[aero].Lvert[27][3].x = Q_WindWake[aero].VertT65.x;
+					Q_WindWake[aero].Lvert[27][3].y = Q_WindWake[aero].VertT65.y;
+					Q_WindWake[aero].Lvert[27][3].z = Q_WindWake[aero].VertT65.z;
+
+
+					Q_WindWake[aero].Lvert[28][0].u = 0;
+					Q_WindWake[aero].Lvert[28][0].v = 0;
+					Q_WindWake[aero].Lvert[28][0].x = Q_WindWake[aero].VertM7.x;
+					Q_WindWake[aero].Lvert[28][0].y = Q_WindWake[aero].VertM7.y;
+					Q_WindWake[aero].Lvert[28][0].z = Q_WindWake[aero].VertM7.z;
+
+							
+					Q_WindWake[aero].Lvert[28][1].u = 1;
+					Q_WindWake[aero].Lvert[28][1].v = 0;
+					Q_WindWake[aero].Lvert[28][1].x = Q_WindWake[aero].VertM75.x;
+					Q_WindWake[aero].Lvert[28][1].y = Q_WindWake[aero].VertM75.y;
+					Q_WindWake[aero].Lvert[28][1].z = Q_WindWake[aero].VertM75.z;
+
+							
+					Q_WindWake[aero].Lvert[28][2].u = 1;
+					Q_WindWake[aero].Lvert[28][2].v = 1;
+					Q_WindWake[aero].Lvert[28][2].x = Q_WindWake[aero].VertT75.x;
+					Q_WindWake[aero].Lvert[28][2].y = Q_WindWake[aero].VertT75.y;
+					Q_WindWake[aero].Lvert[28][2].z = Q_WindWake[aero].VertT75.z;
+
+
+					Q_WindWake[aero].Lvert[28][3].u = 0;
+					Q_WindWake[aero].Lvert[28][3].v = 1;
+					Q_WindWake[aero].Lvert[28][3].x = Q_WindWake[aero].VertT7.x;
+					Q_WindWake[aero].Lvert[28][3].y = Q_WindWake[aero].VertT7.y;
+					Q_WindWake[aero].Lvert[28][3].z = Q_WindWake[aero].VertT7.z;
+
+
+					Q_WindWake[aero].Lvert[29][0].u = 0;
+					Q_WindWake[aero].Lvert[29][0].v = 0;
+					Q_WindWake[aero].Lvert[29][0].x = Q_WindWake[aero].VertM75.x;
+					Q_WindWake[aero].Lvert[29][0].y = Q_WindWake[aero].VertM75.y;
+					Q_WindWake[aero].Lvert[29][0].z = Q_WindWake[aero].VertM75.z;
+
+							
+					Q_WindWake[aero].Lvert[29][1].u = 1;
+					Q_WindWake[aero].Lvert[29][1].v = 0;
+					Q_WindWake[aero].Lvert[29][1].x = Q_WindWake[aero].VertM8.x;
+					Q_WindWake[aero].Lvert[29][1].y = Q_WindWake[aero].VertM8.y;
+					Q_WindWake[aero].Lvert[29][1].z = Q_WindWake[aero].VertM8.z;
+
+							
+					Q_WindWake[aero].Lvert[29][2].u = 1;
+					Q_WindWake[aero].Lvert[29][2].v = 1;
+					Q_WindWake[aero].Lvert[29][2].x = Q_WindWake[aero].VertT8.x;
+					Q_WindWake[aero].Lvert[29][2].y = Q_WindWake[aero].VertT8.y;
+					Q_WindWake[aero].Lvert[29][2].z = Q_WindWake[aero].VertT8.z;
+
+
+					Q_WindWake[aero].Lvert[29][3].u = 0;
+					Q_WindWake[aero].Lvert[29][3].v = 1;
+					Q_WindWake[aero].Lvert[29][3].x = Q_WindWake[aero].VertT75.x;
+					Q_WindWake[aero].Lvert[29][3].y = Q_WindWake[aero].VertT75.y;
+					Q_WindWake[aero].Lvert[29][3].z = Q_WindWake[aero].VertT75.z;
+
+
+					Q_WindWake[aero].Lvert[30][0].u = 0;
+					Q_WindWake[aero].Lvert[30][0].v = 0;
+					Q_WindWake[aero].Lvert[30][0].x = Q_WindWake[aero].VertM8.x;
+					Q_WindWake[aero].Lvert[30][0].y = Q_WindWake[aero].VertM8.y;
+					Q_WindWake[aero].Lvert[30][0].z = Q_WindWake[aero].VertM8.z;
+
+							
+					Q_WindWake[aero].Lvert[30][1].u = 1;
+					Q_WindWake[aero].Lvert[30][1].v = 0;
+					Q_WindWake[aero].Lvert[30][1].x = Q_WindWake[aero].VertM85.x;
+					Q_WindWake[aero].Lvert[30][1].y = Q_WindWake[aero].VertM85.y;
+					Q_WindWake[aero].Lvert[30][1].z = Q_WindWake[aero].VertM85.z;
+
+							
+					Q_WindWake[aero].Lvert[30][2].u = 1;
+					Q_WindWake[aero].Lvert[30][2].v = 1;
+					Q_WindWake[aero].Lvert[30][2].x = Q_WindWake[aero].VertT85.x;
+					Q_WindWake[aero].Lvert[30][2].y = Q_WindWake[aero].VertT85.y;
+					Q_WindWake[aero].Lvert[30][2].z = Q_WindWake[aero].VertT85.z;
+
+
+					Q_WindWake[aero].Lvert[30][3].u = 0;
+					Q_WindWake[aero].Lvert[30][3].v = 1;
+					Q_WindWake[aero].Lvert[30][3].x = Q_WindWake[aero].VertT8.x;
+					Q_WindWake[aero].Lvert[30][3].y = Q_WindWake[aero].VertT8.y;
+					Q_WindWake[aero].Lvert[30][3].z = Q_WindWake[aero].VertT8.z;
+
+
+					Q_WindWake[aero].Lvert[31][0].u = 0;
+					Q_WindWake[aero].Lvert[31][0].v = 0;
+					Q_WindWake[aero].Lvert[31][0].x = Q_WindWake[aero].VertM85.x;
+					Q_WindWake[aero].Lvert[31][0].y = Q_WindWake[aero].VertM85.y;
+					Q_WindWake[aero].Lvert[31][0].z = Q_WindWake[aero].VertM85.z;
+
+							
+					Q_WindWake[aero].Lvert[31][1].u = 1;
+					Q_WindWake[aero].Lvert[31][1].v = 0;
+					Q_WindWake[aero].Lvert[31][1].x = Q_WindWake[aero].VertM1.x;
+					Q_WindWake[aero].Lvert[31][1].y = Q_WindWake[aero].VertM1.y;
+					Q_WindWake[aero].Lvert[31][1].z = Q_WindWake[aero].VertM1.z;
+
+							
+					Q_WindWake[aero].Lvert[31][2].u = 1;
+					Q_WindWake[aero].Lvert[31][2].v = 1;
+					Q_WindWake[aero].Lvert[31][2].x = Q_WindWake[aero].VertT1.x;
+					Q_WindWake[aero].Lvert[31][2].y = Q_WindWake[aero].VertT1.y;
+					Q_WindWake[aero].Lvert[31][2].z = Q_WindWake[aero].VertT1.z;
+
+
+					Q_WindWake[aero].Lvert[31][3].u = 0;
+					Q_WindWake[aero].Lvert[31][3].v = 1;
+					Q_WindWake[aero].Lvert[31][3].x = Q_WindWake[aero].VertT85.x;
+					Q_WindWake[aero].Lvert[31][3].y = Q_WindWake[aero].VertT85.y;
+					Q_WindWake[aero].Lvert[31][3].z = Q_WindWake[aero].VertT85.z;
+
+
+					//##### - SOLID RING TWO
+
+					Q_WindWake[aero].Lvert[32][0].u = 0;
+					Q_WindWake[aero].Lvert[32][0].v = 0;
+					Q_WindWake[aero].Lvert[32][0].x = Q_WindWake[aero].VertT1.x;
+					Q_WindWake[aero].Lvert[32][0].y = Q_WindWake[aero].VertT1.y;
+					Q_WindWake[aero].Lvert[32][0].z = Q_WindWake[aero].VertT1.z;
+
+					
+					Q_WindWake[aero].Lvert[32][1].u = 1;
+					Q_WindWake[aero].Lvert[32][1].v = 0;
+					Q_WindWake[aero].Lvert[32][1].x = Q_WindWake[aero].VertT15.x;
+					Q_WindWake[aero].Lvert[32][1].y = Q_WindWake[aero].VertT15.y;
+					Q_WindWake[aero].Lvert[32][1].z = Q_WindWake[aero].VertT15.z;
+
+							
+					Q_WindWake[aero].Lvert[32][2].u = 1;
+					Q_WindWake[aero].Lvert[32][2].v = 1;
+					Q_WindWake[aero].Lvert[32][2].x = Q_WindWake[aero].VertB15.x;
+					Q_WindWake[aero].Lvert[32][2].y = Q_WindWake[aero].VertB15.y;
+					Q_WindWake[aero].Lvert[32][2].z = Q_WindWake[aero].VertB15.z;
+
+
+					Q_WindWake[aero].Lvert[32][3].u = 0;
+					Q_WindWake[aero].Lvert[32][3].v = 1;
+					Q_WindWake[aero].Lvert[32][3].x = Q_WindWake[aero].VertB1.x;
+					Q_WindWake[aero].Lvert[32][3].y = Q_WindWake[aero].VertB1.y;
+					Q_WindWake[aero].Lvert[32][3].z = Q_WindWake[aero].VertB1.z;
+
+
+					Q_WindWake[aero].Lvert[33][0].u = 0;
+					Q_WindWake[aero].Lvert[33][0].v = 0;
+					Q_WindWake[aero].Lvert[33][0].x = Q_WindWake[aero].VertT15.x;
+					Q_WindWake[aero].Lvert[33][0].y = Q_WindWake[aero].VertT15.y;
+					Q_WindWake[aero].Lvert[33][0].z = Q_WindWake[aero].VertT15.z;
+
+							
+					Q_WindWake[aero].Lvert[33][1].u = 1;
+					Q_WindWake[aero].Lvert[33][1].v = 0;
+					Q_WindWake[aero].Lvert[33][1].x = Q_WindWake[aero].VertT2.x;
+					Q_WindWake[aero].Lvert[33][1].y = Q_WindWake[aero].VertT2.y;
+					Q_WindWake[aero].Lvert[33][1].z = Q_WindWake[aero].VertT2.z;
+
+							
+					Q_WindWake[aero].Lvert[33][2].u = 1;
+					Q_WindWake[aero].Lvert[33][2].v = 1;
+					Q_WindWake[aero].Lvert[33][2].x = Q_WindWake[aero].VertB2.x;
+					Q_WindWake[aero].Lvert[33][2].y = Q_WindWake[aero].VertB2.y;
+					Q_WindWake[aero].Lvert[33][2].z = Q_WindWake[aero].VertB2.z;
+
+
+					Q_WindWake[aero].Lvert[33][3].u = 0;
+					Q_WindWake[aero].Lvert[33][3].v = 1;
+					Q_WindWake[aero].Lvert[33][3].x = Q_WindWake[aero].VertB15.x;
+					Q_WindWake[aero].Lvert[33][3].y = Q_WindWake[aero].VertB15.y;
+					Q_WindWake[aero].Lvert[33][3].z = Q_WindWake[aero].VertB15.z;
+
+
+					Q_WindWake[aero].Lvert[34][0].u = 0;
+					Q_WindWake[aero].Lvert[34][0].v = 0;
+					Q_WindWake[aero].Lvert[34][0].x = Q_WindWake[aero].VertT2.x;
+					Q_WindWake[aero].Lvert[34][0].y = Q_WindWake[aero].VertT2.y;
+					Q_WindWake[aero].Lvert[34][0].z = Q_WindWake[aero].VertT2.z;
+
+							
+					Q_WindWake[aero].Lvert[34][1].u = 1;
+					Q_WindWake[aero].Lvert[34][1].v = 0;
+					Q_WindWake[aero].Lvert[34][1].x = Q_WindWake[aero].VertT25.x;
+					Q_WindWake[aero].Lvert[34][1].y = Q_WindWake[aero].VertT25.y;
+					Q_WindWake[aero].Lvert[34][1].z = Q_WindWake[aero].VertT25.z;
+
+							
+					Q_WindWake[aero].Lvert[34][2].u = 1;
+					Q_WindWake[aero].Lvert[34][2].v = 1;
+					Q_WindWake[aero].Lvert[34][2].x = Q_WindWake[aero].VertB25.x;
+					Q_WindWake[aero].Lvert[34][2].y = Q_WindWake[aero].VertB25.y;
+					Q_WindWake[aero].Lvert[34][2].z = Q_WindWake[aero].VertB25.z;
+
+
+					Q_WindWake[aero].Lvert[34][3].u = 0;
+					Q_WindWake[aero].Lvert[34][3].v = 1;
+					Q_WindWake[aero].Lvert[34][3].x = Q_WindWake[aero].VertB2.x;
+					Q_WindWake[aero].Lvert[34][3].y = Q_WindWake[aero].VertB2.y;
+					Q_WindWake[aero].Lvert[34][3].z = Q_WindWake[aero].VertB2.z;
+
+
+
+					Q_WindWake[aero].Lvert[35][0].u = 0;
+					Q_WindWake[aero].Lvert[35][0].v = 0;
+					Q_WindWake[aero].Lvert[35][0].x = Q_WindWake[aero].VertT25.x;
+					Q_WindWake[aero].Lvert[35][0].y = Q_WindWake[aero].VertT25.y;
+					Q_WindWake[aero].Lvert[35][0].z = Q_WindWake[aero].VertT25.z;
+
+							
+					Q_WindWake[aero].Lvert[35][1].u = 1;
+					Q_WindWake[aero].Lvert[35][1].v = 0;
+					Q_WindWake[aero].Lvert[35][1].x = Q_WindWake[aero].VertT3.x;
+					Q_WindWake[aero].Lvert[35][1].y = Q_WindWake[aero].VertT3.y;
+					Q_WindWake[aero].Lvert[35][1].z = Q_WindWake[aero].VertT3.z;
+
+							
+					Q_WindWake[aero].Lvert[35][2].u = 1;
+					Q_WindWake[aero].Lvert[35][2].v = 1;
+					Q_WindWake[aero].Lvert[35][2].x = Q_WindWake[aero].VertB3.x;
+					Q_WindWake[aero].Lvert[35][2].y = Q_WindWake[aero].VertB3.y;
+					Q_WindWake[aero].Lvert[35][2].z = Q_WindWake[aero].VertB3.z;
+
+
+					Q_WindWake[aero].Lvert[35][3].u = 0;
+					Q_WindWake[aero].Lvert[35][3].v = 1;
+					Q_WindWake[aero].Lvert[35][3].x = Q_WindWake[aero].VertB25.x;
+					Q_WindWake[aero].Lvert[35][3].y = Q_WindWake[aero].VertB25.y;
+					Q_WindWake[aero].Lvert[35][3].z = Q_WindWake[aero].VertB25.z;
+
+
+					Q_WindWake[aero].Lvert[36][0].u = 0;
+					Q_WindWake[aero].Lvert[36][0].v = 0;
+					Q_WindWake[aero].Lvert[36][0].x = Q_WindWake[aero].VertT3.x;
+					Q_WindWake[aero].Lvert[36][0].y = Q_WindWake[aero].VertT3.y;
+					Q_WindWake[aero].Lvert[36][0].z = Q_WindWake[aero].VertT3.z;
+
+							
+					Q_WindWake[aero].Lvert[36][1].u = 1;
+					Q_WindWake[aero].Lvert[36][1].v = 0;
+					Q_WindWake[aero].Lvert[36][1].x = Q_WindWake[aero].VertT35.x;
+					Q_WindWake[aero].Lvert[36][1].y = Q_WindWake[aero].VertT35.y;
+					Q_WindWake[aero].Lvert[36][1].z = Q_WindWake[aero].VertT35.z;
+
+							
+					Q_WindWake[aero].Lvert[36][2].u = 1;
+					Q_WindWake[aero].Lvert[36][2].v = 1;
+					Q_WindWake[aero].Lvert[36][2].x = Q_WindWake[aero].VertB35.x;
+					Q_WindWake[aero].Lvert[36][2].y = Q_WindWake[aero].VertB35.y;
+					Q_WindWake[aero].Lvert[36][2].z = Q_WindWake[aero].VertB35.z;
+
+
+					Q_WindWake[aero].Lvert[36][3].u = 0;
+					Q_WindWake[aero].Lvert[36][3].v = 1;
+					Q_WindWake[aero].Lvert[36][3].x = Q_WindWake[aero].VertB3.x;
+					Q_WindWake[aero].Lvert[36][3].y = Q_WindWake[aero].VertB3.y;
+					Q_WindWake[aero].Lvert[36][3].z = Q_WindWake[aero].VertB3.z;
+
+
+					Q_WindWake[aero].Lvert[37][0].u = 0;
+					Q_WindWake[aero].Lvert[37][0].v = 0;
+					Q_WindWake[aero].Lvert[37][0].x = Q_WindWake[aero].VertT35.x;
+					Q_WindWake[aero].Lvert[37][0].y = Q_WindWake[aero].VertT35.y;
+					Q_WindWake[aero].Lvert[37][0].z = Q_WindWake[aero].VertT35.z;
+
+							
+					Q_WindWake[aero].Lvert[37][1].u = 1;
+					Q_WindWake[aero].Lvert[37][1].v = 0;
+					Q_WindWake[aero].Lvert[37][1].x = Q_WindWake[aero].VertT4.x;
+					Q_WindWake[aero].Lvert[37][1].y = Q_WindWake[aero].VertT4.y;
+					Q_WindWake[aero].Lvert[37][1].z = Q_WindWake[aero].VertT4.z;
+
+							
+					Q_WindWake[aero].Lvert[37][2].u = 1;
+					Q_WindWake[aero].Lvert[37][2].v = 1;
+					Q_WindWake[aero].Lvert[37][2].x = Q_WindWake[aero].VertB4.x;
+					Q_WindWake[aero].Lvert[37][2].y = Q_WindWake[aero].VertB4.y;
+					Q_WindWake[aero].Lvert[37][2].z = Q_WindWake[aero].VertB4.z;
+
+
+					Q_WindWake[aero].Lvert[37][3].u = 0;
+					Q_WindWake[aero].Lvert[37][3].v = 1;
+					Q_WindWake[aero].Lvert[37][3].x = Q_WindWake[aero].VertB35.x;
+					Q_WindWake[aero].Lvert[37][3].y = Q_WindWake[aero].VertB35.y;
+					Q_WindWake[aero].Lvert[37][3].z = Q_WindWake[aero].VertB35.z;
+
+
+					Q_WindWake[aero].Lvert[38][0].u = 0;
+					Q_WindWake[aero].Lvert[38][0].v = 0;
+					Q_WindWake[aero].Lvert[38][0].x = Q_WindWake[aero].VertT4.x;
+					Q_WindWake[aero].Lvert[38][0].y = Q_WindWake[aero].VertT4.y;
+					Q_WindWake[aero].Lvert[38][0].z = Q_WindWake[aero].VertT4.z;
+
+							
+					Q_WindWake[aero].Lvert[38][1].u = 1;
+					Q_WindWake[aero].Lvert[38][1].v = 0;
+					Q_WindWake[aero].Lvert[38][1].x = Q_WindWake[aero].VertT45.x;
+					Q_WindWake[aero].Lvert[38][1].y = Q_WindWake[aero].VertT45.y;
+					Q_WindWake[aero].Lvert[38][1].z = Q_WindWake[aero].VertT45.z;
+
+							
+					Q_WindWake[aero].Lvert[38][2].u = 1;
+					Q_WindWake[aero].Lvert[38][2].v = 1;
+					Q_WindWake[aero].Lvert[38][2].x = Q_WindWake[aero].VertB45.x;
+					Q_WindWake[aero].Lvert[38][2].y = Q_WindWake[aero].VertB45.y;
+					Q_WindWake[aero].Lvert[38][2].z = Q_WindWake[aero].VertB45.z;
+
+
+					Q_WindWake[aero].Lvert[38][3].u = 0;
+					Q_WindWake[aero].Lvert[38][3].v = 1;
+					Q_WindWake[aero].Lvert[38][3].x = Q_WindWake[aero].VertB4.x;
+					Q_WindWake[aero].Lvert[38][3].y = Q_WindWake[aero].VertB4.y;
+					Q_WindWake[aero].Lvert[38][3].z = Q_WindWake[aero].VertB4.z;
+
+
+					Q_WindWake[aero].Lvert[39][0].u = 0;
+					Q_WindWake[aero].Lvert[39][0].v = 0;
+					Q_WindWake[aero].Lvert[39][0].x = Q_WindWake[aero].VertT45.x;
+					Q_WindWake[aero].Lvert[39][0].y = Q_WindWake[aero].VertT45.y;
+					Q_WindWake[aero].Lvert[39][0].z = Q_WindWake[aero].VertT45.z;
+
+							
+					Q_WindWake[aero].Lvert[39][1].u = 1;
+					Q_WindWake[aero].Lvert[39][1].v = 0;
+					Q_WindWake[aero].Lvert[39][1].x = Q_WindWake[aero].VertT5.x;
+					Q_WindWake[aero].Lvert[39][1].y = Q_WindWake[aero].VertT5.y;
+					Q_WindWake[aero].Lvert[39][1].z = Q_WindWake[aero].VertT5.z;
+
+							
+					Q_WindWake[aero].Lvert[39][2].u = 1;
+					Q_WindWake[aero].Lvert[39][2].v = 1;
+					Q_WindWake[aero].Lvert[39][2].x = Q_WindWake[aero].VertB5.x;
+					Q_WindWake[aero].Lvert[39][2].y = Q_WindWake[aero].VertB5.y;
+					Q_WindWake[aero].Lvert[39][2].z = Q_WindWake[aero].VertB5.z;
+
+
+					Q_WindWake[aero].Lvert[39][3].u = 0;
+					Q_WindWake[aero].Lvert[39][3].v = 1;
+					Q_WindWake[aero].Lvert[39][3].x = Q_WindWake[aero].VertB45.x;
+					Q_WindWake[aero].Lvert[39][3].y = Q_WindWake[aero].VertB45.y;
+					Q_WindWake[aero].Lvert[39][3].z = Q_WindWake[aero].VertB45.z;
+
+
+					Q_WindWake[aero].Lvert[40][0].u = 0;
+					Q_WindWake[aero].Lvert[40][0].v = 0;
+					Q_WindWake[aero].Lvert[40][0].x = Q_WindWake[aero].VertT5.x;
+					Q_WindWake[aero].Lvert[40][0].y = Q_WindWake[aero].VertT5.y;
+					Q_WindWake[aero].Lvert[40][0].z = Q_WindWake[aero].VertT5.z;
+
+					
+					Q_WindWake[aero].Lvert[40][1].u = 1;
+					Q_WindWake[aero].Lvert[40][1].v = 0;
+					Q_WindWake[aero].Lvert[40][1].x = Q_WindWake[aero].VertT55.x;
+					Q_WindWake[aero].Lvert[40][1].y = Q_WindWake[aero].VertT55.y;
+					Q_WindWake[aero].Lvert[40][1].z = Q_WindWake[aero].VertT55.z;
+
+							
+					Q_WindWake[aero].Lvert[40][2].u = 1;
+					Q_WindWake[aero].Lvert[40][2].v = 1;
+					Q_WindWake[aero].Lvert[40][2].x = Q_WindWake[aero].VertB55.x;
+					Q_WindWake[aero].Lvert[40][2].y = Q_WindWake[aero].VertB55.y;
+					Q_WindWake[aero].Lvert[40][2].z = Q_WindWake[aero].VertB55.z;
+
+
+					Q_WindWake[aero].Lvert[40][3].u = 0;
+					Q_WindWake[aero].Lvert[40][3].v = 1;
+					Q_WindWake[aero].Lvert[40][3].x = Q_WindWake[aero].VertB5.x;
+					Q_WindWake[aero].Lvert[40][3].y = Q_WindWake[aero].VertB5.y;
+					Q_WindWake[aero].Lvert[40][3].z = Q_WindWake[aero].VertB5.z;
+
+
+					Q_WindWake[aero].Lvert[41][0].u = 0;
+					Q_WindWake[aero].Lvert[41][0].v = 0;
+					Q_WindWake[aero].Lvert[41][0].x = Q_WindWake[aero].VertT55.x;
+					Q_WindWake[aero].Lvert[41][0].y = Q_WindWake[aero].VertT55.y;
+					Q_WindWake[aero].Lvert[41][0].z = Q_WindWake[aero].VertT55.z;
+
+							
+					Q_WindWake[aero].Lvert[41][1].u = 1;
+					Q_WindWake[aero].Lvert[41][1].v = 0;
+					Q_WindWake[aero].Lvert[41][1].x = Q_WindWake[aero].VertT6.x;
+					Q_WindWake[aero].Lvert[41][1].y = Q_WindWake[aero].VertT6.y;
+					Q_WindWake[aero].Lvert[41][1].z = Q_WindWake[aero].VertT6.z;
+
+							
+					Q_WindWake[aero].Lvert[41][2].u = 1;
+					Q_WindWake[aero].Lvert[41][2].v = 1;
+					Q_WindWake[aero].Lvert[41][2].x = Q_WindWake[aero].VertB6.x;
+					Q_WindWake[aero].Lvert[41][2].y = Q_WindWake[aero].VertB6.y;
+					Q_WindWake[aero].Lvert[41][2].z = Q_WindWake[aero].VertB6.z;
+
+
+					Q_WindWake[aero].Lvert[41][3].u = 0;
+					Q_WindWake[aero].Lvert[41][3].v = 1;
+					Q_WindWake[aero].Lvert[41][3].x = Q_WindWake[aero].VertB55.x;
+					Q_WindWake[aero].Lvert[41][3].y = Q_WindWake[aero].VertB55.y;
+					Q_WindWake[aero].Lvert[41][3].z = Q_WindWake[aero].VertB55.z;
+
+
+					Q_WindWake[aero].Lvert[42][0].u = 0;
+					Q_WindWake[aero].Lvert[42][0].v = 0;
+					Q_WindWake[aero].Lvert[42][0].x = Q_WindWake[aero].VertT6.x;
+					Q_WindWake[aero].Lvert[42][0].y = Q_WindWake[aero].VertT6.y;
+					Q_WindWake[aero].Lvert[42][0].z = Q_WindWake[aero].VertT6.z;
+
+							
+					Q_WindWake[aero].Lvert[42][1].u = 1;
+					Q_WindWake[aero].Lvert[42][1].v = 0;
+					Q_WindWake[aero].Lvert[42][1].x = Q_WindWake[aero].VertT65.x;
+					Q_WindWake[aero].Lvert[42][1].y = Q_WindWake[aero].VertT65.y;
+					Q_WindWake[aero].Lvert[42][1].z = Q_WindWake[aero].VertT65.z;
+
+							
+					Q_WindWake[aero].Lvert[42][2].u = 1;
+					Q_WindWake[aero].Lvert[42][2].v = 1;
+					Q_WindWake[aero].Lvert[42][2].x = Q_WindWake[aero].VertB65.x;
+					Q_WindWake[aero].Lvert[42][2].y = Q_WindWake[aero].VertB65.y;
+					Q_WindWake[aero].Lvert[42][2].z = Q_WindWake[aero].VertB65.z;
+
+
+					Q_WindWake[aero].Lvert[42][3].u = 0;
+					Q_WindWake[aero].Lvert[42][3].v = 1;
+					Q_WindWake[aero].Lvert[42][3].x = Q_WindWake[aero].VertB6.x;
+					Q_WindWake[aero].Lvert[42][3].y = Q_WindWake[aero].VertB6.y;
+					Q_WindWake[aero].Lvert[42][3].z = Q_WindWake[aero].VertB6.z;
+
+
+					Q_WindWake[aero].Lvert[43][0].u = 0;
+					Q_WindWake[aero].Lvert[43][0].v = 0;
+					Q_WindWake[aero].Lvert[43][0].x = Q_WindWake[aero].VertT65.x;
+					Q_WindWake[aero].Lvert[43][0].y = Q_WindWake[aero].VertT65.y;
+					Q_WindWake[aero].Lvert[43][0].z = Q_WindWake[aero].VertT65.z;
+
+							
+					Q_WindWake[aero].Lvert[43][1].u = 1;
+					Q_WindWake[aero].Lvert[43][1].v = 0;
+					Q_WindWake[aero].Lvert[43][1].x = Q_WindWake[aero].VertT7.x;
+					Q_WindWake[aero].Lvert[43][1].y = Q_WindWake[aero].VertT7.y;
+					Q_WindWake[aero].Lvert[43][1].z = Q_WindWake[aero].VertT7.z;
+
+							
+					Q_WindWake[aero].Lvert[43][2].u = 1;
+					Q_WindWake[aero].Lvert[43][2].v = 1;
+					Q_WindWake[aero].Lvert[43][2].x = Q_WindWake[aero].VertB7.x;
+					Q_WindWake[aero].Lvert[43][2].y = Q_WindWake[aero].VertB7.y;
+					Q_WindWake[aero].Lvert[43][2].z = Q_WindWake[aero].VertB7.z;
+
+
+					Q_WindWake[aero].Lvert[43][3].u = 0;
+					Q_WindWake[aero].Lvert[43][3].v = 1;
+					Q_WindWake[aero].Lvert[43][3].x = Q_WindWake[aero].VertB65.x;
+					Q_WindWake[aero].Lvert[43][3].y = Q_WindWake[aero].VertB65.y;
+					Q_WindWake[aero].Lvert[43][3].z = Q_WindWake[aero].VertB65.z;
+
+
+					Q_WindWake[aero].Lvert[44][0].u = 0;
+					Q_WindWake[aero].Lvert[44][0].v = 0;
+					Q_WindWake[aero].Lvert[44][0].x = Q_WindWake[aero].VertT7.x;
+					Q_WindWake[aero].Lvert[44][0].y = Q_WindWake[aero].VertT7.y;
+					Q_WindWake[aero].Lvert[44][0].z = Q_WindWake[aero].VertT7.z;
+
+							
+					Q_WindWake[aero].Lvert[44][1].u = 1;
+					Q_WindWake[aero].Lvert[44][1].v = 0;
+					Q_WindWake[aero].Lvert[44][1].x = Q_WindWake[aero].VertT75.x;
+					Q_WindWake[aero].Lvert[44][1].y = Q_WindWake[aero].VertT75.y;
+					Q_WindWake[aero].Lvert[44][1].z = Q_WindWake[aero].VertT75.z;
+
+							
+					Q_WindWake[aero].Lvert[44][2].u = 1;
+					Q_WindWake[aero].Lvert[44][2].v = 1;
+					Q_WindWake[aero].Lvert[44][2].x = Q_WindWake[aero].VertB75.x;
+					Q_WindWake[aero].Lvert[44][2].y = Q_WindWake[aero].VertB75.y;
+					Q_WindWake[aero].Lvert[44][2].z = Q_WindWake[aero].VertB75.z;
+
+
+					Q_WindWake[aero].Lvert[44][3].u = 0;
+					Q_WindWake[aero].Lvert[44][3].v = 1;
+					Q_WindWake[aero].Lvert[44][3].x = Q_WindWake[aero].VertB7.x;
+					Q_WindWake[aero].Lvert[44][3].y = Q_WindWake[aero].VertB7.y;
+					Q_WindWake[aero].Lvert[44][3].z = Q_WindWake[aero].VertB7.z;
+
+
+					Q_WindWake[aero].Lvert[45][0].u = 0;
+					Q_WindWake[aero].Lvert[45][0].v = 0;
+					Q_WindWake[aero].Lvert[45][0].x = Q_WindWake[aero].VertT75.x;
+					Q_WindWake[aero].Lvert[45][0].y = Q_WindWake[aero].VertT75.y;
+					Q_WindWake[aero].Lvert[45][0].z = Q_WindWake[aero].VertT75.z;
+
+							
+					Q_WindWake[aero].Lvert[45][1].u = 1;
+					Q_WindWake[aero].Lvert[45][1].v = 0;
+					Q_WindWake[aero].Lvert[45][1].x = Q_WindWake[aero].VertT8.x;
+					Q_WindWake[aero].Lvert[45][1].y = Q_WindWake[aero].VertT8.y;
+					Q_WindWake[aero].Lvert[45][1].z = Q_WindWake[aero].VertT8.z;
+
+							
+					Q_WindWake[aero].Lvert[45][2].u = 1;
+					Q_WindWake[aero].Lvert[45][2].v = 1;
+					Q_WindWake[aero].Lvert[45][2].x = Q_WindWake[aero].VertB8.x;
+					Q_WindWake[aero].Lvert[45][2].y = Q_WindWake[aero].VertB8.y;
+					Q_WindWake[aero].Lvert[45][2].z = Q_WindWake[aero].VertB8.z;
+
+
+					Q_WindWake[aero].Lvert[45][3].u = 0;
+					Q_WindWake[aero].Lvert[45][3].v = 1;
+					Q_WindWake[aero].Lvert[45][3].x = Q_WindWake[aero].VertB75.x;
+					Q_WindWake[aero].Lvert[45][3].y = Q_WindWake[aero].VertB75.y;
+					Q_WindWake[aero].Lvert[45][3].z = Q_WindWake[aero].VertB75.z;
+
+
+					Q_WindWake[aero].Lvert[46][0].u = 0;
+					Q_WindWake[aero].Lvert[46][0].v = 0;
+					Q_WindWake[aero].Lvert[46][0].x = Q_WindWake[aero].VertT8.x;
+					Q_WindWake[aero].Lvert[46][0].y = Q_WindWake[aero].VertT8.y;
+					Q_WindWake[aero].Lvert[46][0].z = Q_WindWake[aero].VertT8.z;
+
+							
+					Q_WindWake[aero].Lvert[46][1].u = 1;
+					Q_WindWake[aero].Lvert[46][1].v = 0;
+					Q_WindWake[aero].Lvert[46][1].x = Q_WindWake[aero].VertT85.x;
+					Q_WindWake[aero].Lvert[46][1].y = Q_WindWake[aero].VertT85.y;
+					Q_WindWake[aero].Lvert[46][1].z = Q_WindWake[aero].VertT85.z;
+
+
+					Q_WindWake[aero].Lvert[46][2].u = 1;
+					Q_WindWake[aero].Lvert[46][2].v = 1;
+					Q_WindWake[aero].Lvert[46][2].x = Q_WindWake[aero].VertB85.x;
+					Q_WindWake[aero].Lvert[46][2].y = Q_WindWake[aero].VertB85.y;
+					Q_WindWake[aero].Lvert[46][2].z = Q_WindWake[aero].VertB85.z;
+
+
+					Q_WindWake[aero].Lvert[46][3].u = 0;
+					Q_WindWake[aero].Lvert[46][3].v = 1;
+					Q_WindWake[aero].Lvert[46][3].x = Q_WindWake[aero].VertB8.x;
+					Q_WindWake[aero].Lvert[46][3].y = Q_WindWake[aero].VertB8.y;
+					Q_WindWake[aero].Lvert[46][3].z = Q_WindWake[aero].VertB8.z;
+
+
+					Q_WindWake[aero].Lvert[47][0].u = 0;
+					Q_WindWake[aero].Lvert[47][0].v = 0;
+					Q_WindWake[aero].Lvert[47][0].x = Q_WindWake[aero].VertT85.x;
+					Q_WindWake[aero].Lvert[47][0].y = Q_WindWake[aero].VertT85.y;
+					Q_WindWake[aero].Lvert[47][0].z = Q_WindWake[aero].VertT85.z;
+
+
+					Q_WindWake[aero].Lvert[47][1].u = 1;
+					Q_WindWake[aero].Lvert[47][1].v = 0;
+					Q_WindWake[aero].Lvert[47][1].x = Q_WindWake[aero].VertT1.x;
+					Q_WindWake[aero].Lvert[47][1].y = Q_WindWake[aero].VertT1.y;
+					Q_WindWake[aero].Lvert[47][1].z = Q_WindWake[aero].VertT1.z;
+
+
+					Q_WindWake[aero].Lvert[47][2].u = 1;
+					Q_WindWake[aero].Lvert[47][2].v = 1;
+					Q_WindWake[aero].Lvert[47][2].x = Q_WindWake[aero].VertB1.x;
+					Q_WindWake[aero].Lvert[47][2].y = Q_WindWake[aero].VertB1.y;
+					Q_WindWake[aero].Lvert[47][2].z = Q_WindWake[aero].VertB1.z;
+
+
+					Q_WindWake[aero].Lvert[47][3].u = 0;
+					Q_WindWake[aero].Lvert[47][3].v = 1;
+					Q_WindWake[aero].Lvert[47][3].x = Q_WindWake[aero].VertB85.x;
+					Q_WindWake[aero].Lvert[47][3].y = Q_WindWake[aero].VertB85.y;
+					Q_WindWake[aero].Lvert[47][3].z = Q_WindWake[aero].VertB85.z;
+
+
+		if(Forge[aero].CharDATA.AngelEFFECTS.JinkTYPE == 0)
+			{
+			i = 0;
+			while(i <= 15)
+				{
+				FCORE.Qpo_Poly_AddOnce(&Q_WindWake[aero].Lvert[i][0], 3, Water[Q_WindWake[aero].MaterialCNT], /*Q_WindWake[aero].Type, Q_WindWake[aero].RenderFlags,*/ 1.0f);
+				i++;
+				}
+
+			i = 16;
+			while(i <= 47)
+				{
+				FCORE.Qpo_Poly_AddOnce(&Q_WindWake[aero].Lvert[i][0], 4, Water[Q_WindWake[aero].MaterialCNT], /*Q_WindWake[aero].Type, Q_WindWake[aero].RenderFlags,*/ 1.0f);
+				i++;
+				}
+			}
+
+		if(Forge[aero].CharDATA.AngelEFFECTS.JinkTYPE == 1)
+			{
+			i = 0;
+			while(i <= 15)
+				{
+				FCORE.Qpo_Poly_AddOnce(&Q_WindWake[aero].Lvert[i][0], 3, fire[Q_WindWake[aero].MaterialCNT], /*Q_WindWake[aero].Type, Q_WindWake[aero].RenderFlags,*/ 1.0f);
+				i++;
+				}
+
+			i = 16;
+			while(i <= 47)
+				{
+				FCORE.Qpo_Poly_AddOnce(&Q_WindWake[aero].Lvert[i][0], 4, fire[Q_WindWake[aero].MaterialCNT], /*Q_WindWake[aero].Type, Q_WindWake[aero].RenderFlags,*/ 1.0f);
+				i++;
+				}
+			}
+
+
+		//###### Initialise one Textured Tri Effect - WindWake Ring Trail - Static
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Live = 1;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].EffectType = 1;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].PosB = Q_WindWake[aero].Pos;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Pos = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].STRPos;
+
+		if(Forge[aero].CharDATA.AngelEFFECTS.JinkTYPE == 0)
+			{ Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].EffectType = 1; }
+
+		if(Forge[aero].CharDATA.AngelEFFECTS.JinkTYPE == 1)
+			{ Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].EffectType = 4; }
+
+		//#### Set Back facing verts
+		if(Forge[aero].NomTriEffect != 0)
+			{
+			//#### Set front verts
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT1 = Q_WindWake[aero].VertB1;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT15 = Q_WindWake[aero].VertB15;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT2 = Q_WindWake[aero].VertB2;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT25 = Q_WindWake[aero].VertB25;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT3 = Q_WindWake[aero].VertB3;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT35 = Q_WindWake[aero].VertB35;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT4 = Q_WindWake[aero].VertB4;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT45 = Q_WindWake[aero].VertB45;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT5 = Q_WindWake[aero].VertB5;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT55 = Q_WindWake[aero].VertB55;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT6 = Q_WindWake[aero].VertB6;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT65 = Q_WindWake[aero].VertB65;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT7 = Q_WindWake[aero].VertB7;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT75 = Q_WindWake[aero].VertB75;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT8 = Q_WindWake[aero].VertB8;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT85 = Q_WindWake[aero].VertB85;
+
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB1 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT1;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB15 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT15;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB2 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT2;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB25 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT25;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB3 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT3;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB35 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT35;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB4 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT4;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB45 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT45;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB5 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT5;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB55 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT55;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB6 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT6;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB65 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT65;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB7 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT7;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB75 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT75;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB8 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT8;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB85 = Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect-1].VertT85;
+			}
+		else
+			{
+			//#### Set front verts
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT1 = Q_WindWake[aero].VertT1;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT15 = Q_WindWake[aero].VertT15;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT2 = Q_WindWake[aero].VertT2;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT25 = Q_WindWake[aero].VertT25;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT3 = Q_WindWake[aero].VertT3;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT35 = Q_WindWake[aero].VertT35;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT4 = Q_WindWake[aero].VertT4;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT45 = Q_WindWake[aero].VertT45;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT5 = Q_WindWake[aero].VertT5;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT55 = Q_WindWake[aero].VertT55;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT6 = Q_WindWake[aero].VertT6;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT65 = Q_WindWake[aero].VertT65;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT7 = Q_WindWake[aero].VertT7;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT75 = Q_WindWake[aero].VertT75;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT8 = Q_WindWake[aero].VertT8;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertT85 = Q_WindWake[aero].VertT85;
+
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB1 = Q_WindWake[aero].VertB1;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB15 = Q_WindWake[aero].VertB15;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB2 = Q_WindWake[aero].VertB2;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB25 = Q_WindWake[aero].VertB25;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB3 = Q_WindWake[aero].VertB3;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB35 = Q_WindWake[aero].VertB35;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB4 = Q_WindWake[aero].VertB4;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB45 = Q_WindWake[aero].VertB45;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB5 = Q_WindWake[aero].VertB5;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB55 = Q_WindWake[aero].VertB55;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB6 = Q_WindWake[aero].VertB6;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB65 = Q_WindWake[aero].VertB65;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB7 = Q_WindWake[aero].VertB7;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB75 = Q_WindWake[aero].VertB75;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB8 = Q_WindWake[aero].VertB8;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VertB85 = Q_WindWake[aero].VertB85;
+			}
+
+
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VecIn = Q_WindWake[aero].VecIn;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VecUp = Q_WindWake[aero].VecUp;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].VecLeft = Q_WindWake[aero].VecLeft;
+
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].MaterialCNT = Q_WindWake[aero].MaterialCNT;
+
+		if(Forge[aero].JinkSpecialON < 1)
+			{
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Red = 255;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Green = 255;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Blue = 255;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Alpha = Q_WindWake[aero].MAINALPHA;
+			}
+		else
+			{
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Alpha = Q_WindWake[aero].MAINALPHA;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Red = Forge[aero].CharDATA.AngelEFFECTS.JinkRED;	//135
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Green = Forge[aero].CharDATA.AngelEFFECTS.JinkGREEN;
+			Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Blue = Forge[aero].CharDATA.AngelEFFECTS.JinkBLUE;
+			}
+
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].LengthDist = 3;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].ExpandDist = 0.01;
+
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].PolyType = 0;//GE_TEXTURED_POLY;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].RenderFlags = 0;//GE_RENDER_DEPTH_SORT_BF;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].ScaleBIT = 1.0f;
+
+		if(Forge[aero].NomTriEffect == 0)
+			{
+			TriEffectUt = 0.1;
+			TriEffectUb = 0;
+			}
+		else
+			{
+			TriEffectUt += 0.1;
+			TriEffectUb += 0.1;
+			if(TriEffectUt > 1)
+				{
+				TriEffectUt = 0.1;
+				TriEffectUb = 0;
+				}
+			}
+
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Ut = TriEffectUt;
+		Forge[aero].Q_TexTriEffect[Forge[aero].NomTriEffect].Ub = TriEffectUb;
+
+		Forge[aero].NomTriEffect++;
+		if(Forge[aero].NomTriEffect > 299) Forge[aero].NomTriEffect = 0;
+		}
+	}
+};

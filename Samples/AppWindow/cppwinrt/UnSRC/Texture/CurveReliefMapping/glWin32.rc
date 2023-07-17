@@ -1,0 +1,163 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "main.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Load Relief Map...\tCtrl+O",  ID_FILE_OPENRM
+        MENUITEM "Load Color Map...\tCtrl+I",   ID_FILE_LOADCOLORMAP
+        MENUITEM "Load 3D Mesh...\tCtrl+M",     ID_FILE_LOADMESH
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",               ID_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Camera Or&bit\tF3",           ID_VIEW_CAMERAORBIT
+        MENUITEM "Camera &Observer\tF4",        ID_VIEW_CAMERAOBSERVER
+        MENUITEM SEPARATOR
+        MENUITEM "&Light Animation\tCrtl+L",    ID_VIEW_ANIMATELIGHT
+        MENUITEM "Model Animation\tCtrl+A",     ID_VIEW_ANIMATEMODEL
+        MENUITEM "&Wireframe\tCtrl+W",          ID_VIEW_WIREFRAME
+        MENUITEM SEPARATOR
+        MENUITEM "Full-&Screen\tAll+Enter",     ID_VIEW_FULLSCREEN
+    END
+    POPUP "&Render"
+    BEGIN
+        MENUITEM "&Normal Mapping\tCtrl+1",     ID_VIEW_BUMPMAPPING
+        MENUITEM "&Parallax Mapping\tCtrl+2",   ID_VIEW_PARALLAXMAPPING
+        MENUITEM "&Relief Mapping\tCtrl+3",     ID_VIEW_RM
+        MENUITEM SEPARATOR
+        POPUP "&Tile Factor\t- , +"
+        BEGIN
+            MENUITEM "1",                           ID_VIEW_TILEFACTOR_1
+            MENUITEM "2",                           ID_VIEW_TILEFACTOR_2
+            MENUITEM "3",                           ID_VIEW_TILEFACTOR_3
+            MENUITEM "4",                           ID_VIEW_TILEFACTOR_4
+            MENUITEM "5",                           ID_VIEW_TILEFACTOR_5
+            MENUITEM "6",                           ID_VIEW_TILEFACTOR_6
+            MENUITEM "7",                           ID_VIEW_TILEFACTOR_7
+            MENUITEM "8",                           ID_VIEW_TILEFACTOR_8
+        END
+        POPUP "Depth &Factor\t[ , ]"
+        BEGIN
+            MENUITEM "0.5",                         ID_RENDER_DEPTHFACTOR_05
+            MENUITEM "1.0",                         ID_RENDER_DEPTHFACTOR_10
+            MENUITEM "1.5",                         ID_RENDER_DEPTHFACTOR_15
+            MENUITEM "2.0",                         ID_RENDER_DEPTHFACTOR_20
+            MENUITEM "2.5",                         ID_RENDER_DEPTHFACTOR_25
+            MENUITEM "3.0",                         ID_RENDER_DEPTHFACTOR_30
+            MENUITEM "3.5",                         ID_RENDER_DEPTHFACTOR_35
+            MENUITEM "4.0",                         ID_RENDER_DEPTHFACTOR_40
+            MENUITEM "4.5",                         ID_RENDER_DEPTHFACTOR_45
+            MENUITEM "5.0",                         ID_RENDER_DEPTHFACTOR_50
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Double &Precision\tCtrl+P",   ID_VIEW_DOUBLEPRECISION
+        MENUITEM "&Depth Correct\tCtrl+R",      ID_VIEW_DEPTHCORRECT
+        MENUITEM "&Shadows\tCtrl+H",            ID_VIEW_SHADOWS
+    END
+    MENUITEM "&About...",                   ID_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS DISCARDABLE 
+BEGIN
+    "1",            ID_VIEW_BUMPMAPPING,    VIRTKEY, CONTROL, NOINVERT
+    "2",            ID_VIEW_PARALLAXMAPPING, VIRTKEY, CONTROL, NOINVERT
+    "3",            ID_VIEW_RM,             VIRTKEY, CONTROL, NOINVERT
+    "A",            ID_VIEW_ANIMATEMODEL,   VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_VIEW_SHADOWS,        VIRTKEY, CONTROL, NOINVERT
+    "I",            ID_FILE_LOADCOLORMAP,   VIRTKEY, CONTROL, NOINVERT
+    "L",            ID_VIEW_ANIMATELIGHT,   VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_FILE_LOADMESH,       VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_OPENRM,         VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_VIEW_DOUBLEPRECISION, VIRTKEY, CONTROL, NOINVERT
+    "R",            ID_VIEW_DEPTHCORRECT,   VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          ID_VIEW_CAMERAORBIT,    VIRTKEY, NOINVERT
+    VK_F4,          ID_VIEW_CAMERAOBSERVER, VIRTKEY, NOINVERT
+    VK_F4,          ID_EXIT,                VIRTKEY, ALT, NOINVERT
+    VK_RETURN,      ID_VIEW_FULLSCREEN,     VIRTKEY, ALT, NOINVERT
+    "W",            ID_VIEW_WIREFRAME,      VIRTKEY, CONTROL, NOINVERT
+END
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

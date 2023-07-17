@@ -1,0 +1,1 @@
+rs-admin -sids "unMessageServer" "default" "user" -aduaa "C:\Program Files\RebeccaAIML\aiml\annotated_alice"

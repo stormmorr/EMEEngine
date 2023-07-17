@@ -1,0 +1,186 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FRMK8055_C DIALOG DISCARDABLE  0, 0, 485, 209
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "K8055 VC++ Example"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "Connect",IDC_BTNCONNECT,7,35,69,16
+    PUSHBUTTON      "Set All Digital",IDC_BTNSETALLDIG,7,108,76,14
+    PUSHBUTTON      "Clear All Digital",IDC_BTNRESERALLDIG,7,125,76,13
+    LTEXT           "---",IDC_LBLCONNECT,7,54,60,10
+    PUSHBUTTON      "Set All Analog",IDC_BTNSETALLANA,7,144,76,14
+    PUSHBUTTON      "Clear All Analog",IDC_BTNRESETALLANA,7,160,76,14
+    CONTROL         "Output Test",IDC_CHKOUTPUTTEST,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,7,181,75,21
+    GROUPBOX        "Outputs",IDC_FRAOUT,228,41,166,34
+    CONTROL         "1",IDC_CHKOUT0,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    235,55,17,10
+    CONTROL         "2",IDC_CHKOUT1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    254,55,16,10
+    CONTROL         "3",IDC_CHKOUT2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    273,55,16,10
+    CONTROL         "4",IDC_CHKOUT3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    293,55,16,10
+    CONTROL         "5",IDC_CHKOUT4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    311,55,16,10
+    CONTROL         "6",IDC_CHKOUT5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    330,55,16,10
+    CONTROL         "7",IDC_CHKOUT6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    349,55,16,10
+    CONTROL         "8",IDC_CHKOUT7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    368,55,16,10
+    GROUPBOX        "Inputs",IDC_FRAIN,227,6,112,34
+    CONTROL         "1",IDC_CHKIN0,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,238,
+                    20,17,10
+    CONTROL         "2",IDC_CHKIN1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,257,
+                    20,16,10
+    CONTROL         "3",IDC_CHKIN2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,276,
+                    20,16,10
+    CONTROL         "4",IDC_CHKIN3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,
+                    20,16,10
+    CONTROL         "5",IDC_CHKIN4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,314,
+                    20,16,10
+    GROUPBOX        "DA1",IDC_FRADA1,96,6,27,196
+    SCROLLBAR       IDC_SCRLDA1,104,18,10,167,SBS_VERT
+    GROUPBOX        "DA2",IDC_FRADA2,127,6,27,196
+    SCROLLBAR       IDC_SCRLDA2,135,18,10,167,SBS_VERT
+    GROUPBOX        "AD1",IDC_FRAAD1,159,6,27,196
+    GROUPBOX        "AD2",IDC_FRAAD2,191,6,27,196
+    SCROLLBAR       IDC_SCRLAD2,199,18,10,167,SBS_VERT
+    GROUPBOX        "Card Address",IDC_FRAADDRESS,7,6,69,27
+    CONTROL         "SK5",IDC_CHKSK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    13,19,29,11
+    CONTROL         "SK6",IDC_CHKSK6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    43,19,29,11
+    GROUPBOX        "Counter 1",IDC_FRACOUNTER1,228,80,79,122
+    GROUPBOX        "Counter 2",IDC_FRACOUNTER2,309,80,84,122
+    CTEXT           "0",IDC_LBLDA1,99,188,18,9
+    CTEXT           "0",IDC_LBLDA2,131,188,18,9
+    CTEXT           "0",IDC_LBLAD1,163,188,18,9
+    CTEXT           "0",IDC_LBLAD2,195,188,18,9
+    EDITTEXT        IDC_TXTCOUNTER1,236,95,62,12,ES_CENTER
+    EDITTEXT        IDC_TXTCOUNTER2,322,95,62,12,ES_CENTER
+    PUSHBUTTON      "Reset",IDC_BTNRESETCOUNTER1,236,113,62,14
+    PUSHBUTTON      "Reset",IDC_BTNRESETCOUNTER2,322,113,62,14
+    LTEXT           "Debounce Time",IDC_LBLDEBOUNCETIME1,242,132,60,9
+    LTEXT           "Debounce Time",IDC_LBLDEBOUNCETIME2,326,132,60,9
+    CONTROL         "0ms",IDC_OPT0MS1,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    238,145,56,11
+    CONTROL         "2ms",IDC_OPT2MS1,"Button",BS_AUTORADIOBUTTON,238,157,56,
+                    11
+    CONTROL         "1000ms",IDC_OPT1000MS1,"Button",BS_AUTORADIOBUTTON,238,
+                    182,56,11
+    CONTROL         "100ms",IDC_OPT100MS1,"Button",BS_AUTORADIOBUTTON,238,
+                    169,56,11
+    CONTROL         "0ms",IDC_OPT0MS2,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
+                    322,146,56,11
+    CONTROL         "2ms",IDC_OPT2MS2,"Button",BS_AUTORADIOBUTTON,322,158,56,
+                    11
+    CONTROL         "100ms",IDC_OPT100MS2,"Button",BS_AUTORADIOBUTTON,322,
+                    170,56,11
+    CONTROL         "1000ms",IDC_OPT1000MS2,"Button",BS_AUTORADIOBUTTON,322,
+                    183,56,11
+    GROUPBOX        "Multicard Commands",IDC_FRAMULTICARD,396,6,82,196
+    PUSHBUTTON      "Find Devices",IDC_BTNFINDDEVICES,403,132,67,16
+    LTEXT           "Set Current Device",IDC_LBLCURRENTDEVICE,406,30,62,9
+    CONTROL         "Device 0",IDC_OPTDEVICE0,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP,414,53,50,9
+    CONTROL         "Device 1",IDC_OPTDEVICE1,"Button",BS_AUTORADIOBUTTON,
+                    414,70,50,9
+    CONTROL         "Device 2",IDC_OPTDEVICE2,"Button",BS_AUTORADIOBUTTON,
+                    414,89,50,9
+    CONTROL         "Device 3",IDC_OPTDEVICE3,"Button",BS_AUTORADIOBUTTON,
+                    414,109,50,9
+    PUSHBUTTON      "DLL Version",IDC_BTNDLLVERSION,403,180,67,15
+    SCROLLBAR       IDC_SCRLAD1,167,18,10,167,SBS_VERT
+    CONTROL         "Output Test",IDC_CHKOUTPUTTEST1,"Button",
+                    BS_AUTOCHECKBOX | BS_PUSHLIKE | WS_TABSTOP,403,156,67,15
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FRMK8055_C, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 478
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 202
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

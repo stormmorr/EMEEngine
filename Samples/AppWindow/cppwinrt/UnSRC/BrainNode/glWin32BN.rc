@@ -1,0 +1,154 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Brazil) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTB)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "braingrey.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open 3D Scene...\tCtrl+O",   ID_FILE_LOADMESH
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit\tAlt+F4",               ID_EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Information\tTAB",            ID_VIEW_INFORMATION
+        MENUITEM "&Textures\tCtrl+T",           ID_VIEW_DEBUG
+        MENUITEM SEPARATOR
+        MENUITEM "Free &Camera\t1",             ID_VIEW_FREECAMERA
+        MENUITEM "Anim &Camera\t2",             ID_VIEW_ANIMCAMERA
+        MENUITEM "Anim &Camera\t3",             ID_VIEW_ANIMCAMERA2
+        MENUITEM SEPARATOR
+        MENUITEM "&Full-Screen\tAll+Enter",     ID_VIEW_FULLSCREEN
+    END
+    POPUP "&Render"
+    BEGIN
+        POPUP "Screen Resolution"
+        BEGIN
+            MENUITEM "640x480",                     ID_SCREEN_640X480
+            MENUITEM "800x600",                     ID_SCREEN_800X600
+            MENUITEM "960x600",                    ID_SCREEN_960X600
+            MENUITEM "1024x768",                   ID_SCREEN_1024X768
+			MENUITEM "1152x864",                    ID_SCREEN_1152X864
+            MENUITEM "1280x1024",                   ID_SCREEN_1280X1024
+        END
+		POPUP "MRT Resolution"
+        BEGIN
+            MENUITEM "256x256",                     ID_RENDER_256X256
+            MENUITEM "400x300",                     ID_RENDER_400X300
+            MENUITEM "512x512",                     ID_RENDER_512X512
+            MENUITEM "640x480",                     ID_RENDER_640X480
+            MENUITEM "800x600",                     ID_RENDER_800X600
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Normal Mapping\tCtrl+1",     ID_VIEW_NORMAL
+        MENUITEM "&Relief Mapping\tCtrl+2",     ID_VIEW_RELIEF
+        MENUITEM SEPARATOR
+        MENUITEM "B&lur Edges (anti-alias)\tCtrl+L", ID_VIEW_ANTIALIAS
+        MENUITEM "Scene &Bloom\tCtrl+B",        ID_VIEW_BLOOM
+        MENUITEM "&Perspective Depth Bias\tCtrl+P", ID_VIEW_DEPTHBIAS
+        MENUITEM "Light &Scissor\tCtrl+C",      ID_VIEW_SCISSOR
+        MENUITEM "NV Render &Depth Texture\tCtrl+N", 
+                                                ID_VIEW_NVRENDERDEPTHTEX
+		MENUITEM "Full Settings\tCtrl+F", 
+                                                ID_VIEW_FULLSETTINGS
+    END
+    MENUITEM "&About...",                   ID_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS DISCARDABLE 
+BEGIN
+    "1",            ID_VIEW_NORMAL,         VIRTKEY, CONTROL, NOINVERT
+    "2",            ID_VIEW_RELIEF,         VIRTKEY, CONTROL, NOINVERT
+    "B",            ID_VIEW_BLOOM,          VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_VIEW_SCISSOR,        VIRTKEY, CONTROL, NOINVERT
+    "L",            ID_VIEW_ANTIALIAS,      VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_VIEW_NVRENDERDEPTHTEX, VIRTKEY, CONTROL, NOINVERT
+    "O",            ID_FILE_LOADMESH,       VIRTKEY, CONTROL, NOINVERT
+    "P",            ID_VIEW_DEPTHBIAS,      VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_VIEW_DEBUG,          VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          ID_EXIT,                VIRTKEY, ALT, NOINVERT
+    VK_RETURN,      ID_VIEW_FULLSCREEN,     VIRTKEY, ALT, NOINVERT
+    VK_TAB,         ID_VIEW_INFORMATION,    VIRTKEY, NOINVERT
+END
+
+#endif    // Portuguese (Brazil) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

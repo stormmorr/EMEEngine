@@ -1,0 +1,8 @@
+// Microsoft Developer Studio generated Help ID include file.
+// Used by QShell.rc
+//
+#define HIDCLSCLERICSKILL10             0x807a049c    // IDD_CLSCLERICDIALOG [English (U.S.)]
+#define HIDCLSCLERICSKILL11             0x807a0499    // IDD_CLSCLERICDIALOG [English (U.S.)]
+#define HIDCLSCLERICSKILL12             0x807a049a    // IDD_CLSCLERICDIALOG [English (U.S.)]
+#define HIDCLSCLERICSKILL8              0x807a0523    // IDD_CLSCLERICDIALOG [English (U.S.)]
+#define HIDCLSCLERICSKILL9              0x807a049b    // IDD_CLSCLERICDIALOG [English (U.S.)]

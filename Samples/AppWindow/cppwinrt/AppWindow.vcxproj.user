@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <UapAppxPackageBuildMode>StoreAndSideload</UapAppxPackageBuildMode>
+    <AppxShowAllApps>True</AppxShowAllApps>
+    <AppxBuildConfigurationSelection>x64</AppxBuildConfigurationSelection>
+    <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
+    <Source>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\Square44x44Logo1.scale-400.png</Source>
+    <SmallTileSource>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\AssetsGen.png</SmallTileSource>
+    <MediumTileSource>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\AssetsGen.png</MediumTileSource>
+    <WideTileSource>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\AssetsGen.png</WideTileSource>
+    <LargeTileSource>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\AssetsGen.png</LargeTileSource>
+    <BadgeLogoSource>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\Square44x44Logo1.scale-400.png</BadgeLogoSource>
+    <PackageLogoSource>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\AssetsGen.png</PackageLogoSource>
+    <AppIconSource>C:\Projects Base\ecoin-winrt-complete\Samples\AppWindow\cppwinrt\Assets\Square44x44Logo1.scale-400.png</AppIconSource>
+  </PropertyGroup>
+</Project>
