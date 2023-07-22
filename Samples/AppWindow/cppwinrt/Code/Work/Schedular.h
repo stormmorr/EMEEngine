@@ -191,6 +191,10 @@ class Schedular : public ecom_base
 
 		int ac_GetEntry(int f_EntryIdx);
 
+		void acMutexLox(void);
+
+		std::shared_ptr<Scan_Timer> acActualNewTimer(std::shared_ptr<Scan_Timer> f_CurrentTimer);
+
 		std::thread DataFramePush(std::shared_ptr<Scan_Timer> f_Timer, int f_PushID);
 		std::thread DataFrameExt(std::shared_ptr<Scan_Timer> f_Timer);
 		std::thread DataFrame_GuiExt(std::shared_ptr<Scan_Timer> f_Timer);
@@ -247,6 +251,7 @@ class Schedular : public ecom_base
 		std::Smart_Ptr<SocketSet> m_ClientSS;
 
 		bool m_Scan;
+		bool m_OffLock;
 		bool m_MainFrameScan;
 		bool m_MainstreamFrameScan;
 		bool m_WalletSaveScan;

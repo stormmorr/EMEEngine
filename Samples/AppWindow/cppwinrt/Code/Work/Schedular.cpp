@@ -84,13 +84,23 @@ Schedular::Schedular(int f_LID)
 	//Additional
 	acInitialState();
 
-	m_Scan = true;
+	m_OffLock = false;
+
+	if(m_OffLock == false)
+		{
+		m_Scan = true;
+		}
 
 #ifndef OSI_MEM_APP
 	std::string f_ref_CurrentPath = "Schedular::Schedular";
 
 	ac_Push(m_Entrant, f_ref_CurrentPath + g_ref_Div + "m_Entrant");
 #endif
+}
+
+void Schedular::acMutexLox(void)
+{
+	m_Mutex.lock();
 }
 
 void Schedular::acFeedPopulus(int f_Index)
@@ -134,7 +144,10 @@ bool Schedular::acScan(void)
 
 	m_Mutex.lock();
 
-	f_Scan = m_Scan;
+	if(m_Scan && !m_OffLock)
+		{
+		f_Scan = true;
+		}
 
 	m_Mutex.unlock();
 
@@ -144,6 +157,8 @@ bool Schedular::acScan(void)
 void Schedular::acCancel(void)
 {
 	m_Mutex.lock();
+
+	m_OffLock = true;
 
 	m_Scan = false;
 
@@ -500,14 +515,17 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 	//On Polling Scan = true
 	m_Mutex.lock();
 
-	m_Scan = true;
+	if(m_OffLock == false)
+		{
+		m_Scan = true;
+		}
 
 	m_Mutex.unlock();
 
 	std::shared_ptr<Scan_Timer> f_CurrentTimer = nullptr;
 
 	//Previous State Override
-	if(m_prev_State != f_new_State)
+	if((m_prev_State != f_new_State) && (m_prev_State != -1))
 		{
 		f_State = SCHEDULE_PAUSE_UPDATE_NORMAL;
 		}
@@ -577,6 +595,12 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 					while(acPopulusOneIsEmpty() == false) {/**/}
 					}
 				}
+
+			m_Mutex.lock();
+
+			m_OffLock = false;
+
+			m_Mutex.unlock();
 			}
 
 		m_vec_ScanTimer.clear();
@@ -598,19 +622,18 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 					{
 					if(m_WalletSave == true)
 						{
-						if(acPopulusOneIsFull() == false)
+						if(m_MutexLocked[0] == SCH_UNLOCKED)
 							{
-							if(m_MutexLocked[0] == SCH_UNLOCKED)
-								{
-								m_MutexLocked[0] = SCH_LOCKED;
+							m_MutexLocked[0] = SCH_LOCKED;
 
-								//data frame extension
-								std::thread f_thread_Ext(&Schedular::DataFrameExt_Org, this, f_CurrentTimer);
+							f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
+
+							//data frame extension
+							std::thread f_thread_Ext(&Schedular::DataFrameExt_Org, this, f_CurrentTimer);
 
 #ifdef SCH_THR_DETACH
-								f_thread_Ext.detach();
+							f_thread_Ext.detach();
 #endif
-								}
 							}
 						}
 					else
@@ -622,6 +645,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 								if(m_MutexLocked[f_Jet] == SCH_UNLOCKED)
 									{
 									m_MutexLocked[f_Jet] = SCH_LOCKED;
+
+									f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
 
 									std::thread f_thread_Data(&Schedular::DataFramePush_Org, this, f_CurrentTimer, f_Jet);
 
@@ -635,6 +660,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 								{
 								m_MutexLocked[SCH_THREAD_COMBINER] = SCH_LOCKED;
 
+								f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
+
 								//single push combiner
 								std::thread f_thread_Push_Ext(&Schedular::PushFrameCombiner_Org, this, f_CurrentTimer);
 
@@ -647,6 +674,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 						if(m_MutexLocked[SCH_THREAD_EXT] == SCH_UNLOCKED)
 							{
 							m_MutexLocked[SCH_THREAD_EXT] = SCH_LOCKED;
+
+							f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
 
 							//data frame extension
 							std::thread f_thread_Ext(&Schedular::DataFrameExt_Org, this, f_CurrentTimer);
@@ -668,6 +697,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 								{
 								m_MutexLocked[f_Jet] = SCH_LOCKED;
 
+								f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
+
 								std::thread f_thread_Data(&Schedular::DataFramePush_Org, this, f_CurrentTimer, f_Jet);
 
 #ifdef SCH_THR_DETACH
@@ -679,6 +710,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 						if(m_MutexLocked[SCH_THREAD_COMBINER] == SCH_UNLOCKED)
 							{
 							m_MutexLocked[SCH_THREAD_COMBINER] = SCH_LOCKED;
+
+							f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
 
 							//single push combiner
 							std::thread f_thread_Push_Ext(&Schedular::PushFrameCombiner_Org, this, f_CurrentTimer);
@@ -692,6 +725,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 					if(m_MutexLocked[SCH_THREAD_EXT] == SCH_UNLOCKED)
 						{
 						m_MutexLocked[SCH_THREAD_EXT] = SCH_LOCKED;
+
+						f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
 
 						//data frame extensiona
 						std::thread f_thread_Ext(&Schedular::DataFrame_GuiExt_Org, this, f_CurrentTimer);
@@ -713,6 +748,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 								{
 								m_MutexLocked[f_Jet] = SCH_LOCKED;
 
+								f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
+
 								std::thread f_thread_Data(&Schedular::DataFramePush_Org, this, f_CurrentTimer, f_Jet);
 
 #ifdef SCH_THR_DETACH
@@ -724,6 +761,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 						if(m_MutexLocked[SCH_THREAD_COMBINER] == SCH_UNLOCKED)
 							{
 							m_MutexLocked[SCH_THREAD_COMBINER] = SCH_LOCKED;
+
+							f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
 
 							//single push combiner
 							std::thread f_thread_Push_Ext(&Schedular::PushFrameCombiner_Org, this, f_CurrentTimer);
@@ -739,6 +778,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 						{
 						m_MutexLocked[SCH_THREAD_EXT] = SCH_LOCKED;
 
+						f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
+
 						//data frame extension
 						std::thread f_thread_Ext(&Schedular::DataFrame_AngelExt_Org, this, f_CurrentTimer);
 
@@ -751,6 +792,8 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 					if(m_MutexLocked[SCH_THREAD_MAINSTREAM] == SCH_UNLOCKED)
 						{
 						m_MutexLocked[SCH_THREAD_MAINSTREAM] = SCH_LOCKED;
+
+						f_CurrentTimer = acActualNewTimer(f_CurrentTimer);
 
 						//mainstream frame extension
 						std::thread f_thread_DataMainstream(&Schedular::DataFrameExt_Mainstream_Org, this, f_CurrentTimer);
@@ -780,6 +823,15 @@ bool Schedular::acScheduleUpdator(int f_CurrentThread)
 		{
 		return false;
 		}
+}
+
+std::shared_ptr<Scan_Timer> Schedular::acActualNewTimer(std::shared_ptr<Scan_Timer> f_CurrentTimer)
+{
+	if(f_CurrentTimer != nullptr)
+		{
+		return f_CurrentTimer;
+		}
+	else return acNewTimer();
 }
 
 std::shared_ptr<Scan_Timer> Schedular::acNewTimer(void)
@@ -6535,10 +6587,12 @@ bool Schedular::acSend_Query_Wallet_CMD(char* f_Char, int f_UI, bool f_End, bool
 			{
 			std::string f_String = "Mecoincd1:";
 
+#if 0
 			if(f_Update == true)
 				{
 				f_String = "Uecoincd1:";
 				}
+#endif
 
 			f_String += f_Char;
 			f_String += ":ecoincd1";
