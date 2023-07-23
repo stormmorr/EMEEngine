@@ -741,124 +741,124 @@
     <ClCompile Include="QAGE Source\WE\Q-World-Event-Engine.cpp">
       <Filter>QAGE Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\animation.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_action.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\animation_action.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_cycle.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\animation_cycle.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\bone.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\bone.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\buffersource.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\buffersource.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreanimation.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coreanimation.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corebone.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\corebone.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corekeyframe.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\corekeyframe.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corematerial.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\corematerial.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremesh.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coremesh.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremodel.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coremodel.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremorphanimation.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coremorphanimation.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreskeleton.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coreskeleton.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmesh.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coresubmesh.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmorphtarget.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coresubmorphtarget.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coretrack.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coretrack.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\dualquaternion.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\dualquaternion.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\error.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\error.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\global.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\global.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\hardwaremodel.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\hardwaremodel.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\loader.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\loader.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\matrix.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\matrix.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mesh.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\mesh.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mixer.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\mixer.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\model.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\model.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\morphtargetmixer.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\morphtargetmixer.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physique.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\physique.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physiquedualquaternion.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\physiquedualquaternion.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\platform.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\platform.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\quaternion.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\quaternion.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\renderer.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\renderer.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\saver.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\saver.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\skeleton.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\skeleton.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\springsystem.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\springsystem.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\streamsource.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\streamsource.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\submesh.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\submesh.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxml.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\tinyxml.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxmlerror.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\tinyxmlerror.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxmlparser.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\tinyxmlparser.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\vector.cpp">
+    <ClCompile Include="Deps\UNCal3dUWP\cal3d\src\cal3d\vector.cpp">
       <Filter>Qun3d</Filter>
     </ClCompile>
     <ClCompile Include="Server\BitTransfer.cpp">
@@ -1657,136 +1657,136 @@
     <ClInclude Include="QAGE Include\Q-WE-WorldEffects.h">
       <Filter>QAGE Include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\animation.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_action.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\animation_action.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animcallback.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\animcallback.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\bone.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\bone.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\buffersource.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\buffersource.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\cal3d.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\cal3d.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreanimation.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coreanimation.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corebone.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\corebone.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corekeyframe.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\corekeyframe.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\corematerial.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\corematerial.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremesh.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coremesh.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremodel.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coremodel.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coremorphanimation.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coremorphanimation.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coreskeleton.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coreskeleton.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmesh.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coresubmesh.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coresubmorphtarget.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coresubmorphtarget.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\coretrack.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\coretrack.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\datasource.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\datasource.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\dualquaternion.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\dualquaternion.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\error.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\error.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\global.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\global.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\hardwaremodel.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\hardwaremodel.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\loader.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\loader.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\matrix.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\matrix.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mesh.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\mesh.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\mixer.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\mixer.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\model.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\model.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\morphtargetmixer.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\morphtargetmixer.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physique.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\physique.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\physiquedualquaternion.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\physiquedualquaternion.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\platform.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\platform.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\quaternion.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\quaternion.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\refcounted.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\refcounted.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\refptr.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\refptr.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\renderer.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\renderer.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\resource.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\resource.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\saver.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\saver.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\skeleton.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\skeleton.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\springsystem.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\springsystem.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\streamsource.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\streamsource.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\submesh.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\submesh.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\tinyxml.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\tinyxml.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\transform.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\transform.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\vector.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\vector.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UnSRC\Sound\launcher.h">
@@ -2148,7 +2148,7 @@
     <ClInclude Include="Code\Cube\simplexnoise.h">
       <Filter>Code\Cube\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\UNCal3dUWP\cal3d\src\cal3d\animation_cycle.h">
+    <ClInclude Include="Deps\UNCal3dUWP\cal3d\src\cal3d\animation_cycle.h">
       <Filter>Qun3d\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Include\osimemory_v17.h">

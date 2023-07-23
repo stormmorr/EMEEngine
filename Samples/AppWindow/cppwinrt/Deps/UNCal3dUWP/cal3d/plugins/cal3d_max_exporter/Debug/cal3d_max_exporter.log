@@ -1,0 +1,13 @@
+﻿Build started 2/16/2013 3:55:07 PM.
+     1>Project "C:\Projects Base\UNCal3d\cal3d\plugins\cal3d_max_exporter\cal3d_max_exporter.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching ".\Debug\cal3d_max_exporter.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc" /I. /I..\src /I..\src\win32 /I..\..\src /I"C:\Program Files (x86)\Microsoft Platform SDK for Windows Server 2003 R2\Include\mfc" /I"C:\Program Files (x86)\Autodesk\3ds Max 2010 SDK\maxsdk\include" /I"C:\Program Files (x86)\Autodesk\3ds Max 2010 SDK\maxsdk\include\CS" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\cooking" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\foundation" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\common" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\pxtask\include" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\geometry" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\characterkinematic" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXVisualDebuggerSDK\PVDCommLayer\Public" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXProfileSDK\sdk\include" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\extensions" /I"C:\Program Files (x86)\PhysX3\SDKs\PhysXAPI\deprecated" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D NOMINMAX /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _MBCS /D _AFXDLL /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Yc"stdafx.h" /Fp".\Debug/cal3d_max_exporter.pch" /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /Gd /TP /analyze- /errorReport:prompt StdAfx.cpp
+         StdAfx.cpp
+     1>c:\projects base\uncal3d\cal3d\plugins\cal3d_max_exporter\stdafx.h(43): fatal error C1083: Cannot open include file: 'max.h': No such file or directory
+     1>Done Building Project "C:\Projects Base\UNCal3d\cal3d\plugins\cal3d_max_exporter\cal3d_max_exporter.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:34.56
