@@ -2,13 +2,10 @@
 Ecoin Microsoft Everything Engine - EMEE
 
 [HAVE_ALREADY]
-Ecoin Tokenised CPU Compression Element Mining
+Ecoin Tokenised CPU Infinity Compression Mining
 
 [HAVE_ALREADY]
-Ecoin Tokenised WEB Mining Compression Networks
-
-[HAVE_ALREADY]
-Ecoin Tokenised GPU Compression Element Mining
+Ecoin Tokenised WEB Infinity Mining Compression Networks
 
 Mining Compression Networks
 
